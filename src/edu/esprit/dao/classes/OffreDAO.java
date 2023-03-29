@@ -139,7 +139,9 @@ public class OffreDAO implements IOffreDAO{
     
     @Override
     public ObservableList<Offre> DisplayAllOffres() {
-            String sql = "SELECT * FROM offre";
+            String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie ";
+            
+        
         List<Offre> listeOffre = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();
@@ -151,8 +153,11 @@ public class OffreDAO implements IOffreDAO{
                 String image = result.getString(4);
                 int points = result.getInt(5);
                 int id_categorie = result.getInt(6);
+                String nomC = result.getString(7);
+                String descriptionC = result.getString(8);
               
-                Offre e = new Offre(nom, description, image, id_offre, points, id_categorie);
+                Categories c = new Categories(id_categorie, nomC, descriptionC);
+                Offre e = new Offre(nom, description, image, id_offre, points, c);
                 obListOff.add(e);
             }
         } catch (SQLException ex) {

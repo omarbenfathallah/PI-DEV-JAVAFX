@@ -66,8 +66,8 @@ public class AfficherAllCategorieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ca = new CategorieDAO();
         idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
-        nomCat.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        descCat.setCellValueFactory(new PropertyValueFactory<>("description"));
+        nomCat.setCellValueFactory(new PropertyValueFactory<>("nomC"));
+        descCat.setCellValueFactory(new PropertyValueFactory<>("descriptionC"));
         List<Categories> list2 = ca.DisplayAllCategories();
         afficherCategoriee.getItems().addAll(list2);        
     }    
@@ -102,8 +102,8 @@ public class AfficherAllCategorieController implements Initializable {
         Categories C = table.getSelectionModel().getSelectedItem();
 
         IdCat = C.getId_categorie();
-        nom = C.getNom();
-        desc = C.getDescription();
+        nom = C.getNomC();
+        desc = C.getDescriptionC();
 
         try {
             Parent page1 = FXMLLoader.load(getClass().getResource("UpdateCatgorie.fxml"));

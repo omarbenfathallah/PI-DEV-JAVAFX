@@ -113,9 +113,8 @@ public class Offre {
 
     @Override
     public String toString() {
-        return "Offre{" + "nom=" + nom + ", description=" + description + ", image=" + image + ", id_offre=" + id_offre + ", points=" + points + ", id_cat=" + id_cat + '}';
+        String CatSting = this.id_cat.getNomC();
+        return "Offre{" + "nom=" + nom + ", description=" + description + ", image=" + image + ", id_offre=" + id_offre + ", points=" + points + ", id_cat=" + CatSting + '}';
     }
     
-    
-
 }

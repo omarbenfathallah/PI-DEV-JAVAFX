@@ -9,47 +9,51 @@ package edu.esprit.entities;
  * @author BAZINFO
  */
 public class Categories {
-    private String nom,description;
+    private String nomC ,descriptionC;
     private int id_categorie;
 
     public Categories() {
     }
 
-    public Categories(String nom, String description, int id_categorie) {
-        this.nom = nom;
-        this.description = description;
+    public Categories(String nomC, String descriptionC, int id_categorie) {
+        this.nomC = nomC;
+        this.descriptionC = descriptionC;
         this.id_categorie = id_categorie;
     }
-     public Categories(int id_categorie,String nom, String description) {
+     public Categories(int id_categorie,String nomC, String descriptionC) {
         this.id_categorie = id_categorie;
-        this.nom = nom;
-        this.description = description;
+        this.nomC = nomC;
+        this.descriptionC = descriptionC;
       
     }
 
-    public Categories(String nom, String description) {
-        this.nom = nom;
-        this.description = description;
+    public Categories(String nomC, String descriptionC) {
+        this.nomC = nomC;
+        this.descriptionC = descriptionC;
     }
 
    public  Categories(int id_categorie) {
          this.id_categorie = id_categorie;
     }
 
-    public String getNom() {
-        return nom;
+    public Categories(String nomC) {
+        this.nomC=nomC;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public String getNomC() {
+        return nomC;
     }
 
-    public String getDescription() {
-        return description;
+    public void setNomC(String nom) {
+        this.nomC = nom;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getDescriptionC() {
+        return descriptionC;
+    }
+
+    public void setDescriptionC(String descriptionC) {
+        this.descriptionC = descriptionC;
     }
 
     public int getId_categorie() {
@@ -62,8 +66,8 @@ public class Categories {
 
     @Override
     public String toString() {
-        return "Categories{" + "nom=" + nom +'}';
+        return "Categories{" + "nomC=" + nomC + ", descriptionC=" + descriptionC + ", id_categorie=" + id_categorie + '}';
     }
-    
-    
+
+  
 }

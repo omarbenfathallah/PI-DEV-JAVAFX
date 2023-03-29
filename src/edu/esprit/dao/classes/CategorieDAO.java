@@ -36,8 +36,8 @@ public class CategorieDAO implements ICategorieDAO{
 
         try {
             PreparedStatement ps = cnx.prepareStatement(sql);
-            ps.setString(1, ca.getNom());
-            ps.setString(2, ca.getDescription());
+            ps.setString(1, ca.getNomC());
+            ps.setString(2, ca.getDescriptionC());
             ps.executeUpdate();
             System.out.println("Categorie ajouté avec succés !");
 
@@ -53,8 +53,8 @@ public class CategorieDAO implements ICategorieDAO{
         try {
             PreparedStatement ps = cnx.prepareStatement(sql);
 
-            ps.setString(1, ca.getNom());
-            ps.setString(2, ca.getDescription());        
+            ps.setString(1, ca.getNomC());
+            ps.setString(2, ca.getDescriptionC());        
             ps.setInt(3, ca.getId_categorie());
             ps.executeUpdate();
             System.out.println("Categorie modifié avec succés !");
@@ -84,7 +84,7 @@ public class CategorieDAO implements ICategorieDAO{
         try {
             PreparedStatement ps;
             ps = cnx.prepareStatement("SELECT * FROM categorie_offres WHERE EventNom = ?");
-            ps.setString(1, ca.getNom());
+            ps.setString(1, ca.getNomC());
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -108,10 +108,10 @@ public class CategorieDAO implements ICategorieDAO{
             ResultSet result = statement.executeQuery(sql);
             while (result.next()) {
                 int id_categorie = result.getInt(1);
-                String nom = result.getString(2);
-                String description = result.getString(3);
+                String nomC = result.getString(2);
+                String descriptionC = result.getString(3);
               
-                Categories e = new Categories(id_categorie,nom,description);
+                Categories e = new Categories(id_categorie,nomC,descriptionC);
                 obListCat.add(e);
                 
             }
