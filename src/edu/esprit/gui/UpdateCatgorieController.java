@@ -5,7 +5,12 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.dao.classes.CategorieDAO;
+import edu.esprit.entities.Categories;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -33,17 +39,34 @@ public class UpdateCatgorieController implements Initializable {
     private TextField mdesc;
     @FXML
     private Button btnR;
+    
+    Connection conn =null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        mnom.setText(AfficherAllCategorieController.nom);
+        mdesc.setText(AfficherAllCategorieController.desc);
     }    
 
     @FXML
     private void modifCategorie(ActionEvent event) {
+        String nom = mnom.getText();
+        String desc = mdesc.getText();
+
+        CategorieDAO ca = new CategorieDAO();
+        Categories c = new Categories(AfficherAllCategorieController.IdCat, nom, desc);
+        ca.updateCategories(c);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Categorie modifié avec succés !");
+        alert.showAndWait();
     }
 
     @FXML
