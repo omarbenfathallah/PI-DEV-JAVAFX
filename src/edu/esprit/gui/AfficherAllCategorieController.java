@@ -65,13 +65,11 @@ public class AfficherAllCategorieController implements Initializable {
         
     public void initialize(URL url, ResourceBundle rb) {
         ca = new CategorieDAO();
-    //    obList = ca.DisplayAllCategories();
         idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
         nomCat.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descCat.setCellValueFactory(new PropertyValueFactory<>("description"));
         List<Categories> list2 = ca.DisplayAllCategories();
-        afficherCategoriee.getItems().addAll(list2);
-//        
+        afficherCategoriee.getItems().addAll(list2);        
     }    
         
         

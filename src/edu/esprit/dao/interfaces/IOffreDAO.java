@@ -6,6 +6,7 @@ package edu.esprit.dao.interfaces;
 
 import edu.esprit.entities.Offre;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *

@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import edu.esprit.dao.interfaces.IOffreDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,6 +27,9 @@ import edu.esprit.dao.interfaces.IOffreDAO;
 public class OffreDAO implements IOffreDAO{
 
     Connection cnx;
+    
+      ObservableList<Offre>obListOff = FXCollections.observableArrayList();
+      
     public OffreDAO() {
          cnx = MyConnection.getInstance().getConnection() ;
         
@@ -133,7 +138,7 @@ public class OffreDAO implements IOffreDAO{
     }
     
     @Override
-    public List<Offre> DisplayAllOffres() {
+    public ObservableList<Offre> DisplayAllOffres() {
             String sql = "SELECT * FROM offre";
         List<Offre> listeOffre = new ArrayList<>();
         try {
@@ -148,12 +153,12 @@ public class OffreDAO implements IOffreDAO{
                 int id_categorie = result.getInt(6);
               
                 Offre e = new Offre(nom, description, image, id_offre, points, id_categorie);
-                listeOffre.add(e);
+                obListOff.add(e);
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return listeOffre;
+        return obListOff;
     }
     
 }
