@@ -56,13 +56,20 @@ public class Offre {
     }
        
     
-     
-
     public Offre(int id_offre) {
         
        this.id_offre = id_offre; 
     }
 
+    public Offre(int id_offre, String nom, String description, int points, String image,int id_categorie) {
+        this.nom = nom;
+        this.description = description;
+        this.points = points;
+        this.image=image;
+        this.id_cat = new Categories(id_categorie) ;
+    }
+
+   
     public String getNom() {
         return nom;
     }

@@ -77,10 +77,10 @@ public class OffreDAO implements IOffreDAO{
     }
     @Override
     public void updateOffre(Offre of) {   
-    String sql =  " UPDATE `offre` SET `nom`=?,`description`=?,`image`=? ,`points`=?,`id_categorie`=?  WHERE  id_offre=? "; 
+    String sql =  " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? "; 
     try {
         // Retrieve the Produit object corresponding to the given FreeCIN
-        PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie`, `nom`, `description` FROM `categorie_offres` WHERE id_categorie=?");
+        PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
         psCategorie.setInt(1, of.getId_cat().getId_categorie()); 
         ResultSet rsCategorie = psCategorie.executeQuery();
         if (!rsCategorie.next()) {
@@ -92,9 +92,9 @@ public class OffreDAO implements IOffreDAO{
          PreparedStatement ps = cnx.prepareStatement(sql);
             ps.setString(1, of.getNom());
             ps.setString(2, of.getDescription());
-            ps.setString(3, of.getImage());
+             ps.setString(3,of.getImage());
             ps.setInt(4, of.getPoints());
-            ps.setInt(5, of.getId_cat().getId_categorie());     
+            ps.setInt(5, of.getId_cat().getId_categorie());
             ps.setInt(6, of.getId_offre());
             ps.executeUpdate();
             System.out.println("Offre modifier avec succés !");
@@ -153,9 +153,11 @@ public class OffreDAO implements IOffreDAO{
                 String image = result.getString(4);
                 int points = result.getInt(5);
                 int id_categorie = result.getInt(6);
-                String nomC = result.getString(7);
-                String descriptionC = result.getString(8);
               
+                String nomC = result.getString(8);
+                String descriptionC = result.getString(9);
+             
+                
                 Categories c = new Categories(id_categorie, nomC, descriptionC);
                 Offre e = new Offre(nom, description, image, id_offre, points, c);
                 obListOff.add(e);

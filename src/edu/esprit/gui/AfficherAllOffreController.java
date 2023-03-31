@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,8 +34,8 @@ import javafx.stage.Stage;
  */
 public class AfficherAllOffreController implements Initializable {
     
-    String nom,description,image,idCat ;
-    int idOf, pnt;
+   static String nom,description,image ;
+   static int idOf,pnt,idCat;
     
     
     ObservableList<Offre> obList;
@@ -50,9 +51,9 @@ public class AfficherAllOffreController implements Initializable {
     @FXML
     private TableColumn<Offre, String> imgO;
     @FXML
-    private TableColumn<Offre, String> pntO;
+    private TableColumn<Offre, Integer> pntO;
     @FXML
-    private TableColumn<Offre, String> idcat;
+    private TableColumn<Offre, Integer> idcat;
     @FXML
     private Button btnAjout;
     @FXML
@@ -108,10 +109,51 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private void SuppOffre(ActionEvent event) {
+        
+        TableView<Offre> tableView = this.afficherOffre;
+        OffreDAO of = new OffreDAO();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex >= 0) {
+            Offre o = tableView.getSelectionModel().getSelectedItem();
+            of.deleteOffre(o);
+            tableView.getItems().remove(selectedIndex);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Categories supprimé avec succés !");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fail Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un Categories à supprimer !!");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
     private void ModifierOffre(ActionEvent event) {
+        TableView<Offre> table = afficherOffre;
+        int selectedIndex = table.getSelectionModel().getSelectedIndex();
+        if (selectedIndex < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fail Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une Categorie à modifier !!");
+            alert.showAndWait();
+        }
+
+        Offre O= table.getSelectionModel().getSelectedItem();
+
+        idOf = O.getId_offre();
+        nom = O.getNom();
+        description = O.getDescription();
+        pnt = O.getPoints();
+        image = O.getImage();
+        idCat = O.getId_cat().getId_categorie(); 
+        
          try {
             Parent page1 = FXMLLoader.load(getClass().getResource("UpdateOffre.fxml"));
             Scene scene = new Scene(page1);

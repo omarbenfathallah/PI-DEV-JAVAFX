@@ -9,8 +9,9 @@ package edu.esprit.entities;
  * @author BAZINFO
  */
 public class Categories {
+     private int id_categorie;
     private String nomC ,descriptionC;
-    private int id_categorie;
+   
 
     public Categories() {
     }
@@ -20,6 +21,9 @@ public class Categories {
         this.descriptionC = descriptionC;
         this.id_categorie = id_categorie;
     }
+    
+    
+    
      public Categories(int id_categorie,String nomC, String descriptionC) {
         this.id_categorie = id_categorie;
         this.nomC = nomC;
@@ -45,7 +49,7 @@ public class Categories {
     }
 
     public void setNomC(String nom) {
-        this.nomC = nom;
+        this.nomC = nomC;
     }
 
     public String getDescriptionC() {
@@ -66,8 +70,10 @@ public class Categories {
 
     @Override
     public String toString() {
-        return "Categories{" + "nomC=" + nomC + ", descriptionC=" + descriptionC + ", id_categorie=" + id_categorie + '}';
+        return "Categories{" + "id_categorie=" + id_categorie + ", nomC=" + nomC + ", descriptionC=" + descriptionC + '}';
     }
+
+  
 
   
 }
