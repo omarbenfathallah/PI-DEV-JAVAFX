@@ -21,7 +21,7 @@ public interface IOffreDAO {
 
     void deleteOffre(Offre of);
 
-    public boolean findOffreByNom(Offre of);
+    public List<Offre> findOffreByNom();
 
     List<Offre> DisplayAllOffres();
     

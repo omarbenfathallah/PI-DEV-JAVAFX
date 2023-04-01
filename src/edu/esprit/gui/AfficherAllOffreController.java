@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +40,7 @@ public class AfficherAllOffreController implements Initializable {
     static String nom, description, image;
     static int idOf, pnt, idCat;
 
-    ObservableList<Offre> obList;
+   
     OffreDAO of = new OffreDAO();
     Offre o = new Offre();
 
@@ -64,6 +66,7 @@ public class AfficherAllOffreController implements Initializable {
     private Button btnM;
     @FXML
     private TableView<Offre> afficherOffre;
+     ObservableList<Offre> obList;
     @FXML
     private TextField search;
     @FXML
@@ -169,7 +172,74 @@ public class AfficherAllOffreController implements Initializable {
     }
 
     @FXML
-    private void recherchee(ActionEvent event) {
+    private void rechercheOffre(ActionEvent event) {
+       choose();
+        
+        
     }
+    
+    public void choose() {
+     idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
+        nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        descO.setCellValueFactory(new PropertyValueFactory<>("description"));
+        imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
+        pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
+        idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
+        
+         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
+         search.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(off -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+    SortedList<Offre> sortedData = new SortedList<>(filteredData);
+    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
+    afficherOffre.setItems(sortedData);
+    
+    
+    }
+    
+    
+//    public void choose() {
+//    idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
+//    nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//    descO.setCellValueFactory(new PropertyValueFactory<>("description"));
+//    imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
+//    pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
+//    idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
+//
+//    FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
+//    search.textProperty().addListener((observable, oldValue, newValue) -> {
+//        filteredData.setPredicate(off -> {
+//            if (newValue == null || newValue.isEmpty()) {
+//                return true;
+//            }
+//            String[] keywords = newValue.toLowerCase().split("\\s+");
+//            for (String keyword : keywords) {
+//                boolean match = off.getNom().toLowerCase().contains(keyword)
+//                        || off.getDescription().toLowerCase().contains(keyword)
+//                || off.getId_cat() != null && off.getId_cat().getNomC().toLowerCase().contains(keyword);
+//
+//
+//                if (!match) {
+//                    return false;
+//                }
+//            }
+//            return true;
+//        });
+//    });
+//    SortedList<Offre> sortedData = new SortedList<>(filteredData);
+//    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
+//    afficherOffre.setItems(sortedData);
+//}
+
 }
 

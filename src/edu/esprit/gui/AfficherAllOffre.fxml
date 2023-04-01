@@ -30,6 +30,6 @@
       <Button fx:id="btnSupp" layoutX="541.0" layoutY="577.0" mnemonicParsing="false" onAction="#SuppOffre" prefHeight="32.0" prefWidth="95.0" text="Supprimer" />
       <Button fx:id="btnM" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#ModifierOffre" prefHeight="32.0" prefWidth="95.0" text="Modifier" />
       <TextField fx:id="search" layoutX="130.0" layoutY="73.0" prefHeight="25.0" prefWidth="234.0" />
-      <Button fx:id="Recherche" layoutX="413.0" layoutY="73.0" mnemonicParsing="false" onAction="#recherchee" text="Rechercher" />
+      <Button fx:id="Recherche" layoutX="413.0" layoutY="73.0" mnemonicParsing="false" onAction="#rechercheOffre" text="Rechercher" />
    </children>
 </AnchorPane>

@@ -29,6 +29,7 @@ public class OffreDAO implements IOffreDAO {
     Connection cnx;
 
     ObservableList<Offre> obListOff = FXCollections.observableArrayList();
+   ObservableList<Offre>obList = FXCollections.observableArrayList();
 
     public OffreDAO() {
         cnx = MyConnection.getInstance().getConnection();
@@ -115,24 +116,38 @@ public class OffreDAO implements IOffreDAO {
     }
 
     @Override
-    public boolean findOffreByNom(Offre of) {
+    public ObservableList<Offre> findOffreByNom() {
+        String sql = "SELECT * FROM offre ";
+        List<Offre> listeOffre= new ArrayList<>();
         try {
-            PreparedStatement ps;
-            ps = cnx.prepareStatement("SELECT * FROM offre WHERE nom = ?");
-            ps.setString(1, of.getNom());
-            ResultSet rs = ps.executeQuery();
+               Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+        while (result.next()) {
+          int id_offre = result.getInt(1);
+                String nom = result.getString(2);
+                String description = result.getString(3);
+                String image = result.getString(4);
+                int points = result.getInt(5);
+               // int id_categorie = result.getInt(6)
+                int id_categorie = result.getInt(6);
 
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (SQLException ex) {
+                String nomC = result.getString(8);
+                String descriptionC = result.getString(9);
+
+                Categories c = new Categories(id_categorie, nomC, descriptionC);
+          
+        Offre o = new Offre(nom, description, image, points, c);
+          obList.add(o);
+         
+
+   
+    }
+    }catch (SQLException ex) {
             System.out.println(ex);
         }
-        return false;
+        return obList;
     }
-
+   
     @Override
     public ObservableList<Offre> DisplayAllOffres() {
         String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie ";
