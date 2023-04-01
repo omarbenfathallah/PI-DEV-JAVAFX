@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-    package edu.esprit.gui ;
+package edu.esprit.gui ;
 
 import javafx.scene.control.TableView ;
 import edu.esprit.dao.classes.CategorieDAO;
@@ -38,10 +38,7 @@ public class AfficherAllCategorieController implements Initializable {
 
     ObservableList<Categories> obList;
     CategorieDAO ca = new CategorieDAO();
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
+
     @FXML
     private Button btnM;
 
@@ -66,7 +63,7 @@ public class AfficherAllCategorieController implements Initializable {
     private TableView<Categories> afficherCategoriee;
 
 
-        
+
     public void initialize(URL url, ResourceBundle rb) {
         ca = new CategorieDAO();
         idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
@@ -75,8 +72,8 @@ public class AfficherAllCategorieController implements Initializable {
         List<Categories> list2 = ca.DisplayAllCategories();
         afficherCategoriee.getItems().addAll(list2);        
     }    
-        
-        
+
+
         @FXML
         void AjoutCategorie(ActionEvent event) {
             try {
@@ -161,5 +158,4 @@ public class AfficherAllCategorieController implements Initializable {
     }
 
 }
-
   

@@ -14,11 +14,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-<<<<<<< HEAD
       <TableView fx:id="affichageAchat" layoutX="89.0" layoutY="151.0" prefHeight="200.0" prefWidth="496.0">
-=======
-      <TableView layoutX="89.0" layoutY="151.0" prefHeight="200.0" prefWidth="496.0">
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         <columns>
           <TableColumn fx:id="idachat" prefWidth="128.0" text="id_achat" />
           <TableColumn fx:id="iduser" prefWidth="114.0" text="id_user" />

@@ -11,11 +11,10 @@ package edu.esprit.entities;
  */
 public class User {
     private int id ;
-<<<<<<< HEAD
+
     private String email , password , nomU , prenom , type , confirm_password,tel;
-=======
-    private String email , password , nom , prenom , type , confirm_password,tel;
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
+
+   
     private String roles;
 
     public String getTel() {
@@ -26,19 +25,15 @@ public class User {
         this.tel = tel;
     }
 
-<<<<<<< HEAD
+
     public User(int id, String email, String password, String nomU, String prenom, String type, String confirm_password, String tel, String roles) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.nomU = nomU;
-=======
-    public User(int id, String email, String password, String nom, String prenom, String type, String confirm_password, String tel, String roles) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.nom = nom;
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
+
+   
+
         this.prenom = prenom;
         this.type = type;
         this.confirm_password = confirm_password;
@@ -50,19 +45,12 @@ public class User {
     public User() {
     }
 
-<<<<<<< HEAD
+
     public User(int id, String email, String password, String nomU, String prenom, String type, String confirm_password) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.nomU = nomU;
-=======
-    public User(int id, String email, String password, String nom, String prenom, String type, String confirm_password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.nom = nom;
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         this.prenom = prenom;
         this.type = type;
         this.confirm_password = confirm_password;
@@ -100,19 +88,11 @@ public class User {
     }
 
     public String getNom() {
-<<<<<<< HEAD
         return nomU;
     }
 
     public void setNom(String nomU) {
         this.nomU = nomU;
-=======
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     }
 
     public String getPrenom() {
@@ -149,11 +129,9 @@ public class User {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
+
         return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", nom=" + nomU + ", prenom=" + prenom + ", type=" + type + ", confirm_password=" + confirm_password + ", tel=" + tel + ", roles=" + roles + '}';
-=======
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", nom=" + nom + ", prenom=" + prenom + ", type=" + type + ", confirm_password=" + confirm_password + ", tel=" + tel + ", roles=" + roles + '}';
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
+
     }
 
    

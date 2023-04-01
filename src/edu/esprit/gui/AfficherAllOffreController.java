@@ -24,6 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -33,7 +34,6 @@ import javafx.stage.Stage;
  * @author BAZINFO
  */
 public class AfficherAllOffreController implements Initializable {
-<<<<<<< HEAD
 
     static String nom, description, image;
     static int idOf, pnt, idCat;
@@ -44,19 +44,6 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private TableColumn<Offre, Integer> idO;
-=======
-    
-   static String nom,description,image ;
-   static int idOf,pnt,idCat;
-    
-    
-    ObservableList<Offre> obList;
-    OffreDAO of = new OffreDAO();
-    Offre o = new Offre();
-    
-    @FXML
-    private TableColumn<Offre,Integer> idO;
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     @FXML
     private TableColumn<Offre, String> nomO;
     @FXML
@@ -77,6 +64,10 @@ public class AfficherAllOffreController implements Initializable {
     private Button btnM;
     @FXML
     private TableView<Offre> afficherOffre;
+    @FXML
+    private TextField search;
+    @FXML
+    private Button Recherche;
 
     /**
      * Initializes the controller class.
@@ -91,63 +82,38 @@ public class AfficherAllOffreController implements Initializable {
         pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
         idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
         List<Offre> list2 = of.DisplayAllOffres();
-<<<<<<< HEAD
         afficherOffre.getItems().addAll(list2);
     }
 
     @FXML
     private void AjouterOffre(ActionEvent event) {
         try {
-=======
-        afficherOffre.getItems().addAll(list2);  
-    }    
-
-    @FXML
-    private void AjouterOffre(ActionEvent event) {
-                  try {
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
             Parent page1 = FXMLLoader.load(getClass().getResource("AjoutOffre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-<<<<<<< HEAD
             System.out.println(ex);
-=======
-             System.out.println(ex);
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         }
     }
 
     @FXML
     private void RetourAccueil(ActionEvent event) {
-<<<<<<< HEAD
         try {
-=======
-                  try {
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
             Parent page1 = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-<<<<<<< HEAD
             System.out.println(ex);
-=======
-             System.out.println(ex);
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         }
     }
 
     @FXML
     private void SuppOffre(ActionEvent event) {
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         TableView<Offre> tableView = this.afficherOffre;
         OffreDAO of = new OffreDAO();
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
@@ -168,10 +134,6 @@ public class AfficherAllOffreController implements Initializable {
             alert.setContentText("Veuillez sélectionner un Categories à supprimer !!");
             alert.showAndWait();
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     }
 
     @FXML
@@ -186,41 +148,28 @@ public class AfficherAllOffreController implements Initializable {
             alert.showAndWait();
         }
 
-<<<<<<< HEAD
         Offre O = table.getSelectionModel().getSelectedItem();
-=======
-        Offre O= table.getSelectionModel().getSelectedItem();
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
 
         idOf = O.getId_offre();
         nom = O.getNom();
         description = O.getDescription();
         pnt = O.getPoints();
         image = O.getImage();
-<<<<<<< HEAD
         idCat = O.getId_cat().getId_categorie();
 
         try {
-=======
-        idCat = O.getId_cat().getId_categorie(); 
-        
-         try {
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
             Parent page1 = FXMLLoader.load(getClass().getResource("UpdateOffre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-<<<<<<< HEAD
             System.out.println(ex);
         }
     }
 
-=======
-             System.out.println(ex);
-        }
+    @FXML
+    private void recherchee(ActionEvent event) {
     }
-    
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
 }
+

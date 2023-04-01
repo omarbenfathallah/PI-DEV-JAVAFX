@@ -79,14 +79,6 @@ public class UpdateOffreController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Offre modifié avec succés !");
         alert.showAndWait();
-   
-<<<<<<< HEAD
-=======
-        
-          
-   
-   
->>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     }
 
     @FXML
