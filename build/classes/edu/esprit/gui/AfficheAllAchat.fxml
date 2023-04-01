@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="660.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficheAllAchatController">
+   <children>
+      <Text layoutX="254.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Achats" wrappingWidth="151.921875">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <TableView fx:id="affichageAchat" layoutX="89.0" layoutY="151.0" prefHeight="200.0" prefWidth="496.0">
+        <columns>
+          <TableColumn fx:id="idachat" prefWidth="128.0" text="id_achat" />
+          <TableColumn fx:id="iduser" prefWidth="114.0" text="id_user" />
+            <TableColumn fx:id="idoffre" minWidth="0.0" prefWidth="128.0" text="id_offre" />
+            <TableColumn fx:id="date" prefWidth="125.0" text="date" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnR" layoutX="533.0" layoutY="414.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" />
+   </children>
+</AnchorPane>
