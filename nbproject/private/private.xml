@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AfficheAllAchatController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AfficherAllOffreController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/dao/classes/AchatDAO.java</file>
@@ -10,6 +11,19 @@
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/entities/Achat.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AfficherAllCategorieController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/dao/classes/OffreDAO.java</file>
+=======
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/UpdateOffreController.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/AfficherAllOffreController.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/entities/Categories.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/AccueilMain.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/dao/interfaces/ICategorieDAO.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/AfficherAllOffre.fxml</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/entities/Offre.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/dao/classes/CategorieDAO.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/AfficherAllCategorie.fxml</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/dao/classes/OffreDAO.java</file>
+            <file>file:/C:/Users/BAZINFO/Desktop/Utri/src/edu/esprit/gui/UpdateCatgorieController.java</file>
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         </group>
     </open-files>
 </project-private>

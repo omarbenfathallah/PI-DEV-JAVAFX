@@ -38,7 +38,10 @@ public class AfficherAllCategorieController implements Initializable {
 
     ObservableList<Categories> obList;
     CategorieDAO ca = new CategorieDAO();
+<<<<<<< HEAD
     
+=======
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     @FXML
     private Button btnM;
 

@@ -11,12 +11,21 @@ package edu.esprit.entities;
 public class Offre {
 
     private String nom, description, image;
+<<<<<<< HEAD
     private int id_offre, points;
+=======
+    private int id_offre, points ;
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     private Categories id_cat;
 
     public Offre() {
     }
 
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     public Offre(String nom, String description, String image, int id_offre, int points, Categories id_cat) {
         this.nom = nom;
         this.description = description;
@@ -25,14 +34,22 @@ public class Offre {
         this.points = points;
         this.id_cat = id_cat;
     }
+<<<<<<< HEAD
 
     public Offre(String nom, String description, String image, int id_offre, int points, int id_categorie) {
+=======
+       public Offre(String nom, String description, String image, int id_offre, int points, int id_categorie) {
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
         this.nom = nom;
         this.description = description;
         this.image = image;
         this.id_offre = id_offre;
         this.points = points;
+<<<<<<< HEAD
         this.id_cat = new Categories(id_categorie);
+=======
+        this.id_cat = new Categories(id_categorie) ;
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     }
 
     public Offre(String nom, String description, String image, int points, Categories id_cat) {
@@ -42,18 +59,26 @@ public class Offre {
         this.points = points;
         this.id_cat = id_cat;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     public Offre(String nom, String description, String image, int points, int id_categorie) {
         this.nom = nom;
         this.description = description;
         this.image = image;
         this.points = points;
+<<<<<<< HEAD
         this.id_cat = new Categories(id_categorie);
+=======
+      this.id_cat = new Categories(id_categorie) ;
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     }
 
     public Offre(String nom) {
         this.nom = nom;
     }
+<<<<<<< HEAD
 
     public Offre(int id_offre) {
 
@@ -76,6 +101,24 @@ public class Offre {
 
     }
 
+=======
+       
+    
+    public Offre(int id_offre) {
+        
+       this.id_offre = id_offre; 
+    }
+
+    public Offre(int id_offre, String nom, String description, int points, String image,int id_categorie) {
+        this.nom = nom;
+        this.description = description;
+        this.points = points;
+        this.image=image;
+        this.id_cat = new Categories(id_categorie) ;
+    }
+
+   
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     public String getNom() {
         return nom;
     }
@@ -129,5 +172,9 @@ public class Offre {
         String CatSting = this.id_cat.getNomC();
         return "Offre{" + "nom=" + nom + ", description=" + description + ", image=" + image + ", id_offre=" + id_offre + ", points=" + points + ", id_cat=" + CatSting + '}';
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
 }

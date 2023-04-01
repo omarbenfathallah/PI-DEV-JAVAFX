@@ -54,6 +54,7 @@ public class Achat {
            
            
     }
+<<<<<<< HEAD
 
     public Achat(int id_achat,  User id_us,Offre id_off, Date date_achat) {
           this.id_achat = id_achat;
@@ -70,6 +71,8 @@ public class Achat {
     }
     
     
+=======
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
     
 
     public int getId_achat() {
@@ -106,6 +109,7 @@ public class Achat {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
     
         return "Achat{" + "id_achat=" + id_achat + ", id_us=" + id_us + ", id_off=" + id_off + ",  date_achat=" + date_achat + '}';
     }
@@ -114,3 +118,11 @@ public class Achat {
     
 }
 
+=======
+        return "Achat{" + "id_achat=" + id_achat + ", date_achat=" + date_achat + ", id_off=" + id_off + ", id_us=" + id_us + '}';
+    }
+    
+    
+    
+}
+>>>>>>> 7e79a6c50cf7d1dbb6a73661705e0415f93b8285
