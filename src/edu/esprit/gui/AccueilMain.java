@@ -17,19 +17,18 @@ import javafx.stage.Stage;
  * @author BAZINFO
  */
 public class AccueilMain extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-          Parent root;
+        Parent root;
         try {
-        root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
-      
+            root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
+
             Scene scene = new Scene(root);
             primaryStage.setTitle("Utri");
             primaryStage.setScene(scene);
             primaryStage.show();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -40,5 +39,5 @@ public class AccueilMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

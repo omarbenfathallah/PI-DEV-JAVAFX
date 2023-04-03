@@ -65,10 +65,7 @@ public class Offre {
         this.description = description;
         this.image = image;
         this.points = points;
-
         this.id_cat = new Categories(id_categorie);
-
-      this.id_cat = new Categories(id_categorie) ;
 
     }
 
@@ -98,12 +95,6 @@ public class Offre {
 
     }
 
-       
-
-
-  
-
-   
 
     public String getNom() {
         return nom;

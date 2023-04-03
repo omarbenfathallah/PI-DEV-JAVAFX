@@ -30,6 +30,7 @@ public class OffreDAO implements IOffreDAO {
 
     ObservableList<Offre> obListOff = FXCollections.observableArrayList();
    ObservableList<Offre>obList = FXCollections.observableArrayList();
+   
 
     public OffreDAO() {
         cnx = MyConnection.getInstance().getConnection();
@@ -50,7 +51,6 @@ public class OffreDAO implements IOffreDAO {
                         rsCategorie.getString("description")
                 );
 
-                // Set the produit property of the produit object to the retrieved Freelancer object
                 of.setId_cat(Prod_C);
             }
 

@@ -6,6 +6,8 @@
 package edu.esprit.gui;
 
 import edu.esprit.dao.classes.OffreDAO;
+import edu.esprit.dao.classes.CategorieDAO;
+
 import edu.esprit.entities.Offre;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -53,8 +55,8 @@ public class AjoutOffreController implements Initializable {
     private Button btnUpload;
     @FXML
     private Button btnAjout;
-     Offre e = new Offre();
-   OffreDAO se = new OffreDAO();
+    Offre e = new Offre();
+    OffreDAO of = new OffreDAO();
     @FXML
     private Button btnR;
     @FXML
@@ -66,27 +68,27 @@ public class AjoutOffreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void UploadImage(ActionEvent event) throws FileNotFoundException, IOException {
-         Random rand = new Random();
+        Random rand = new Random();
         int x = rand.nextInt(1000);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload File Path");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Captures\\\\"  + x + ".jpg";
+        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Captures\\\\" + x + ".jpg";
         if (file != null) {
             FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
             FileOutputStream Fdestination = new FileOutputStream(DBPath);
             BufferedInputStream bin = new BufferedInputStream(Fsource);
             BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
             System.out.println(file.getAbsoluteFile());
-            String path=file.getAbsolutePath();
+            String path = file.getAbsolutePath();
             Image img = new Image(file.toURI().toString());
-            Aimgg.setImage(img);    
+            Aimgg.setImage(img);
             Aimg.setText(DBPath);
             int b = 0;
             while (b != -1) {
@@ -94,7 +96,7 @@ public class AjoutOffreController implements Initializable {
                 bou.write(b);
             }
             bin.close();
-            bou.close();          
+            bou.close();
         } else {
             System.out.println("error");
         }
@@ -102,71 +104,89 @@ public class AjoutOffreController implements Initializable {
 
     @FXML
     private void AjoutOffre(ActionEvent event) {
-        
+
         String nom = Anom.getText();
         String desc = Adesc.getText();
-        int pnt = Integer.parseInt(Apnt.getText());
-        int Cat = Integer.parseInt(Acat.getText());       
+        String pntText = Apnt.getText();
+        String catText = Acat.getText();
         String timg = Aimg.getText();
-        
-         if(nom.isEmpty()) {
+
+        if (nom.length() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer nom d'Offre!");
             alert.show();
-        } else if(nom.length() < 3) {
+        } else if (nom.length() < 3) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Le nom de l'offre doit comporter au moins 3 caractères!");
             alert.show();
-        } else if(desc.isEmpty()) {
+        } else if (desc.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer une description d'offre!");
             alert.show();
-        } else if(pnt <0) {
+        } else if (pntText.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer le nombre de points pour l'offre!");
             alert.show();
-        } else if(Cat <0 ) {
+        } else if (catText.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Erreur! Veuillez sélectionner une catégorie pour l'offre!");
+            alert.setContentText("Erreur! Veuillez entrer l'identifiant de la catégorie pour l'offre!");
             alert.show();
-        } else if(timg == null) {
+        } else if (timg == null || timg.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez sélectionner une image pour l'offre!");
             alert.show();
-        }
-         else {
-            se.insertOffre(new Offre(nom, desc, timg, pnt, Cat));
+        } else {
+            int pnt = Integer.parseInt(pntText);
+            int cat = Integer.parseInt(catText);
+            of.insertOffre(new Offre(nom, desc, timg, pnt, cat));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success Message");
             alert.setHeaderText(null);
-            alert.setContentText("Categorie ajouté avec succés !");
+            alert.setContentText("Offre ajouté avec succès !");
             alert.showAndWait();
         }
     }
 
     @FXML
     private void RetourAccueil(ActionEvent event) {
-                  try {
+        try {
             Parent page1 = FXMLLoader.load(getClass().getResource("AfficherAllOffre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-             System.out.println(ex);
+            System.out.println(ex);
         }
     }
-    
+
 }
+
+//        CategorieDAO categorie = Acat.getSelectionModel().getSelectedItem();
+//        if (categorie == null) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Information Dialog");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Erreur! Veuillez sélectionner une catégorie pour l'offre!");
+//            alert.show();
+//            return; // exit the event handler
+//        } else {
+//            se.insertOffre(new Offre(nom, desc, timg, pnt, categorie.getId()));
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Success Message");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Offre ajoutée avec succès !");
+//            alert.showAndWait();
+//        }
