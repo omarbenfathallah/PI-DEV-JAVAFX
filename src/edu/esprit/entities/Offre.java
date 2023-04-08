@@ -22,10 +22,6 @@ public class Offre {
     }
 
 
-
-    
-    
-
     public Offre(String nom, String description, String image, int id_offre, int points, Categories id_cat) {
         this.nom = nom;
         this.description = description;
@@ -144,11 +140,17 @@ public class Offre {
         this.id_cat = id_cat;
     }
 
+//    @Override
+//    public String toString() {
+//        String CatSting = this.id_cat.getNomC();
+//        return "Offre{" + "nom=" + nom + ", description=" + description + ", image=" + image + ", id_offre=" + id_offre + ", points=" + points + ", id_cat=" + CatSting + '}';
+//    }
+
     @Override
     public String toString() {
-        String CatSting = this.id_cat.getNomC();
-        return "Offre{" + "nom=" + nom + ", description=" + description + ", image=" + image + ", id_offre=" + id_offre + ", points=" + points + ", id_cat=" + CatSting + '}';
+        return  nom;
     }
 
+    
 
 }

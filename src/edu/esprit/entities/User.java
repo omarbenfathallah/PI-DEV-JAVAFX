@@ -127,12 +127,18 @@ public class User {
         this.roles = roles;
     }
 
+//    @Override
+//    public String toString() {
+//
+//        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", nom=" + nomU + ", prenom=" + prenom + ", type=" + type + ", confirm_password=" + confirm_password + ", tel=" + tel + ", roles=" + roles + '}';
+//
+//    }
+
     @Override
     public String toString() {
-
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", nom=" + nomU + ", prenom=" + prenom + ", type=" + type + ", confirm_password=" + confirm_password + ", tel=" + tel + ", roles=" + roles + '}';
-
+        return  nomU ;
     }
+    
 
    
     

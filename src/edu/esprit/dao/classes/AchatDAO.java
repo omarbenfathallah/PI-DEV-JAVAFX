@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
  *
  * @author BAZINFO
@@ -52,7 +51,7 @@ public class AchatDAO implements IAchatDAO {
                         rsUser.getInt("id"),
                         rsUser.getString("email"),
                         rsUser.getString("password"),
-                        rsUser.getString("nom"),
+                        rsUser.getString("nomU"),
                         rsUser.getString("prenom"),
                         rsUser.getString("tel"),
                         rsUser.getString("Type"),
@@ -60,7 +59,6 @@ public class AchatDAO implements IAchatDAO {
                         rsUser.getString("roles")
                 );
 
-                // Set the produit property of the produit object to the retrieved Freelancer object
                 ac.setId_us(id_us);
             }
 
@@ -78,7 +76,6 @@ public class AchatDAO implements IAchatDAO {
                             rsOffre.getInt("id_categorie")
                     );
 
-                    // Set the produit property of the produit object to the retrieved Freelancer object
                     ac.setId_off(id_off);
                 }
 
@@ -103,11 +100,9 @@ public class AchatDAO implements IAchatDAO {
         }
     }
 
-    
-
     @Override
-    public void deleteAchat( Achat ac) {
-          String sql = "DELETE FROM `achat` WHERE id_achat=?";
+    public void deleteAchat(Achat ac) {
+        String sql = "DELETE FROM `achat` WHERE id_achat=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(sql);
             ps.setInt(1, ac.getId_achat());
@@ -127,41 +122,41 @@ public class AchatDAO implements IAchatDAO {
 
     public ObservableList<Achat> DisplayAllAchat() {
 
-        String sql = "SELECT * FROM achat a JOIN user cl ON a.id = cl.id JOIN offre o  ON o.id_offre = a.id_offre";
+        String sql = "SELECT * FROM achat a JOIN user cl ON a.id_achat = cl.id JOIN offre o  ON o.id_offre = a.id_offre";
 
-        List<Achat> listeAchat = new ArrayList<>();
+       // List<Achat> listeAchat = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while (result.next()) {
 
-                int id_achat = result.getInt(1);
-                int id_us = result.getInt(2);
-                int id_offre = result.getInt(3);
-                Date date_achat = result.getDate(4);
+                int id_achat = result.getInt("id_achat");
+                int id_us = result.getInt("id");
+                int id_offre = result.getInt("id_offre");
+                Date date_achat = result.getDate("date_achat");
 
-                String nomU = result.getString(5);
-                String prenom = result.getString(6);
-                String password = result.getString(7);
-                String email = result.getString(8);
-                String type = result.getString(9);
-                String confirm_password = result.getString(10);
-                String tel = result.getString(11);
-                String roles = result.getString(12);
+                
+                      String nomU = result.getString("nomU");
+                String email = result.getString("email");
+                String password = result.getString("password");
+          
+                String prenom = result.getString("prenom");
+                String type = result.getString("type");
+                String confirm_password = result.getString("confirm_password");
+                String tel = result.getString("tel");
+                String roles = result.getString("roles");
 
                 String nom = result.getString("nom");
                 String description = result.getString("description");
-                   int points = result.getInt("points");
+                int points = result.getInt("points");
                 String image = result.getString("image");
-             
+
                 int id_categorie = result.getInt("id_categorie");
 
                 User u = new User(id_us, email, password, nomU, prenom, type, confirm_password, tel, roles);
                 Offre o = new Offre(id_offre, nom, description, points, image, id_categorie);
                 Achat e = new Achat(id_achat, u, o, date_achat);
                 obListAch.add(e);
-
-              
 
             }
         } catch (SQLException ex) {
@@ -176,8 +171,6 @@ public class AchatDAO implements IAchatDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-
-
 
 //
 //
@@ -226,8 +219,4 @@ public class AchatDAO implements IAchatDAO {
 //}
 //
 //
-       
-    
-    
 
-    

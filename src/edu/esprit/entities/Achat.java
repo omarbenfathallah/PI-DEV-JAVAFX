@@ -105,12 +105,18 @@ public class Achat {
         this.id_us = id_us;
     }
 
+//    @Override
+//    public String toString() {
+//    
+//        return "Achat{" + "id_achat=" + id_achat + ", id_us=" + id_us + ", id_off=" + id_off + ",  date_achat=" + date_achat + '}';
+//    }
+//      
+
     @Override
     public String toString() {
-    
-        return "Achat{" + "id_achat=" + id_achat + ", id_us=" + id_us + ", id_off=" + id_off + ",  date_achat=" + date_achat + '}';
+        return  ""+ date_achat;
     }
-      
+    
     
     
 }

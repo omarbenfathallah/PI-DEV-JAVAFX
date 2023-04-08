@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.gui ;
+package edu.esprit.gui;
 
-import javafx.scene.control.TableView ;
+import javafx.scene.control.TableView;
 import edu.esprit.dao.classes.CategorieDAO;
 import edu.esprit.entities.Categories;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -62,33 +64,30 @@ public class AfficherAllCategorieController implements Initializable {
     @FXML
     private TableView<Categories> afficherCategoriee;
 
-
-
     public void initialize(URL url, ResourceBundle rb) {
         ca = new CategorieDAO();
-        idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
+       // idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
         nomCat.setCellValueFactory(new PropertyValueFactory<>("nomC"));
         descCat.setCellValueFactory(new PropertyValueFactory<>("descriptionC"));
         List<Categories> list2 = ca.DisplayAllCategories();
-        afficherCategoriee.getItems().addAll(list2);        
-    }    
+        afficherCategoriee.getItems().addAll(list2);
+    }
 
-
-        @FXML
-        void AjoutCategorie(ActionEvent event) {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("AjoutCategorie.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
-
+    @FXML
+    void AjoutCategorie(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("AjoutCategorie.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
 
-        @FXML
+    }
+
+    @FXML
     void ModifierCategorie(ActionEvent event) {
         TableView<Categories> table = afficherCategoriee;
         int selectedIndex = table.getSelectionModel().getSelectedIndex();
@@ -118,19 +117,19 @@ public class AfficherAllCategorieController implements Initializable {
 
     }
 
-        @FXML
-        void RetourAccueil(ActionEvent event) {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
-
+    @FXML
+    void RetourAccueil(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
+
+    }
 
     @FXML
     void SuppCategorie(ActionEvent event) {
@@ -140,22 +139,29 @@ public class AfficherAllCategorieController implements Initializable {
 
         if (selectedIndex >= 0) {
             Categories c = tableView.getSelectionModel().getSelectedItem();
-            cc.deleteCategories(c);
-            tableView.getItems().remove(selectedIndex);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Success Message");
+            alert.setTitle("Confirmation de suppression");
             alert.setHeaderText(null);
-            alert.setContentText("Categories supprimé avec succés !");
-            alert.showAndWait();
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer la catégorie " + c.getNomC() + " ?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                cc.deleteCategories(c);
+                tableView.getItems().remove(selectedIndex);
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Message de succès");
+                alert.setHeaderText(null);
+                alert.setContentText("Catégorie supprimée avec succès !");
+                alert.showAndWait();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fail Message");
+            alert.setTitle("Message d'erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner un Categories à supprimer !!");
+            alert.setContentText("Veuillez sélectionner une catégorie à supprimer !");
             alert.showAndWait();
         }
 
     }
 
 }
-  

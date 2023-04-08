@@ -167,7 +167,7 @@ public class OffreDAO implements IOffreDAO {
                 String descriptionC = result.getString(9);
 
                 Categories c = new Categories(id_categorie, nomC, descriptionC);
-                Offre e = new Offre(nom, description, image, id_offre, points, c);
+                Offre e = new Offre(nom, description, image,id_offre, points, c);
                 obListOff.add(e);
             }
         } catch (SQLException ex) {

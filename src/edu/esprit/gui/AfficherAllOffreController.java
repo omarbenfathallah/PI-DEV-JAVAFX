@@ -11,6 +11,7 @@ import edu.esprit.entities.Categories;
 import edu.esprit.entities.Offre;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,7 +42,6 @@ public class AfficherAllOffreController implements Initializable {
     static String nom, description, image;
     static int idOf, pnt, idCat;
 
-   
     OffreDAO of = new OffreDAO();
     Offre o = new Offre();
 
@@ -66,7 +67,7 @@ public class AfficherAllOffreController implements Initializable {
     private Button btnM;
     @FXML
     private TableView<Offre> afficherOffre;
-     ObservableList<Offre> obList;
+    ObservableList<Offre> obList;
     @FXML
     private TextField search;
     @FXML
@@ -78,7 +79,7 @@ public class AfficherAllOffreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
+        // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
         imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
@@ -123,18 +124,27 @@ public class AfficherAllOffreController implements Initializable {
 
         if (selectedIndex >= 0) {
             Offre o = tableView.getSelectionModel().getSelectedItem();
-            of.deleteOffre(o);
-            tableView.getItems().remove(selectedIndex);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Success Message");
+            alert.setTitle("Confirmation");
             alert.setHeaderText(null);
-            alert.setContentText("Categories supprimé avec succés !");
-            alert.showAndWait();
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer cette offre ?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                of.deleteOffre(o);
+                tableView.getItems().remove(selectedIndex);
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Offre supprimée avec succès !");
+                alert.showAndWait();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fail Message");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner un Categories à supprimer !!");
+            alert.setContentText("Veuillez sélectionner une offre à supprimer !");
             alert.showAndWait();
         }
     }
@@ -173,41 +183,38 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private void rechercheOffre(ActionEvent event) {
-       choose();
-        
-        
+        //choose();
+
     }
-    
-    public void choose() {
-     idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
-        nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        descO.setCellValueFactory(new PropertyValueFactory<>("description"));
-        imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
-        pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
-        idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
-        
-         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
-         search.textProperty().addListener((observable, oldValue, newValue) -> {
-        filteredData.setPredicate(off -> {
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
-            String lowerCaseFilter = newValue.toLowerCase();
-            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    });
-    SortedList<Offre> sortedData = new SortedList<>(filteredData);
-    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
-    afficherOffre.setItems(sortedData);
-    
-    
-    }
-    
-    
+
+//    public void choose() {
+//     idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
+//        nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//        descO.setCellValueFactory(new PropertyValueFactory<>("description"));
+//        imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
+//        pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
+//        idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
+//        
+//         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
+//         search.textProperty().addListener((observable, oldValue, newValue) -> {
+//        filteredData.setPredicate(off -> {
+//            if (newValue == null || newValue.isEmpty()) {
+//                return true;
+//            }
+//            String lowerCaseFilter = newValue.toLowerCase();
+//            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        });
+//    });
+//    SortedList<Offre> sortedData = new SortedList<>(filteredData);
+//    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
+//    afficherOffre.setItems(sortedData);
+//    
+//    
+//    }
 //    public void choose() {
 //    idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
 //    nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -240,6 +247,4 @@ public class AfficherAllOffreController implements Initializable {
 //    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
 //    afficherOffre.setItems(sortedData);
 //}
-
 }
-

@@ -68,9 +68,14 @@ public class Categories {
         this.id_categorie = id_categorie;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Categories{" + "id_categorie=" + id_categorie + ", nomC=" + nomC + ", descriptionC=" + descriptionC + '}';
+//    }
+
     @Override
     public String toString() {
-        return "Categories{" + "id_categorie=" + id_categorie + ", nomC=" + nomC + ", descriptionC=" + descriptionC + '}';
+        return nomC ;
     }
 
   

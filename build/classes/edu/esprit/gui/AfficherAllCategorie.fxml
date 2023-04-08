@@ -11,9 +11,8 @@
    <children>
       <TableView fx:id="afficherCategoriee" layoutX="71.0" layoutY="143.0" prefHeight="217.0" prefWidth="561.0">
         <columns>
-          <TableColumn fx:id="idCat" prefWidth="131.0" text="Id_categorie" />
           <TableColumn fx:id="nomCat" prefWidth="180.0" text="Nom" />
-            <TableColumn fx:id="descCat" prefWidth="249.0" text="Description" />
+            <TableColumn fx:id="descCat" prefWidth="380.0" text="Description" />
         </columns>
       </TableView>
       <Text layoutX="280.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories " textAlignment="RIGHT" wrappingWidth="142.31640625">

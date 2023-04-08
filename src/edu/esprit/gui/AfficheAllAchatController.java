@@ -49,7 +49,7 @@ public class AfficheAllAchatController implements Initializable {
     @FXML
     private Button btnR;
     ObservableList<Achat> obList;
-    AchatDAO aa = new AchatDAO(); 
+  
     Achat a = new Achat();
     @FXML
     private TableView<Achat> affichageAchat;
@@ -59,10 +59,10 @@ public class AfficheAllAchatController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idachat.setCellValueFactory(new PropertyValueFactory<>("id_achat"));
-
+          AchatDAO aa = new AchatDAO(); 
+     //   idachat.setCellValueFactory(new PropertyValueFactory<>("id_achat"));
+     
         iduser.setCellValueFactory(new PropertyValueFactory<>("id_us"));
-
         idoffre.setCellValueFactory(new PropertyValueFactory<>("id_off"));
         date.setCellValueFactory(new PropertyValueFactory<>("date_achat"));
 
