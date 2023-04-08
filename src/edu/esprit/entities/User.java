@@ -136,7 +136,7 @@ public class User {
 
     @Override
     public String toString() {
-        return  nomU ;
+        return   prenom + " " + nomU  ;
     }
     
 

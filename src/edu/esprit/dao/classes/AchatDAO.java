@@ -122,9 +122,9 @@ public class AchatDAO implements IAchatDAO {
 
     public ObservableList<Achat> DisplayAllAchat() {
 
-        String sql = "SELECT * FROM achat a JOIN user cl ON a.id_achat = cl.id JOIN offre o  ON o.id_offre = a.id_offre";
+        String sql = "SELECT * FROM achat a JOIN user cl ON a.id = cl.id JOIN offre o  ON o.id_offre = a.id_offre";
 
-       // List<Achat> listeAchat = new ArrayList<>();
+        // List<Achat> listeAchat = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();
             ResultSet result = statement.executeQuery(sql);
@@ -136,10 +136,9 @@ public class AchatDAO implements IAchatDAO {
                 Date date_achat = result.getDate("date_achat");
 
                 
-                      String nomU = result.getString("nomU");
                 String email = result.getString("email");
                 String password = result.getString("password");
-          
+                String nomU = result.getString("nom");
                 String prenom = result.getString("prenom");
                 String type = result.getString("type");
                 String confirm_password = result.getString("confirm_password");

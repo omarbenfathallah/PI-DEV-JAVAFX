@@ -33,17 +33,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author BAZINFO
  */
 public class AfficheAllAchatController implements Initializable {
-//    static int IdAchat;
-//    static int IdUs;
-//    static int IdOf;
-//    static Date dt ;
-
-    @FXML
-    private TableColumn<Achat, Integer> idachat;
     @FXML
     private TableColumn<Achat, Integer> iduser;
-    @FXML
-    private TableColumn<Achat, Integer> idoffre;
     @FXML
     private TableColumn<Achat,Date> date;
     @FXML
@@ -63,7 +54,7 @@ public class AfficheAllAchatController implements Initializable {
      //   idachat.setCellValueFactory(new PropertyValueFactory<>("id_achat"));
      
         iduser.setCellValueFactory(new PropertyValueFactory<>("id_us"));
-        idoffre.setCellValueFactory(new PropertyValueFactory<>("id_off"));
+       // idoffre.setCellValueFactory(new PropertyValueFactory<>("id_off"));
         date.setCellValueFactory(new PropertyValueFactory<>("date_achat"));
 
         List<Achat> list2 = aa.DisplayAllAchat();
