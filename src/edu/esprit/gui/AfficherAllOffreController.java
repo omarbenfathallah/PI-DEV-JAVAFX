@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -26,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -72,18 +74,21 @@ public class AfficherAllOffreController implements Initializable {
     private TextField search;
     @FXML
     private Button Recherche;
+    @FXML
+    private ComboBox<?> Allcat;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+       
         // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
         imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
         pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
+   
         idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
         List<Offre> list2 = of.DisplayAllOffres();
         afficherOffre.getItems().addAll(list2);

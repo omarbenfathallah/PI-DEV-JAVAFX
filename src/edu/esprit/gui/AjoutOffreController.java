@@ -17,8 +17,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,7 +50,6 @@ public class AjoutOffreController implements Initializable {
     private TextField Adesc;
     @FXML
     private TextField Apnt;
-    @FXML
     private TextField Acat;
     @FXML
     private TextField Aimg;
@@ -61,13 +63,15 @@ public class AjoutOffreController implements Initializable {
     private Button btnR;
     @FXML
     private ImageView Aimgg;
+    @FXML
+    private ComboBox<String> Allcat;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Allcat.setItems(FXCollections.observableArrayList(of.getAll()));
     }
 
     @FXML
@@ -103,12 +107,15 @@ public class AjoutOffreController implements Initializable {
     }
 
     @FXML
-    private void AjoutOffre(ActionEvent event) {
+    private void AjoutOffre(ActionEvent event) throws SQLException {
+
+        String id_cat = Allcat.getValue();
+        OffreDAO of = new OffreDAO();
+        int idC = of.chercherIdCat(id_cat);
 
         String nom = Anom.getText();
         String desc = Adesc.getText();
         String pntText = Apnt.getText();
-        String catText = Acat.getText();
         String timg = Aimg.getText();
 
         if (nom.length() == 0) {
@@ -135,11 +142,18 @@ public class AjoutOffreController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer le nombre de points pour l'offre!");
             alert.show();
-        } else if (catText.isEmpty()) {
+        }else if (!pntText.matches("\\d+")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Erreur! Veuillez entrer l'identifiant de la catégorie pour l'offre!");
+            alert.setContentText("Erreur! Le nombpre de points doit etre un entier ");
+            alert.show();
+        }
+        else if (id_cat == null || id_cat.isEmpty()) { 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Erreur! Veuillez sélectionner une catégorie!");
             alert.show();
         } else if (timg == null || timg.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -149,8 +163,8 @@ public class AjoutOffreController implements Initializable {
             alert.show();
         } else {
             int pnt = Integer.parseInt(pntText);
-            int cat = Integer.parseInt(catText);
-            of.insertOffre(new Offre(nom, desc, timg, pnt, cat));
+            //  int cat = Integer.parseInt(catText);
+            of.insertOffre(new Offre(nom, desc, timg, pnt, idC));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success Message");
             alert.setHeaderText(null);

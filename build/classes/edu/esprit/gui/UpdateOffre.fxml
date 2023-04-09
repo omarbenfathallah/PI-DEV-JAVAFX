@@ -22,7 +22,7 @@
       <TextField fx:id="Mpnt" layoutX="219.0" layoutY="352.0" />
       <Label layoutX="76.0" layoutY="418.0" text="Catgeorie" />
       <TextField fx:id="Mcat" layoutX="219.0" layoutY="414.0" />
-      <Button fx:id="btnAjout" layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#AjoutOffre" text="Ajouter" />
+      <Button fx:id="btnAjout" layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#ModifierOffre" text="Modifier" />
       <Button fx:id="btnR" layoutX="342.0" layoutY="520.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" />
    </children>
 </AnchorPane>

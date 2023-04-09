@@ -29,8 +29,7 @@ public class OffreDAO implements IOffreDAO {
     Connection cnx;
 
     ObservableList<Offre> obListOff = FXCollections.observableArrayList();
-   ObservableList<Offre>obList = FXCollections.observableArrayList();
-   
+    ObservableList<Offre> obList = FXCollections.observableArrayList();
 
     public OffreDAO() {
         cnx = MyConnection.getInstance().getConnection();
@@ -75,7 +74,8 @@ public class OffreDAO implements IOffreDAO {
 
     @Override
     public void updateOffre(Offre of) {
-        String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
+//        String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
+        String sql = " UPDATE `offre` SET `nom`=?,`description`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
         try {
             // Retrieve the Produit object corresponding to the given FreeCIN
             PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
@@ -90,10 +90,10 @@ public class OffreDAO implements IOffreDAO {
             PreparedStatement ps = cnx.prepareStatement(sql);
             ps.setString(1, of.getNom());
             ps.setString(2, of.getDescription());
-            ps.setString(3, of.getImage());
-            ps.setInt(4, of.getPoints());
-            ps.setInt(5, of.getId_cat().getId_categorie());
-            ps.setInt(6, of.getId_offre());
+            //  ps.setString(3, of.getImage());
+            ps.setInt(3, of.getPoints());
+            ps.setInt(4, of.getId_cat().getId_categorie());
+            ps.setInt(5, of.getId_offre());
             ps.executeUpdate();
             System.out.println("Offre modifier avec succés  !");
 
@@ -118,40 +118,38 @@ public class OffreDAO implements IOffreDAO {
     @Override
     public ObservableList<Offre> findOffreByNom() {
         String sql = "SELECT * FROM offre ";
-        List<Offre> listeOffre= new ArrayList<>();
+        List<Offre> listeOffre = new ArrayList<>();
         try {
-               Statement statement = cnx.createStatement();
+            Statement statement = cnx.createStatement();
             ResultSet result = statement.executeQuery(sql);
-        while (result.next()) {
-          int id_offre = result.getInt(1);
+            while (result.next()) {
+                int id_offre = result.getInt(1);
                 String nom = result.getString(2);
                 String description = result.getString(3);
                 String image = result.getString(4);
                 int points = result.getInt(5);
-               // int id_categorie = result.getInt(6)
+                // int id_categorie = result.getInt(6)
                 int id_categorie = result.getInt(6);
 
                 String nomC = result.getString(8);
                 String descriptionC = result.getString(9);
 
                 Categories c = new Categories(id_categorie, nomC, descriptionC);
-          
-        Offre o = new Offre(nom, description, image, points, c);
-          obList.add(o);
-         
 
-   
-    }
-    }catch (SQLException ex) {
+                Offre o = new Offre(nom, description, image, points, c);
+                obList.add(o);
+
+            }
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return obList;
     }
-   
+
     @Override
     public ObservableList<Offre> DisplayAllOffres() {
         String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie ";
-    //    List<Offre> listeOffre = new ArrayList<>();
+        //    List<Offre> listeOffre = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();
             ResultSet result = statement.executeQuery(sql);
@@ -167,13 +165,43 @@ public class OffreDAO implements IOffreDAO {
                 String descriptionC = result.getString(9);
 
                 Categories c = new Categories(id_categorie, nomC, descriptionC);
-                Offre e = new Offre(nom, description, image,id_offre, points, c);
+                Offre e = new Offre(nom, description, image, id_offre, points, c);
                 obListOff.add(e);
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return obListOff;
+    }
+
+    public List<String> getAll() {
+        List<String> list = new ArrayList<String>();
+        try {
+            String requetee = "SELECT nom FROM categorie_offres";
+            PreparedStatement pst = cnx.prepareStatement(requetee);
+            ResultSet rs = pst.executeQuery();
+            System.out.println(rs.toString());
+
+            while (rs.next()) {
+                list.add(rs.getString("nom"));
+            }
+
+            return list;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+    
+       public int chercherIdCat(String nom_Cat) throws SQLException {
+        int id = 0;
+        String requetee = "SELECT id_categorie FROM categorie_offres where nom='" + nom_Cat + "';";
+        PreparedStatement pst = cnx.prepareStatement(requetee);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            id = rs.getInt("id_categorie");
+        }
+        return id;
     }
 
 }

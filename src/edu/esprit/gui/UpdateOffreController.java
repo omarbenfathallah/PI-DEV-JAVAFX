@@ -63,7 +63,7 @@ public class UpdateOffreController implements Initializable {
     }
 
     @FXML
-    private void AjoutOffre(ActionEvent event) throws SQLException{
+    private void ModifierOffre(ActionEvent event) throws SQLException{
 
         String nom = Mnom.getText();
         String desc = Mdesc.getText();
@@ -93,5 +93,7 @@ public class UpdateOffreController implements Initializable {
             System.out.println(ex);
         }
     }
+
+    
 
 }

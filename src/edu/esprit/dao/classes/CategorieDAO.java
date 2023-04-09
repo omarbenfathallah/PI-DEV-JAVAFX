@@ -120,6 +120,23 @@ public class CategorieDAO implements ICategorieDAO{
         }
         return obListCat;
     }
+    public ObservableList<Categories> getAllCategories() {
+    ObservableList<Categories> obscat =  FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT nom FROM categorie_offres";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            Categories category = new Categories();
+            category.setNomC(result.getString("nom"));
+            category.setDescriptionC(result.getString("description"));
+            obscat.add(category);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex);
+    }
+    return obscat;
+}
        
     
     
