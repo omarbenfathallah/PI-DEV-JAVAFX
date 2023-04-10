@@ -76,14 +76,14 @@ public class OffreDAO implements IOffreDAO {
     public void updateOffre(Offre of) {
         String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
         try {
-            //  Retrieve the Produit object corresponding to the given FreeCIN
-            PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
-            psCategorie.setInt(1, of.getId_cat().getId_categorie());
-            ResultSet rsCategorie = psCategorie.executeQuery();
-            if (!rsCategorie.next()) {
-                System.out.println("Categorie inexistant !");
-                return;
-            }
+//         
+//            PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
+//            psCategorie.setInt(1, of.getId_cat().getId_categorie());
+//            ResultSet rsCategorie = psCategorie.executeQuery();
+//            if (!rsCategorie.next()) {
+//                System.out.println("Categorie inexistant !");
+//                return;
+//            }
             PreparedStatement ps = cnx.prepareStatement(sql);
             ps.setString(1, of.getNom());
             ps.setString(2, of.getDescription());
@@ -103,7 +103,7 @@ public class OffreDAO implements IOffreDAO {
 ////        String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
 //        String sql = " UPDATE `offre` SET `nom`=?,`description`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=?";
 //        try {
-//            // Retrieve the Produit object corresponding to the given FreeCIN
+//      
 //            PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
 //            psCategorie.setInt(1, of.getId_cat().getId_categorie());
 //            ResultSet rsCategorie = psCategorie.executeQuery();
