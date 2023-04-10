@@ -135,7 +135,6 @@ public class AchatDAO implements IAchatDAO {
                 int id_offre = result.getInt("id_offre");
                 Date date_achat = result.getDate("date_achat");
 
-                
                 String email = result.getString("email");
                 String password = result.getString("password");
                 String nomU = result.getString("nom");
@@ -169,53 +168,51 @@ public class AchatDAO implements IAchatDAO {
     public void updateAchat(int id_achat, Achat newAchat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        String sql = "SELECT * FROM user";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt("id");
+                String email = result.getString("email");
+                String password = result.getString("password");
+                String nom = result.getString("nom");
+                String prenom = result.getString("prenom");
+                String tel = result.getString("tel");
+                String type = result.getString("Type");
+                String confirm_password = result.getString("confirm_password");
+                String roles = result.getString("roles");
+                User user = new User(id, email, password, nom, prenom, tel, type, confirm_password, roles);
+                userList.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return userList;
+    }
+    public List<Offre> getAllOffres() {
+    List<Offre> offreList = new ArrayList<>();
+    String sql = "SELECT * FROM offre";
+    try {
+        Statement statement = cnx.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        while (result.next()) {
+            int id_offre = result.getInt("id_offre");
+            String nom = result.getString("nom");
+            String description = result.getString("description");
+            String image = result.getString("image");
+            int points = result.getInt("points");
+            int id_categorie = result.getInt("id_categorie");
+            Offre offre = new Offre(nom, description, image, points, id_categorie);
+            offreList.add(offre);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return offreList;
 }
 
-//
-//
-// public List<participation> recupererParticipation() {
-//         String sql = "SELECT * FROM participation p JOIN user cl ON p.id_user = cl.id_user JOIN evenement e ON e.EventId = p.EventId";
-//        List<participation> particip = new ArrayList<>();
-//        try {
-//        Statement statement = cnx.createStatement();
-//        ResultSet result = statement.executeQuery(sql);
-//        while (result.next()) {
-//            
-//            int id_part =result.getInt("id_part");
-//            Date dateValidation = new Date(result.getDate("date_part").getTime());
-//             int userid = result.getInt("id_user");
-//            String Nom = result.getString("nom_user");
-//            String Prenom = result.getString("prenom_user");
-//            String Email = result.getString("email_user");
-//            String Password = result.getString("mdp_user");
-//            String ClAdresse = result.getString("adresse_user");
-//      
-//            String Role = result.getString("role");
-//            String Description = result.getString("description");
-//             int EventId = result.getInt("EventId");
-//                String EventNom = result.getString("EventNom");
-//                String EventTheme = result.getString("EventTheme");
-//                Date DateDebutEvent = result.getDate("DateDebutEvent");
-//                Date DateFinEvent = result.getDate("DateFinEvent");
-//                String EventAdresse = result.getString("EventAdresse");
-//                String EventDescription = result.getString("EventDescription");
-//                String Eventimage = result.getString("Eventimage");
-//                
-//          //  participation par =new participation(id_part, dateValidation,c1,ee);
-//            //produit p = new produit(ProdId,ProdLib,ProdDesc,ProdPrix,ProdImg);
-//            
-//            User cl = new User(userid,Nom,Prenom,Email,Password,ClAdresse,Role,Description);
-//            Evenment ee = new Evenment(EventId, EventNom, EventTheme, DateDebutEvent, DateFinEvent, EventAdresse, EventDescription, Eventimage);
-//            participation par = new participation(dateValidation, cl, ee);
-//
-//            //commande c = new commande(RefCom,PrixTotal, dateValidation, p, cl);
-//            particip.add(par);
-//        }
-//    } catch (SQLException ex) {
-//        System.out.println(ex);
-//    }
-//    return particip;
-//}
-//
-//
-
+}

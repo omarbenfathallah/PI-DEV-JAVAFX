@@ -30,6 +30,8 @@ public class AcceuilController implements Initializable {
     private Button btnOf;
     @FXML
     private Button btnAc;
+    @FXML
+    private Button Ao;
 
     /**
      * Initializes the controller class.
@@ -71,6 +73,19 @@ public class AcceuilController implements Initializable {
     private void ConsulterAchat(ActionEvent event) {
         try {
             Parent page1 = FXMLLoader.load(getClass().getResource("AfficheAllAchat.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+             System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void AOffre(ActionEvent event) {
+           try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("FrontOffice.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

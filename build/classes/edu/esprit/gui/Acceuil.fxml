@@ -15,5 +15,6 @@
       <Button fx:id="btnCat" layoutX="100.0" layoutY="140.0" mnemonicParsing="false" onAction="#ConsulterCategorie" text="Consulter Categorie" />
       <Button fx:id="btnOf" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" onAction="#ConsulterOffre" text="Consulter Offre" />
       <Button fx:id="btnAc" layoutX="100.0" layoutY="253.0" mnemonicParsing="false" onAction="#ConsulterAchat" text="Consulter Achat" />
+      <Button fx:id="Ao" layoutX="496.0" layoutY="128.0" mnemonicParsing="false" onAction="#AOffre" text="Affiche offre" />
    </children>
 </AnchorPane>

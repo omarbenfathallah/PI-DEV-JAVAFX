@@ -162,7 +162,7 @@ public class AfficherAllOffreController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fail Message");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner une Categorie à modifier !!");
+            alert.setContentText("Veuillez sélectionner un Offre à modifier !!");
             alert.showAndWait();
         }
 
@@ -172,7 +172,7 @@ public class AfficherAllOffreController implements Initializable {
         nom = O.getNom();
         description = O.getDescription();
         pnt = O.getPoints();
-        image = O.getImage();
+      //  image = O.getImage();
         idCat = O.getId_cat().getId_categorie();
 
         try {

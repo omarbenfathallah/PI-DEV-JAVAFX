@@ -4,6 +4,14 @@
  */
 package edu.esprit.entities;
 
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+
 /**
  *
  * @author BAZINFO
@@ -14,13 +22,10 @@ public class Offre {
 
     private int id_offre, points;
 
-  
-
     private Categories id_cat;
 
     public Offre() {
     }
-
 
     public Offre(String nom, String description, String image, int id_offre, int points, Categories id_cat) {
         this.nom = nom;
@@ -31,10 +36,7 @@ public class Offre {
         this.id_cat = id_cat;
     }
 
-
-   
-
-       public Offre(String nom, String description, String image, int id_offre, int points, int id_categorie) {
+    public Offre(String nom, String description, String image, int id_offre, int points, int id_categorie) {
 
         this.nom = nom;
         this.description = description;
@@ -44,7 +46,7 @@ public class Offre {
 
         this.id_cat = new Categories(id_categorie);
 
-        this.id_cat = new Categories(id_categorie) ;
+        this.id_cat = new Categories(id_categorie);
 
     }
 
@@ -69,7 +71,6 @@ public class Offre {
         this.nom = nom;
     }
 
-
     public Offre(int id_offre) {
 
         this.id_offre = id_offre;
@@ -91,6 +92,17 @@ public class Offre {
 
     }
 
+    public Offre(int idOf, String nom, String desc, int pnt, int id_categorie) {
+        this.nom = nom;
+        this.description = description;
+        this.points = points;
+        this.id_cat = new Categories(id_categorie);
+    }
+//      public Offre(String nom, int points, String image) {
+//        this.nom = nom;
+//        this.points = points;
+//        this.image = image;
+//    }
 
     public String getNom() {
         return nom;
@@ -140,6 +152,20 @@ public class Offre {
         this.id_cat = id_cat;
     }
 
+//    public HBox getImageView() {
+//        ImageView imageView = new ImageView(new Image(image));
+//        imageView.setFitWidth(100);
+//        imageView.setFitHeight(100);
+//
+//        Text imageText = new Text(nom + " - " + points);
+//        imageText.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+//
+//        HBox hbox = new HBox(imageView, imageText);
+//        hbox.setAlignment(Pos.CENTER_LEFT);
+//        hbox.setSpacing(10);
+//
+//        return hbox;
+//    }
 //    @Override
 //    public String toString() {
 //        String CatSting = this.id_cat.getNomC();
@@ -148,9 +174,7 @@ public class Offre {
 
     @Override
     public String toString() {
-        return  nom;
+        return nom;
     }
-
-    
 
 }

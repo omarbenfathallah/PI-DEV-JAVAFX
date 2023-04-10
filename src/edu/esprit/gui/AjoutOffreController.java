@@ -57,6 +57,7 @@ public class AjoutOffreController implements Initializable {
     private Button btnUpload;
     @FXML
     private Button btnAjout;
+    
     Offre e = new Offre();
     OffreDAO of = new OffreDAO();
     @FXML

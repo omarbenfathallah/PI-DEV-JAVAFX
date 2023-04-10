@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="759.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UpdateOffreController">
+<AnchorPane id="AnchorPane" prefHeight="682.0" prefWidth="759.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UpdateOffreController">
    <children>
       <Text layoutX="238.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Offre" wrappingWidth="238.181640625">
          <font>
@@ -21,8 +23,12 @@
       <Label layoutX="75.0" layoutY="356.0" prefHeight="17.0" prefWidth="33.0" text="Points" />
       <TextField fx:id="Mpnt" layoutX="219.0" layoutY="352.0" />
       <Label layoutX="76.0" layoutY="418.0" text="Catgeorie" />
-      <TextField fx:id="Mcat" layoutX="219.0" layoutY="414.0" />
-      <Button fx:id="btnAjout" layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#ModifierOffre" text="Modifier" />
-      <Button fx:id="btnR" layoutX="342.0" layoutY="520.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" />
+      <Button fx:id="btnAjout" layoutX="158.0" layoutY="629.0" mnemonicParsing="false" onAction="#ModifierOffre" text="Modifier" />
+      <Button fx:id="btnR" layoutX="331.0" layoutY="629.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" />
+      <ComboBox fx:id="Mcat" layoutX="219.0" layoutY="414.0" prefWidth="150.0" />
+      <Label layoutX="86.0" layoutY="483.0" text="image" />
+      <TextField fx:id="Mimg" layoutX="219.0" layoutY="479.0" />
+      <Button fx:id="btnUpload" layoutX="450.0" layoutY="479.0" mnemonicParsing="false" onAction="#UploadImage" text="Upload" />
+      <ImageView fx:id="Aimg" fitHeight="150.0" fitWidth="200.0" layoutX="527.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
