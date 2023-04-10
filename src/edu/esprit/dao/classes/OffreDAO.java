@@ -74,7 +74,7 @@ public class OffreDAO implements IOffreDAO {
 
     @Override
     public void updateOffre(Offre of) {
-        String sql = "UPDATE `offre` SET `nom`=?, `description`=?, `points`=?, `id_categorie`=? WHERE id_offre=?";
+        String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
         try {
             //  Retrieve the Produit object corresponding to the given FreeCIN
             PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
@@ -87,9 +87,10 @@ public class OffreDAO implements IOffreDAO {
             PreparedStatement ps = cnx.prepareStatement(sql);
             ps.setString(1, of.getNom());
             ps.setString(2, of.getDescription());
-            ps.setInt(3, of.getPoints());
-            ps.setInt(4, of.getId_cat().getId_categorie());
-            ps.setInt(5, of.getId_offre());
+            ps.setString(3, of.getImage());
+            ps.setInt(4, of.getPoints());
+            ps.setInt(5, of.getId_cat().getId_categorie());
+            ps.setInt(6, of.getId_offre());
             ps.executeUpdate();
             System.out.println("Offre modifiée avec succès!");
 
@@ -230,24 +231,24 @@ public class OffreDAO implements IOffreDAO {
     }
 
     public List<Offre> getAllOffres() {
-    List<Offre> offreList = new ArrayList<>();
-    String sql = "SELECT * FROM offre";
-    try {
-        Statement statement = cnx.createStatement();
-        ResultSet result = statement.executeQuery(sql);
-        while (result.next()) {
-            int id_offre = result.getInt("id_offre");
-            String nom = result.getString("nom");
-            String description = result.getString("description");
-            String image = result.getString("image");
-            int points = result.getInt("points");
-            int id_categorie = result.getInt("id_categorie");
-            Offre offre = new Offre(nom, description, image, points, id_categorie);
-            offreList.add(offre);
+        List<Offre> offreList = new ArrayList<>();
+        String sql = "SELECT * FROM offre";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id_offre = result.getInt("id_offre");
+                String nom = result.getString("nom");
+                String description = result.getString("description");
+                String image = result.getString("image");
+                int points = result.getInt("points");
+                int id_categorie = result.getInt("id_categorie");
+                Offre offre = new Offre(nom, description, image, points, id_categorie);
+                offreList.add(offre);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
+        return offreList;
     }
-    return offreList;
-}
 }

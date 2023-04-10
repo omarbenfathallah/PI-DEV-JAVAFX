@@ -48,8 +48,6 @@ public class AfficherAllOffreController implements Initializable {
     Offre o = new Offre();
 
     @FXML
-    private TableColumn<Offre, Integer> idO;
-    @FXML
     private TableColumn<Offre, String> nomO;
     @FXML
     private TableColumn<Offre, String> descO;
@@ -74,8 +72,6 @@ public class AfficherAllOffreController implements Initializable {
     private TextField search;
     @FXML
     private Button Recherche;
-    @FXML
-    private ComboBox<?> Allcat;
 
     /**
      * Initializes the controller class.
@@ -172,7 +168,7 @@ public class AfficherAllOffreController implements Initializable {
         nom = O.getNom();
         description = O.getDescription();
         pnt = O.getPoints();
-      //  image = O.getImage();
+        image = O.getImage();
         idCat = O.getId_cat().getId_categorie();
 
         try {

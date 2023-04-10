@@ -104,6 +104,14 @@ public class Offre {
 //        this.image = image;
 //    }
 
+    public Offre(int idOf, String nom, String desc, String image, int points, int id_categorie) {
+        this.nom = nom;
+        this.description = description;
+        this.image = image;
+        this.points = points;
+        this.id_cat = new Categories(id_categorie);
+    }
+
     public String getNom() {
         return nom;
     }

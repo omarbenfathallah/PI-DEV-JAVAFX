@@ -53,8 +53,6 @@ public class AfficherAllCategorieController implements Initializable {
     @FXML
     private Button btnajout;
 
-    @FXML
-    private TableColumn<Categories, Integer> idCat;
 
     @FXML
     private TableColumn<Categories, String> nomCat;

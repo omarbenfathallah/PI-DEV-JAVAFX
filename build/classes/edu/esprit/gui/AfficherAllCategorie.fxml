@@ -21,8 +21,8 @@
          </font>
       </Text>
       <Button fx:id="btnajout" layoutX="71.0" layoutY="407.0" mnemonicParsing="false" onAction="#AjoutCategorie" prefHeight="19.0" prefWidth="93.0" text="Ajouter " />
-      <Button fx:id="btnSupp" layoutX="329.0" layoutY="407.0" mnemonicParsing="false" onAction="#SuppCategorie" prefHeight="19.0" prefWidth="93.0" text="Supprimer" />
+      <Button fx:id="btnSupp" layoutX="329.0" layoutY="407.0" mnemonicParsing="false" onAction="#SuppCategorie" prefHeight="19.0" prefWidth="93.0" text="Supprimer" textFill="RED" />
       <Button fx:id="btnR" layoutX="586.0" layoutY="420.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="19.0" prefWidth="93.0" text="Retour" />
-      <Button fx:id="btnM" layoutX="219.0" layoutY="408.0" mnemonicParsing="false" onAction="#ModifierCategorie" text="Modifier" />
+      <Button fx:id="btnM" layoutX="219.0" layoutY="408.0" mnemonicParsing="false" onAction="#ModifierCategorie" text="Modifier" textFill="BLUE" />
    </children>
 </AnchorPane>

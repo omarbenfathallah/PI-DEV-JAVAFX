@@ -23,6 +23,7 @@ import java.io.File;
  * @author BAZINFO
  */
 public class OffrefrontomarController implements Initializable {
+
     int id_offre;
 
     @FXML
@@ -57,6 +58,6 @@ public class OffrefrontomarController implements Initializable {
     }
 
     public void setIdoffre(int id_offre) {
-        this.id_offre= id_offre;
+        this.id_offre = id_offre;
     }
 }

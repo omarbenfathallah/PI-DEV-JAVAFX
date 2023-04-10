@@ -26,8 +26,8 @@
       </TableView>
       <Button fx:id="btnAjout" layoutX="120.0" layoutY="577.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="95.0" text="Ajouter Offre" />
       <Button fx:id="btnR" layoutX="1026.0" layoutY="609.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="43.0" prefWidth="95.0" text="Retour" />
-      <Button fx:id="btnSupp" layoutX="541.0" layoutY="577.0" mnemonicParsing="false" onAction="#SuppOffre" prefHeight="32.0" prefWidth="95.0" text="Supprimer" />
-      <Button fx:id="btnM" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#ModifierOffre" prefHeight="32.0" prefWidth="95.0" text="Modifier" />
+      <Button fx:id="btnSupp" layoutX="541.0" layoutY="577.0" mnemonicParsing="false" onAction="#SuppOffre" prefHeight="32.0" prefWidth="95.0" text="Supprimer" textFill="#fc0000" />
+      <Button fx:id="btnM" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#ModifierOffre" prefHeight="32.0" prefWidth="95.0" text="Modifier" textFill="#0c00ff" />
       <TextField fx:id="search" layoutX="51.0" layoutY="73.0" prefHeight="25.0" prefWidth="234.0" />
       <Button fx:id="Recherche" layoutX="344.0" layoutY="73.0" mnemonicParsing="false" onAction="#rechercheOffre" text="Rechercher" />
    </children>

@@ -81,7 +81,7 @@ public class UpdateOffreController implements Initializable {
         Mnom.setText(AfficherAllOffreController.nom);
         Mdesc.setText(AfficherAllOffreController.description);
         Mpnt.setText(String.valueOf(AfficherAllOffreController.pnt));
-        //  Mimg.setText(String.valueOf(AfficherAllOffreController.image));
+        Mimg.setText(String.valueOf(AfficherAllOffreController.image));
         Mcat.setItems(FXCollections.observableArrayList(of.getAll()));
     }
 
@@ -94,10 +94,11 @@ public class UpdateOffreController implements Initializable {
 
         String nom = Mnom.getText();
         String desc = Mdesc.getText();
+        String img = Mimg.getText();
         int pnt = Integer.parseInt(Mpnt.getText());
 
         OffreDAO dao = new OffreDAO();
-        Offre O = new Offre(AfficherAllOffreController.idOf, nom, desc, pnt, idC);
+        Offre O = new Offre(AfficherAllOffreController.idOf, nom, desc,img, pnt, idC);
         dao.updateOffre(O);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
