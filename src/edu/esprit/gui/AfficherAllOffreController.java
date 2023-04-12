@@ -78,7 +78,8 @@ public class AfficherAllOffreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        
+        obList = of.getOffres();
         // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -184,38 +185,36 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private void rechercheOffre(ActionEvent event) {
-        //choose();
+        choose();
 
     }
 
-//    public void choose() {
-//     idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
-//        nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//        descO.setCellValueFactory(new PropertyValueFactory<>("description"));
-//        imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
-//        pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
-//        idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
-//        
-//         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
-//         search.textProperty().addListener((observable, oldValue, newValue) -> {
-//        filteredData.setPredicate(off -> {
-//            if (newValue == null || newValue.isEmpty()) {
-//                return true;
-//            }
-//            String lowerCaseFilter = newValue.toLowerCase();
-//            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        });
-//    });
-//    SortedList<Offre> sortedData = new SortedList<>(filteredData);
-//    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
-//    afficherOffre.setItems(sortedData);
-//    
-//    
-//    }
+    public void choose() {
+//         idOf.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
+        nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        descO.setCellValueFactory(new PropertyValueFactory<>("description"));
+        imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
+        pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
+        idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
+        
+         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
+         search.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(off -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+        SortedList<Offre> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
+        afficherOffre.setItems(sortedData);
+    }
 //    public void choose() {
 //    idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
 //    nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -246,6 +245,6 @@ public class AfficherAllOffreController implements Initializable {
 //    });
 //    SortedList<Offre> sortedData = new SortedList<>(filteredData);
 //    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
-//    afficherOffre.setItems(sortedData);
-//}
+//    afficherOffre.setItems(sortedData);  }
+
 }

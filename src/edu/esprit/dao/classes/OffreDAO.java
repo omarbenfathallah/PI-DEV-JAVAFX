@@ -154,7 +154,7 @@ public class OffreDAO implements IOffreDAO {
                 String description = result.getString(3);
                 String image = result.getString(4);
                 int points = result.getInt(5);
-                // int id_categorie = result.getInt(6)
+//                 int id_categorie = result.getInt(6)
                 int id_categorie = result.getInt(6);
 
                 String nomC = result.getString(8);
@@ -250,5 +250,26 @@ public class OffreDAO implements IOffreDAO {
             System.out.println(ex.getMessage());
         }
         return offreList;
+    }
+    public ObservableList<Offre> getOffres() {
+     //   List<Offre> offreList = new ArrayList<>();
+        String sql = "SELECT * FROM offre";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id_offre = result.getInt("id_offre");
+                String nom = result.getString("nom");
+                String description = result.getString("description");
+                String image = result.getString("image");
+                int points = result.getInt("points");
+                int id_categorie = result.getInt("id_categorie");
+                Offre offre = new Offre(nom, description, image, points, id_categorie);
+                obListOff.add(offre);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return obListOff;
     }
 }
