@@ -44,9 +44,6 @@ public class AfficherAllOffreController implements Initializable {
     static String nom, description, image;
     static int idOf, pnt, idCat;
 
-    OffreDAO of = new OffreDAO();
-    Offre o = new Offre();
-
     @FXML
     private TableColumn<Offre, String> nomO;
     @FXML
@@ -57,6 +54,11 @@ public class AfficherAllOffreController implements Initializable {
     private TableColumn<Offre, Integer> pntO;
     @FXML
     private TableColumn<Offre, Integer> idcat;
+
+    OffreDAO of;
+    Offre o = new Offre();
+    ObservableList<Offre> obList;
+
     @FXML
     private Button btnAjout;
     @FXML
@@ -67,7 +69,6 @@ public class AfficherAllOffreController implements Initializable {
     private Button btnM;
     @FXML
     private TableView<Offre> afficherOffre;
-    ObservableList<Offre> obList;
     @FXML
     private TextField search;
     @FXML
@@ -78,17 +79,20 @@ public class AfficherAllOffreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        obList = of.getOffres();
+        of = new OffreDAO();
+        obList = of.DisplayAllOffres();
+
         // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
         imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
         pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
-   
         idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
-        List<Offre> list2 = of.DisplayAllOffres();
+        
+        OffreDAO od = new  OffreDAO();
+        List<Offre> list2 = od.DisplayAllOffres();
         afficherOffre.getItems().addAll(list2);
+
     }
 
     @FXML
@@ -185,32 +189,34 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private void rechercheOffre(ActionEvent event) {
+
         choose();
 
     }
 
     public void choose() {
+
 //         idOf.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
         imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
         pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
         idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
-        
-         FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
-         search.textProperty().addListener((observable, oldValue, newValue) -> {
-        filteredData.setPredicate(off -> {
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
-            String lowerCaseFilter = newValue.toLowerCase();
-            if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            } else {
-                return false;
-            }
+//  obList = of.DisplayAllOffres();
+        FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(off -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (off.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
         });
-    });
         SortedList<Offre> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
         afficherOffre.setItems(sortedData);
