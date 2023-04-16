@@ -34,7 +34,7 @@ public class AjoutCategorieController implements Initializable {
     private TextField cdesc;
     @FXML
     private Button btnAjout;
-         Categories e = new Categories();
+    Categories e = new Categories();
     CategorieDAO se = new CategorieDAO();
     @FXML
     private Button btnR;
@@ -45,14 +45,14 @@ public class AjoutCategorieController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ajoutcategorie(ActionEvent event) {
         String Catnom = cnom.getText();
         String Catdesc = cdesc.getText();
-        
-         if (Catnom.length() == 0) {
+
+        if (Catnom.length() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -64,8 +64,7 @@ public class AjoutCategorieController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer Description pour Categorie !");
             alert.show();
-            }
-          else {
+        } else {
             se.insertCategorie(new Categories(Catnom, Catdesc));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success Message");
@@ -73,20 +72,20 @@ public class AjoutCategorieController implements Initializable {
             alert.setContentText("Categorie ajouté avec succés !");
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
     private void RetourCategorie(ActionEvent event) {
-         try {
+        try {
             Parent page1 = FXMLLoader.load(getClass().getResource("AfficherAllCategorie.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-             System.out.println(ex);
+            System.out.println(ex);
         }
     }
-    
+
 }

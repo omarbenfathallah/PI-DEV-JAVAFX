@@ -251,25 +251,67 @@ public class OffreDAO implements IOffreDAO {
         }
         return offreList;
     }
-    public ObservableList<Offre> getOffres() {
-     //   List<Offre> offreList = new ArrayList<>();
-        String sql = "SELECT * FROM offre";
+//    public ObservableList<Offre> getOffres() {
+//     //   List<Offre> offreList = new ArrayList<>();
+//        String sql = "SELECT * FROM offre";
+//        try {
+//            Statement statement = cnx.createStatement();
+//            ResultSet result = statement.executeQuery(sql);
+//            while (result.next()) {
+//                int id_offre = result.getInt("id_offre");
+//                String nom = result.getString("nom");
+//                String description = result.getString("description");
+//                String image = result.getString("image");
+//                int points = result.getInt("points");
+//                int id_categorie = result.getInt("id_categorie");
+//                Offre offre = new Offre(nom, description, image, points, id_categorie);
+//                obListOff.add(offre);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return obListOff;
+//    }
+//
+
+    /**
+     *
+     * @param chaine
+     * @return
+     */
+    public List<Offre> chercherOffre(String chaine) {
+        
+        String sql = "SELECT * FROM offre WHERE (nom LIKE ? or points LIKE ?  )  ";
+        //Connection cnx= Maconnexion.getInstance().getCnx();
+        String ch = "%" + chaine + "%";
+        ObservableList<Offre> myList = FXCollections.observableArrayList();
         try {
-            Statement statement = cnx.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()) {
-                int id_offre = result.getInt("id_offre");
-                String nom = result.getString("nom");
-                String description = result.getString("description");
-                String image = result.getString("image");
-                int points = result.getInt("points");
-                int id_categorie = result.getInt("id_categorie");
-                Offre offre = new Offre(nom, description, image, points, id_categorie);
-                obListOff.add(offre);
+
+            Statement ste = cnx.createStatement();
+            // PreparedStatement pst = myCNX.getCnx().prepareStatement(requete6);
+            PreparedStatement stee = cnx.prepareStatement(sql);
+            stee.setString(1, ch);
+            stee.setString(2, ch);
+
+            ResultSet rs = stee.executeQuery();
+            while (rs.next()) {
+                Offre e = new Offre();
+
+                e.setNom(rs.getString("Nom"));
+                e.setDescription(rs.getString("Description"));
+                e.setPoints(rs.getInt("Points"));
+                e.setImage(rs.getString("Image"));
+         //       e.setId_cat(rs.getId_cat().getId_categorie("id_categorie"));
+
+                myList.add(e);
+                System.out.println("Offre trouvé! ");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return obListOff;
+        return myList;
+        
     }
+    
+    
 }
