@@ -9,6 +9,8 @@ import edu.esprit.dao.classes.AchatDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,6 +21,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import static java.lang.System.out;
+import java.util.Base64;
 import java.util.Date;
 import javafx.scene.control.Button;
 
@@ -30,7 +37,7 @@ import javafx.scene.control.Button;
 public class OffrefrontomarController implements Initializable {
 
     int id_offre;
-      int id;
+    int id;
 
     @FXML
     private ImageView fImg;
@@ -42,7 +49,6 @@ public class OffrefrontomarController implements Initializable {
     private Button Ach;
 
     AchatDAO aa = new AchatDAO();
-   
 
     /**
      * Initializes the controller class.
@@ -58,24 +64,45 @@ public class OffrefrontomarController implements Initializable {
         System.out.println(e.getNom());
     }
 
-    public void setEvenment(Offre oo) {
+    public void setEvenment(Offre oo) throws FileNotFoundException, IOException {
         fnom.setText(oo.getNom());
         fpnt.setText(Integer.toString(oo.getPoints()));
 
         String path = oo.getImage();
         File file = new File(path);
-        Image img = new Image(file.toURI().toString());
-        fImg.setImage(img);
+        Image image = new Image(file.toURI().toString());
+         
+//                FileInputStream stream = new FileInputStream(path);
+//                int bufLength = 2048;
+//                byte[] buffer = new byte[2048];
+//                byte[] data;
+//
+//                ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                int readLength;
+//                while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
+//                    out.write(buffer, 0, readLength);
+//                }
+//
+//                data = out.toByteArray();
+//                String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+//
+//                out.close();
+//                stream.close();
+//
+//                byte[] imageData = Base64.getDecoder().decode(imageString);
+//                Image image = new Image(new ByteArrayInputStream(imageData));
+
+        fImg.setImage(image);
     }
 
     public void setIdoffre(int id_offre) {
         this.id_offre = id_offre;
     }
-    
-     public void setId(int id) {
+
+    public void setId(int id) {
         this.id = id;
     }
-    
+
     @FXML
     private void AcheterOffre(ActionEvent event) {
 
@@ -83,15 +110,13 @@ public class OffrefrontomarController implements Initializable {
 //        int id_us = id ; // get the ID of the current user
 //        Date date_achat = new Date(); // get the current date
 //         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-
-         
-            int id_off = id_offre;
-     //   int id_us = id;
-         int id_us = 22 ;
+        int id_off = id_offre;
+        // int id_us = id;
+        int id_us = 22;
         Date date_achat = new Date();
         User user = new User(22);
         Offre offre = new Offre(id_off);
-        Achat achat = new Achat(user ,offre, date_achat);
+        Achat achat = new Achat(user, offre, date_achat);
         aa.insertAchat(achat);
     }
 }

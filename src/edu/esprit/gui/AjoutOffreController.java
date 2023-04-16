@@ -11,6 +11,8 @@ import edu.esprit.dao.classes.CategorieDAO;
 import edu.esprit.entities.Offre;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -57,7 +60,7 @@ public class AjoutOffreController implements Initializable {
     private Button btnUpload;
     @FXML
     private Button btnAjout;
-    
+
     Offre e = new Offre();
     OffreDAO of = new OffreDAO();
     @FXML
@@ -76,35 +79,79 @@ public class AjoutOffreController implements Initializable {
     }
 
     @FXML
-    private void UploadImage(ActionEvent event) throws FileNotFoundException, IOException {
-        Random rand = new Random();
-        int x = rand.nextInt(1000);
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Upload File Path");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Captures\\\\" + x + ".jpg";
-        if (file != null) {
-            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
-            FileOutputStream Fdestination = new FileOutputStream(DBPath);
-            BufferedInputStream bin = new BufferedInputStream(Fsource);
-            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
-            System.out.println(file.getAbsoluteFile());
-            String path = file.getAbsolutePath();
-            Image img = new Image(file.toURI().toString());
-            Aimgg.setImage(img);
-            Aimg.setText(DBPath);
-            int b = 0;
-            while (b != -1) {
-                b = bin.read();
-                bou.write(b);
+    private void UploadImage(ActionEvent event) {
+//        FileChooser fc = new FileChooser();
+//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg", "*.bmp");
+//        fc.getExtensionFilters().add(extFilter);
+//        File file = fc.showOpenDialog(null);
+//
+//        if (file != null) {
+//            String path = file.getPath();
+//
+//            try {
+//                FileInputStream stream = new FileInputStream(path);
+//                int bufLength = 2048;
+//                byte[] buffer = new byte[2048];
+//                byte[] data;
+//
+//                ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                int readLength;
+//                while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
+//                    out.write(buffer, 0, readLength);
+//                }
+//
+//                data = out.toByteArray();
+//                String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+//
+//                out.close();
+//                stream.close();
+//
+//                byte[] imageData = Base64.getDecoder().decode(imageString);
+//                Image image = new Image(new ByteArrayInputStream(imageData));
+//
+//               Aimgg.setImage(image);
+//               Aimg.setText(imageString);;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fc.showOpenDialog(null);
+        if (selectedFile != null) {
+//               Aimg.setText(selectedFile.getName());
+//               Aimgg.setImage(new Image(selectedFile + "file:"));
+            try {
+                String imagePath = selectedFile.getAbsolutePath();
+                String encodedImage = imageEncoderDecoder(imagePath);
+                Aimg.setText(imagePath);
+                Image image = new Image("data:image/png;base64," + encodedImage);
+                Aimgg.setImage(image);
+            } catch (IOException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error uploading image!");
+                alert.showAndWait();
             }
-            bin.close();
-            bou.close();
-        } else {
-            System.out.println("error");
         }
+    }
+
+    public String imageEncoderDecoder(String path) throws IOException {
+        FileInputStream stream = new FileInputStream(path);
+        int bufLength = 2048;
+        byte[] buffer = new byte[2048];
+        byte[] data;
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int readLength;
+        while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
+            out.write(buffer, 0, readLength);
+        }
+
+        data = out.toByteArray();
+        String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+
+        out.close();
+        stream.close();
+        return imageString;
     }
 
     @FXML
@@ -143,14 +190,13 @@ public class AjoutOffreController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Veuillez entrer le nombre de points pour l'offre!");
             alert.show();
-        }else if (!pntText.matches("\\d+")) {
+        } else if (!pntText.matches("\\d+")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Erreur! Le nombpre de points doit etre un entier ");
             alert.show();
-        }
-        else if (id_cat == null || id_cat.isEmpty()) { 
+        } else if (id_cat == null || id_cat.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
