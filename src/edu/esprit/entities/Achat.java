@@ -11,8 +11,9 @@ import java.util.Date;
  * @author BAZINFO
  */
 public class Achat {
-    private int id_achat ;
-    private Date date_achat ;
+
+    private int id_achat;
+    private Date date_achat;
     private Offre id_off;
     private User id_us;
 
@@ -22,14 +23,15 @@ public class Achat {
         this.id_off = id_off;
         this.id_us = id_us;
     }
+
     public Achat(int id_achat, Date date_achat, int id_offre, int id) {
         this.id_achat = id_achat;
         this.date_achat = date_achat;
         this.id_off = new Offre(id_offre);
         this.id_us = new User(id);
     }
-    
-     public Achat(Date date_achat, int id_offre, int id) {
+
+    public Achat(Date date_achat, int id_offre, int id) {
         this.date_achat = date_achat;
         this.id_off = new Offre(id_offre);
         this.id_us = new User(id);
@@ -38,40 +40,54 @@ public class Achat {
     public Achat(Date date_achat) {
         this.date_achat = date_achat;
     }
-    public Achat(int id_achat){
-        this.id_achat=id_achat;
+
+    public Achat(int id_achat) {
+        this.id_achat = id_achat;
     }
 
     public Achat() {
-     
+
     }
 
     public Achat(int id_achat, int id_offre, int id, java.sql.Date date_achat) {
-         this.id_achat = id_achat;
-           this.id_off = new Offre(id_offre);
-           this.id_us = new User(id);
-            this.date_achat = date_achat;
-           
-           
+        this.id_achat = id_achat;
+        this.id_off = new Offre(id_offre);
+        this.id_us = new User(id);
+        this.date_achat = date_achat;
+
     }
 
-
-    public Achat(int id_achat,  User id_us,Offre id_off, Date date_achat) {
-          this.id_achat = id_achat;
-               this.id_us = id_us;
-               this.id_off = id_off;
-                this.date_achat = date_achat;
+    public Achat(int id_achat, User id_us, Offre id_off, Date date_achat) {
+        this.id_achat = id_achat;
+        this.id_us = id_us;
+        this.id_off = id_off;
+        this.date_achat = date_achat;
     }
-    
+
     public Achat(int id_achat, int id, int id_offre, Date date_achat) {
-          this.id_achat = id_achat;
-               this.id_us = new User(id);
-               this.id_off = new Offre(id_offre);
-                this.date_achat = date_achat;
+        this.id_achat = id_achat;
+        this.id_us = new User(id);
+        this.id_off = new Offre(id_offre);
+        this.date_achat = date_achat;
     }
-    
-    
 
+    public Achat(int id, int id_offre, Date date_achat) {
+        this.id_us = new User(id);
+        this.id_off = new Offre(id_offre);
+        this.date_achat = date_achat;
+    }
+
+    public Achat(Date date_achat, Offre id_off, User id_us) {
+           this.id_us = id_us;
+        this.id_off = id_off;
+        this.date_achat = date_achat;
+    }
+
+    public Achat(User user, Offre offre, Date date_achat) {
+          this.id_us = user;
+        this.id_off = offre;
+        this.date_achat = date_achat;
+    }
 
     public int getId_achat() {
         return id_achat;
@@ -111,18 +127,9 @@ public class Achat {
 //        return "Achat{" + "id_achat=" + id_achat + ", id_us=" + id_us + ", id_off=" + id_off + ",  date_achat=" + date_achat + '}';
 //    }
 //      
-
     @Override
     public String toString() {
-        return  ""+ date_achat;
+        return "" + date_achat;
     }
-    
-    
-    
-}
 
-    
-    
-    
-    
-    
+}

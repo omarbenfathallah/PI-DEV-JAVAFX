@@ -51,7 +51,7 @@ public class AchatDAO implements IAchatDAO {
                         rsUser.getInt("id"),
                         rsUser.getString("email"),
                         rsUser.getString("password"),
-                        rsUser.getString("nomU"),
+                        rsUser.getString("nom"),
                         rsUser.getString("prenom"),
                         rsUser.getString("tel"),
                         rsUser.getString("Type"),
@@ -83,7 +83,7 @@ public class AchatDAO implements IAchatDAO {
                     PreparedStatement ps = cnx.prepareStatement(sql);
                     ps.setInt(1, (int) ac.getId_us().getId());
                     ps.setInt(2, ac.getId_off().getId_offre());
-                    //ps.setDate(3, new java.sql.Date(ac.getDate_achat().getTime()));
+                    ps.setDate(3, new java.sql.Date(ac.getDate_achat().getTime()));
                     ps.executeUpdate();
                     System.out.println("Achat ajouté avec succés !");
 

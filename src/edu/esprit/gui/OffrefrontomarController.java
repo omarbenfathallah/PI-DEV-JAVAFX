@@ -6,7 +6,6 @@
 package edu.esprit.gui;
 
 import edu.esprit.dao.classes.AchatDAO;
-import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
@@ -20,9 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.time.LocalDate;
 import java.util.Date;
-import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 
 /**
@@ -33,6 +30,7 @@ import javafx.scene.control.Button;
 public class OffrefrontomarController implements Initializable {
 
     int id_offre;
+      int id;
 
     @FXML
     private ImageView fImg;
@@ -44,14 +42,14 @@ public class OffrefrontomarController implements Initializable {
     private Button Ach;
 
     AchatDAO aa = new AchatDAO();
-    OffreDAO oo = new OffreDAO();
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//      oo.setItems(FXCollections.observableArrayList(oo.getAll()));
+        // TODO
     }
 
     private void liredescription(ActionEvent event) {
@@ -68,16 +66,32 @@ public class OffrefrontomarController implements Initializable {
         File file = new File(path);
         Image img = new Image(file.toURI().toString());
         fImg.setImage(img);
-        
-        
     }
 
     public void setIdoffre(int id_offre) {
         this.id_offre = id_offre;
     }
-
+    
+     public void setId(int id) {
+        this.id = id;
+    }
+    
     @FXML
     private void AcheterOffre(ActionEvent event) {
 
+//        int id_off = id_offre; // get the ID of the current offer
+//        int id_us = id ; // get the ID of the current user
+//        Date date_achat = new Date(); // get the current date
+//         aa.insertAchat(new Achat(id_us, id_off, date_achat));
+
+         
+            int id_off = id_offre;
+     //   int id_us = id;
+         int id_us = 22 ;
+        Date date_achat = new Date();
+        User user = new User(22);
+        Offre offre = new Offre(id_off);
+        Achat achat = new Achat(user ,offre, date_achat);
+        aa.insertAchat(achat);
     }
 }
