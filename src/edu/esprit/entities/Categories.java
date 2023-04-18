@@ -4,11 +4,13 @@
  */
 package edu.esprit.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author BAZINFO
  */
-public class Categories {
+public class Categories implements Serializable{
      private int id_categorie;
     private String nomC ,descriptionC;
    

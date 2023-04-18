@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 import edu.esprit.dao.interfaces.IOffreDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -280,7 +283,7 @@ public class OffreDAO implements IOffreDAO {
      * @return
      */
     public List<Offre> chercherOffre(String chaine) {
-        
+
         String sql = "SELECT * FROM offre WHERE (nom LIKE ? or points LIKE ?  )  ";
         //Connection cnx= Maconnexion.getInstance().getCnx();
         String ch = "%" + chaine + "%";
@@ -301,7 +304,7 @@ public class OffreDAO implements IOffreDAO {
                 e.setDescription(rs.getString("Description"));
                 e.setPoints(rs.getInt("Points"));
                 e.setImage(rs.getString("Image"));
-         //       e.setId_cat(rs.getId_cat().getId_categorie("id_categorie"));
+                //       e.setId_cat(rs.getId_cat().getId_categorie("id_categorie"));
 
                 myList.add(e);
                 System.out.println("Offre trouvé! ");
@@ -310,8 +313,34 @@ public class OffreDAO implements IOffreDAO {
             System.out.println(ex.getMessage());
         }
         return myList;
-        
+
     }
-    
-    
+
+//    public List<Offre> getOffresByPage(int pageNumber, int itemsPerPage) {
+//        EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
+//        Query query = em.createQuery("SELECT o.nom, o.image , o.points   FROM Offre o ORDER BY o.id_offre DESC");
+//
+//        query.setFirstResult((pageNumber - 1) * itemsPerPage);
+//        query.setMaxResults(itemsPerPage);
+//        List<Offre> offres = query.getResultList();
+//        em.close();
+//        return offres;
+//    }
+    public List<Offre> getOffresByPage(int pageNumber, int itemsPerPage) {
+        EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
+        Query query = em.createQuery("SELECT o.nom, o.image , o.points   FROM Offre o ORDER BY o.id_offre DESC");
+        query.setFirstResult((pageNumber - 1) * itemsPerPage);
+        query.setMaxResults(itemsPerPage);
+        List<Object[]> results = query.getResultList();
+        List<Offre> offres = new ArrayList<>();
+        for (Object[] result : results) {
+            Offre offre = new Offre();
+            offre.setNom((String) result[0]);
+            offre.setImage((String) result[1]);
+            offre.setPoints((int) result[2]);
+            offres.add(offre);
+        }
+        em.close();
+        return offres;
+    }
 }

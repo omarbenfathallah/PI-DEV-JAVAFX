@@ -11,16 +11,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author BAZINFO
  */
+@Entity
 public class Offre {
 
     private String nom, description, image;
 
-    private int id_offre, points;
+    @Id
+    private int id_offre;
+    
+    private int points;
 
     private Categories id_cat;
 
