@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AffichefrontoffreController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="907.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AffichefrontoffreController">
    <children>
       <ScrollPane layoutX="17.0" layoutY="122.0" prefHeight="660.0" prefWidth="874.0">
          <content>

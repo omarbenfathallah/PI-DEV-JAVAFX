@@ -16,7 +16,9 @@
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/entities/Offre.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AffichefrontoffreController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AjoutOffreController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AccueilMain.java</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/entities/Categories.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/OffrefrontomarController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/dao/classes/OffreDAO.java</file>
         </group>

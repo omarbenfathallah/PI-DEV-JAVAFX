@@ -10,6 +10,6 @@
       <ImageView fx:id="fImg" fitHeight="178.0" fitWidth="234.0" layoutX="129.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="fnom" layoutX="135.0" layoutY="227.0" text="Label" />
       <Label fx:id="fpnt" layoutX="246.0" layoutY="227.0" text="Label" />
-      <Button fx:id="Ach" layoutX="306.0" layoutY="223.0" mnemonicParsing="false" onAction="#AcheterOffre" text="Acheter" />
+      <Button fx:id="Ach" layoutX="306.0" layoutY="223.0" mnemonicParsing="false" onAction="#AcheterOffre" prefHeight="25.0" prefWidth="77.0" text="Acheter" />
    </children>
 </AnchorPane>

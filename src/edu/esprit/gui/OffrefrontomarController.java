@@ -98,6 +98,10 @@ public class OffrefrontomarController implements Initializable {
     public void setIdoffre(int id_offre) {
         this.id_offre = id_offre;
     }
+    
+    public int getIdoOffre() {
+        return id_offre;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -110,12 +114,12 @@ public class OffrefrontomarController implements Initializable {
 //        int id_us = id ; // get the ID of the current user
 //        Date date_achat = new Date(); // get the current date
 //         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-        int id_off = id_offre;
+        //int id_off = id_offre;
         // int id_us = id;
         int id_us = 22;
         Date date_achat = new Date();
         User user = new User(22);
-        Offre offre = new Offre(id_off);
+        Offre offre = new Offre(getIdoOffre());
         Achat achat = new Achat(user, offre, date_achat);
         aa.insertAchat(achat);
     }

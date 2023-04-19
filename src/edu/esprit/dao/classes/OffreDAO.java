@@ -316,16 +316,6 @@ public class OffreDAO implements IOffreDAO {
 
     }
 
-//    public List<Offre> getOffresByPage(int pageNumber, int itemsPerPage) {
-//        EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
-//        Query query = em.createQuery("SELECT o.nom, o.image , o.points   FROM Offre o ORDER BY o.id_offre DESC");
-//
-//        query.setFirstResult((pageNumber - 1) * itemsPerPage);
-//        query.setMaxResults(itemsPerPage);
-//        List<Offre> offres = query.getResultList();
-//        em.close();
-//        return offres;
-//    }
     public List<Offre> getOffresByPage(int pageNumber, int itemsPerPage) {
         EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
         Query query = em.createQuery("SELECT o.nom, o.image , o.points   FROM Offre o ORDER BY o.id_offre DESC");

@@ -87,11 +87,11 @@ public class User {
         this.password = password;
     }
 
-    public String getNom() {
+    public String getNomU() {
         return nomU;
     }
 
-    public void setNom(String nomU) {
+    public void setNomU(String nomU) {
         this.nomU = nomU;
     }
 
