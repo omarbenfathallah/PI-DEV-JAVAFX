@@ -45,10 +45,10 @@ public class OffrefrontomarController implements Initializable {
     private Label fnom;
     @FXML
     private Label fpnt;
-    @FXML
-    private Button Ach;
 
     AchatDAO aa = new AchatDAO();
+    @FXML
+    private Button btnD;
 
     /**
      * Initializes the controller class.
@@ -107,20 +107,23 @@ public class OffrefrontomarController implements Initializable {
         this.id = id;
     }
 
-    @FXML
-    private void AcheterOffre(ActionEvent event) {
+//    private void AcheterOffre(ActionEvent event) {
+//
+////        int id_off = id_offre; // get the ID of the current offer
+////        int id_us = id ; // get the ID of the current user
+////        Date date_achat = new Date(); // get the current date
+////         aa.insertAchat(new Achat(id_us, id_off, date_achat));
+//        //int id_off = id_offre;
+//        // int id_us = id;
+//        int id_us = 22;
+//        Date date_achat = new Date();
+//        User user = new User(22);
+//        Offre offre = new Offre(getIdoOffre());
+//        Achat achat = new Achat(user, offre, date_achat);
+//        aa.insertAchat(achat);
+//    }
 
-//        int id_off = id_offre; // get the ID of the current offer
-//        int id_us = id ; // get the ID of the current user
-//        Date date_achat = new Date(); // get the current date
-//         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-        //int id_off = id_offre;
-        // int id_us = id;
-        int id_us = 22;
-        Date date_achat = new Date();
-        User user = new User(22);
-        Offre offre = new Offre(getIdoOffre());
-        Achat achat = new Achat(user, offre, date_achat);
-        aa.insertAchat(achat);
+    @FXML
+    private void DetailsOffre(ActionEvent event) {
     }
 }

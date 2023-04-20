@@ -5,6 +5,15 @@
  */
 package edu.esprit.gui;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import edu.esprit.dao.classes.AchatDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,14 +32,20 @@ import javafx.collections.ObservableList;
 
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,6 +67,8 @@ public class AfficheAllAchatController implements Initializable {
     private Button btnR;
     ObservableList<Achat> obList;
 
+     ObservableList<Achat> obListAch = FXCollections.observableArrayList();
+    
     Achat a = new Achat();
     @FXML
     private TableView<Achat> affichageAchat;
@@ -63,13 +80,19 @@ public class AfficheAllAchatController implements Initializable {
     private NumberAxis nombre;
     @FXML
     private CategoryAxis Axissss;
+    @FXML
+    private Button imprimer;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         AchatDAO aa = new AchatDAO();
+        obListAch = aa.DisplayAllAchat();
+        
         //   idachat.setCellValueFactory(new PropertyValueFactory<>("id_achat"));
 
         iduser.setCellValueFactory(new PropertyValueFactory<>("id_us"));
@@ -122,6 +145,63 @@ public class AfficheAllAchatController implements Initializable {
         nombre.setLabel("nombre");
         Axissss.setLabel("Nom d'offre");
         barChart.setTitle("Statistiques des Offre acheter");
+
+    }
+
+    @FXML
+    private void boutonimrimer(ActionEvent event) {
+
+        Document document = new Document();
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("RapportAchat.pdf"));
+            document.open();
+            Chunk c = new Chunk("Rapport Achat");
+            Paragraph p1 = new Paragraph(c);
+            p1.setAlignment(Paragraph.ALIGN_CENTER);
+            p1.setSpacingAfter(10f);
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.now();
+            Paragraph date = new Paragraph(dtf.format(localDate));
+            date.setAlignment(Paragraph.ALIGN_RIGHT);
+
+            document.add(date);
+
+            document.add(p1);
+
+            PdfPTable table = new PdfPTable(3);
+            
+            PdfPCell cell1 = new PdfPCell(new Phrase("id_us"));
+
+            cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            PdfPCell cell2 = new PdfPCell(new Phrase("date_achat"));
+
+            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            PdfPCell cell3 = new PdfPCell(new Phrase("id_off"));
+            
+             cell3.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+            table.addCell(cell1);
+            table.addCell(cell2);
+            table.addCell(cell3);
+
+            for (int i = 0; i < obListAch.size(); i++) {
+                
+                table.addCell(affichageAchat.getItems().get(i).getId_us().toString());
+                table.addCell("" + affichageAchat.getItems().get(i).getDate_achat());
+                table.addCell(affichageAchat.getItems().get(i).getId_off().toString());
+            }
+            document.add(table);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText(null);
+            alert.setContentText("Votre Rapport a été généré avec succès");
+            alert.show();
+            document.close();
+        } catch (DocumentException | FileNotFoundException e) {
+            System.out.println(e);
+        }
 
     }
 

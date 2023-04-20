@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="794.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficheAllAchatController">
+<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="958.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficheAllAchatController">
    <children>
       <Text layoutX="287.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Achats" wrappingWidth="151.921875">
          <font>
@@ -26,7 +26,7 @@
             <TableColumn fx:id="offre" prefWidth="155.0" text="Offre" />
         </columns>
       </TableView>
-      <Button fx:id="btnR" layoutX="696.0" layoutY="19.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="40.0" prefWidth="84.0" text="Retour" />
+      <Button fx:id="btnR" layoutX="851.0" layoutY="817.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="40.0" prefWidth="84.0" text="Retour" />
       <ImageView fitHeight="90.0" fitWidth="91.0" opacity="0.97">
          <image>
             <Image url="@../../../../../../../Downloads/logok.jpg" />
@@ -41,5 +41,6 @@
         </yAxis>
       </BarChart>
       <Button fx:id="butnstat" layoutX="39.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleStatsButtonAction" text="Click pour voir statique" />
+      <Button fx:id="imprimer" layoutX="825.0" layoutY="480.0" mnemonicParsing="false" onAction="#boutonimrimer" text="Imprimer " />
    </children>
 </AnchorPane>

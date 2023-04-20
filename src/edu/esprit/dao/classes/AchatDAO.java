@@ -138,7 +138,7 @@ public class AchatDAO implements IAchatDAO {
                 String email = result.getString("email");
                 String password = result.getString("password");
                // String nomU = result.getString("nomU");
-               String nomU = "benfathallah";
+                String nomU = "benfathallah";
                 String prenom = result.getString("prenom");
                 String type = result.getString("type");
                 String confirm_password = result.getString("confirm_password");
