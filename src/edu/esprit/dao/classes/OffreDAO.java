@@ -177,7 +177,7 @@ public class OffreDAO implements IOffreDAO {
 
     @Override
     public ObservableList<Offre> DisplayAllOffres() {
-        String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie ";
+        String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie   ORDER BY o.id_offre DESC";
         //    List<Offre> listeOffre = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();

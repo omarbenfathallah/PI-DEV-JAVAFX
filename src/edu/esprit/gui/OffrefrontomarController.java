@@ -5,6 +5,7 @@
  */
 package edu.esprit.gui;
 
+import com.itextpdf.text.pdf.qrcode.WriterException;
 import edu.esprit.dao.classes.AchatDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
@@ -107,23 +108,59 @@ public class OffrefrontomarController implements Initializable {
         this.id = id;
     }
 
-//    private void AcheterOffre(ActionEvent event) {
-//
-////        int id_off = id_offre; // get the ID of the current offer
-////        int id_us = id ; // get the ID of the current user
-////        Date date_achat = new Date(); // get the current date
-////         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-//        //int id_off = id_offre;
-//        // int id_us = id;
-//        int id_us = 22;
-//        Date date_achat = new Date();
-//        User user = new User(22);
-//        Offre offre = new Offre(getIdoOffre());
-//        Achat achat = new Achat(user, offre, date_achat);
-//        aa.insertAchat(achat);
-//    }
-
     @FXML
     private void DetailsOffre(ActionEvent event) {
+
+//        int id_off = id_offre; // get the ID of the current offer
+//        int id_us = id ; // get the ID of the current user
+//        Date date_achat = new Date(); // get the current date
+//         aa.insertAchat(new Achat(id_us, id_off, date_achat));
+        //int id_off = id_offre;
+        // int id_us = id;
+        int id_us = 22;
+        Date date_achat = new Date();
+        User user = new User(22);
+        Offre offre = new Offre(getIdoOffre());
+        Achat achat = new Achat(user, offre, date_achat);
+        aa.insertAchat(achat);
     }
+
+//    @FXML
+//    private void DetailsOffre(ActionEvent event)throws WriterException {// Get the selected Destination object from the ListView
+// // Get the selected Destination object from the ListView
+//    User selectedDest =list_afficher.getSelectionModel().getSelectedItem();
+//    Offre selectedOf = 
+//
+//    if (selectedDest != null) {
+//        // Get the name of the "nom", "prenom" and "role" from the selected Destination
+//        String nom = selectedDest.getNom_user();
+//        String prenom= selectedDest.getPrenom_user();
+//        String role = selectedDest.getRole_user();
+//
+//        // Generate the QR code with the paysName, etoile and type as the content
+//        String content = nom + "|" + prenom + "|" + role; // Use the pipe symbol as separator
+//        int width = 300;
+//        int height = 300;
+//        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+//        BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height);
+//
+//        // Convert the BitMatrix to a BufferedImage
+//        BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//
+//        // Display the image in a new window
+//        Stage stage = new Stage();
+//        stage.setTitle("QR Code");
+//        ImageView imageView = new ImageView(SwingFXUtils.toFXImage(qrImage, null));
+//        Scene scene = new Scene(new Group(imageView));
+//        stage.setScene(scene);
+//        stage.show();
+//    } else {
+//        // Handle case where no destination is selected
+//        Alert alert = new Alert(AlertType.ERROR);
+//        alert.setTitle("Error");
+//        alert.setHeaderText("Aucun utilisateur est séléctionné");
+//        alert.setContentText("Séléctionnez un utilisateur SVP");
+//        alert.showAndWait();
+//    }   
+//    }
 }

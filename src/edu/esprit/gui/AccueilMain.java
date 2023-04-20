@@ -23,7 +23,7 @@ public class AccueilMain extends Application {
         Parent root;
         try {
 //      root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
-            root = FXMLLoader.load(getClass().getResource("affichefrontoffre.fxml"));
+        root = FXMLLoader.load(getClass().getResource("affichefrontoffre.fxml"));
 
             Scene scene = new Scene(root);
             primaryStage.setTitle("Utri");
