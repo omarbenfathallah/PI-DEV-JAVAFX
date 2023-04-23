@@ -27,5 +27,6 @@
       </ScrollPane>
       <TextField fx:id="search" layoutX="53.0" layoutY="59.0" />
       <Button fx:id="Rech" layoutX="274.0" layoutY="59.0" mnemonicParsing="false" onAction="#RechercheOffre" text="Recherche" />
+      <Button fx:id="btnAll" layoutX="428.0" layoutY="59.0" mnemonicParsing="false" onAction="#AllOffre" text="All" />
    </children>
 </AnchorPane>

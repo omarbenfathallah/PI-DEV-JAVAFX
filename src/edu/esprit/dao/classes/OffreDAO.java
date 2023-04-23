@@ -101,35 +101,7 @@ public class OffreDAO implements IOffreDAO {
             System.out.println(ex);
         }
     }
-//    @Override
-//    public void updateOffre(Offre of) {
-////        String sql = " UPDATE `offre` SET `nom`=?,`description`=?,`image`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=? ";
-//        String sql = " UPDATE `offre` SET `nom`=?,`description`=?, `points`=?,`id_categorie`=?  WHERE  id_offre=?";
-//        try {
-//      
-//            PreparedStatement psCategorie = cnx.prepareStatement("SELECT `id_categorie` FROM `categorie_offres` WHERE id_categorie=?");
-//            psCategorie.setInt(1, of.getId_cat().getId_categorie());
-//            ResultSet rsCategorie = psCategorie.executeQuery();
-//            if (!rsCategorie.next()) {
-//                System.out.println("Categorie inexistant !");
-//                return;
-//            }
-//
-//            // Update the offre object in the database
-//            PreparedStatement ps = cnx.prepareStatement(sql);
-//            ps.setString(1, of.getNom());
-//            ps.setString(2, of.getDescription());
-////            ps.setString(3, of.getImage());
-//            ps.setInt(3, of.getPoints());
-//            ps.setInt(4, of.getId_cat().getId_categorie());
-//            ps.setInt(5, of.getId_offre());
-//            ps.executeUpdate();
-//            System.out.println("Offre modifier avec succés  !");
-//
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//    }
+
 
     @Override
     public void deleteOffre(Offre of) {
@@ -177,7 +149,7 @@ public class OffreDAO implements IOffreDAO {
 
     @Override
     public ObservableList<Offre> DisplayAllOffres() {
-        String sql = "SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie   ORDER BY o.id_offre DESC";
+        String sql = "SELECT DISTINCT  * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie   ORDER BY o.id_offre DESC";
         //    List<Offre> listeOffre = new ArrayList<>();
         try {
             Statement statement = cnx.createStatement();
@@ -254,28 +226,26 @@ public class OffreDAO implements IOffreDAO {
         }
         return offreList;
     }
-//    public ObservableList<Offre> getOffres() {
-//     //   List<Offre> offreList = new ArrayList<>();
-//        String sql = "SELECT * FROM offre";
-//        try {
-//            Statement statement = cnx.createStatement();
-//            ResultSet result = statement.executeQuery(sql);
-//            while (result.next()) {
-//                int id_offre = result.getInt("id_offre");
-//                String nom = result.getString("nom");
-//                String description = result.getString("description");
-//                String image = result.getString("image");
-//                int points = result.getInt("points");
-//                int id_categorie = result.getInt("id_categorie");
-//                Offre offre = new Offre(nom, description, image, points, id_categorie);
-//                obListOff.add(offre);
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        return obListOff;
-//    }
-//
+
+    public ObservableList<Offre> OffresQR() {
+        ObservableList<Offre> offres = FXCollections.observableArrayList();
+        try {
+//            Connection conn = getConnection();
+            PreparedStatement ps = cnx.prepareStatement("SELECT * FROM offre");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Offre offre = new Offre();
+                offre.setId_offre(rs.getInt("id_offre"));
+                offre.setNom(rs.getString("nom"));
+                offre.setPoints(rs.getInt("points"));
+                offre.setDescription(rs.getString("description"));
+                offres.add(offre);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return offres;
+    }
 
     /**
      *

@@ -5,11 +5,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="459.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.OffrefrontomarController">
+<AnchorPane id="AnchorPane" prefHeight="459.0" prefWidth="369.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.OffrefrontomarController">
    <children>
       <ImageView fx:id="fImg" fitHeight="178.0" fitWidth="234.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="fnom" layoutX="24.0" layoutY="227.0" text="Label" />
       <Label fx:id="fpnt" layoutX="128.0" layoutY="227.0" text="Label" />
-      <Button fx:id="btnD" layoutX="200.0" layoutY="223.0" mnemonicParsing="false" onAction="#DetailsOffre" text="Details" />
+      <Button fx:id="btnD" layoutX="200.0" layoutY="223.0" mnemonicParsing="false" onAction="#DetailsOffre" text="Acheter" />
+      <Button fx:id="btnQr" layoutX="201.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleDetailsButtonAction" text="Qrcode" />
    </children>
 </AnchorPane>

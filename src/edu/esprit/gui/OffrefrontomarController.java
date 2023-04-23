@@ -5,8 +5,11 @@
  */
 package edu.esprit.gui;
 
+import com.itextpdf.text.pdf.qrcode.BitMatrix;
+import com.itextpdf.text.pdf.qrcode.QRCodeWriter;
 import com.itextpdf.text.pdf.qrcode.WriterException;
 import edu.esprit.dao.classes.AchatDAO;
+import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
@@ -20,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +32,18 @@ import java.io.IOException;
 import static java.lang.System.out;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -41,6 +56,14 @@ public class OffrefrontomarController implements Initializable {
     int id;
 
     @FXML
+    private GridPane gridoffre;
+
+    @FXML
+    private AnchorPane pane;
+
+    Offre o = new Offre();
+
+    @FXML
     private ImageView fImg;
     @FXML
     private Label fnom;
@@ -50,12 +73,20 @@ public class OffrefrontomarController implements Initializable {
     AchatDAO aa = new AchatDAO();
     @FXML
     private Button btnD;
+    @FXML
+    private Button btnQr;
+
+// Declare a variable to store the selected offer
+    private Offre selectedOffre;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gridoffre = new GridPane();
+//        this.gridoffre=gridoffre;
+
         // TODO
     }
 
@@ -65,14 +96,27 @@ public class OffrefrontomarController implements Initializable {
         System.out.println(e.getNom());
     }
 
-    public void setEvenment(Offre oo) throws FileNotFoundException, IOException {
-        fnom.setText(oo.getNom());
-        fpnt.setText(Integer.toString(oo.getPoints()));
+    Offre getEvenment() {
+        return o;
+    }
 
-        String path = oo.getImage();
+    void setPane(AnchorPane pane) {
+        this.pane = pane;
+    }
+
+    public void setEvenment(Offre offre) throws FileNotFoundException, IOException {
+        this.o = offre;
+
+        fnom.setText(offre.getNom());
+        fpnt.setText(Integer.toString(offre.getPoints()));
+
+        String path = offre.getImage();
         File file = new File(path);
         Image image = new Image(file.toURI().toString());
-         
+        //
+
+        fImg.setImage(image);
+
 //                FileInputStream stream = new FileInputStream(path);
 //                int bufLength = 2048;
 //                byte[] buffer = new byte[2048];
@@ -92,14 +136,23 @@ public class OffrefrontomarController implements Initializable {
 //
 //                byte[] imageData = Base64.getDecoder().decode(imageString);
 //                Image image = new Image(new ByteArrayInputStream(imageData));
-
-        fImg.setImage(image);
+//        this.offre = offre;
+//        titre.setText(offre.getTitre());
+//        description.setText(offre.getDescription());
+//        image.setImage(new Image(offre.getImage()));
+//        date_debut.setText(offre.getDate_debut().toString());
+//        date_fin.setText(offre.getDate_fin().toString());
+//
+//        // Add event handler for Details button
+//        detailsButton.setOnAction(event -> {
+//            DeatailsOffre(offre);
+//        });
     }
 
     public void setIdoffre(int id_offre) {
         this.id_offre = id_offre;
     }
-    
+
     public int getIdoOffre() {
         return id_offre;
     }
@@ -108,8 +161,7 @@ public class OffrefrontomarController implements Initializable {
         this.id = id;
     }
 
-    @FXML
-    private void DetailsOffre(ActionEvent event) {
+    private void DetailsOffres(ActionEvent event) {
 
 //        int id_off = id_offre; // get the ID of the current offer
 //        int id_us = id ; // get the ID of the current user
@@ -125,42 +177,47 @@ public class OffrefrontomarController implements Initializable {
         aa.insertAchat(achat);
     }
 
+    @FXML
+    private void DetailsOffre(ActionEvent event) {
+
+    }
+
 //    @FXML
-//    private void DetailsOffre(ActionEvent event)throws WriterException {// Get the selected Destination object from the ListView
-// // Get the selected Destination object from the ListView
-//    User selectedDest =list_afficher.getSelectionModel().getSelectedItem();
-//    Offre selectedOf = 
+//    private void handleDetailsButtonAction(ActionEvent event) throws IOException {
 //
-//    if (selectedDest != null) {
-//        // Get the name of the "nom", "prenom" and "role" from the selected Destination
-//        String nom = selectedDest.getNom_user();
-//        String prenom= selectedDest.getPrenom_user();
-//        String role = selectedDest.getRole_user();
+////        ObservableList<Offre> offres;
+//        OffreDAO offreDao = new OffreDAO();
+////        offres = offreDao.OffresQR();
 //
-//        // Generate the QR code with the paysName, etoile and type as the content
-//        String content = nom + "|" + prenom + "|" + role; // Use the pipe symbol as separator
-//        int width = 300;
-//        int height = 300;
-//        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-//        BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height);
+////        Offre offre = new Offre(getIdoOffre());
+////          Offre offres = new Offre(getIdoOffre());
+//        List<Offre> offres = offreDao.OffresQR();
+//        for (Offre offre : offres){
+//        String filePath = "C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/qrcode_" + offre.getId_offre() + ".png";
+//        try {
+//            QrcodeController.generateQrCode(offre, filePath);
+//        } catch (Exception e) {
+//            // Handle any errors
+//            e.printStackTrace();
+//        }
+//        
 //
-//        // Convert the BitMatrix to a BufferedImage
-//        BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//        // Create a new window to display the QR code
+//        Stage qrCodeStage = new Stage();
+//        qrCodeStage.setTitle("Offer Details");
+//        qrCodeStage.initModality(Modality.APPLICATION_MODAL);
+//        qrCodeStage.setResizable(false);
 //
-//        // Display the image in a new window
-//        Stage stage = new Stage();
-//        stage.setTitle("QR Code");
-//        ImageView imageView = new ImageView(SwingFXUtils.toFXImage(qrImage, null));
-//        Scene scene = new Scene(new Group(imageView));
-//        stage.setScene(scene);
-//        stage.show();
-//    } else {
-//        // Handle case where no destination is selected
-//        Alert alert = new Alert(AlertType.ERROR);
-//        alert.setTitle("Error");
-//        alert.setHeaderText("Aucun utilisateur est séléctionné");
-//        alert.setContentText("Séléctionnez un utilisateur SVP");
-//        alert.showAndWait();
-//    }   
+//        // Load the FXML for the QR code window
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("qrcode.fxml"));
+//        Parent root = loader.load();
+//        QrcodeController qrCodeController = loader.getController();
+//        qrCodeController.setQrCodeImage(filePath);
+//        
+//        // Set the scene and show the window
+//        Scene scene = new Scene(root);
+//        qrCodeStage.setScene(scene);
+//        qrCodeStage.showAndWait();
+//        }
 //    }
 }
