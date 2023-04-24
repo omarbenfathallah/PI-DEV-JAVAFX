@@ -4,6 +4,10 @@
  */
 package edu.esprit.dao.classes;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import edu.esprit.entities.Categories;
 import edu.esprit.entities.Offre;
 import edu.esprit.util.MyConnection;
@@ -17,8 +21,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import edu.esprit.dao.interfaces.IOffreDAO;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -329,6 +341,56 @@ public class OffreDAO implements IOffreDAO {
             System.out.println(ex);
         }
         return obListOff;
+    }
+    
+    
+    public void Qr( Stage primaryStage,Offre p) {
+         //Stage primaryStage = null;
+    QRCodeWriter qrCodeWriter = new QRCodeWriter();
+    
+        String myWeb = "nom: " + p.getNom() +"\n"+ " description: " + p.getDescription() +"\n" + " points: " + p.getPoints() +"\n" + " Categorie: " + p.getId_cat().getNomC();
+
+        
+        
+        int width = 300;
+        int height = 300;
+        String fileType = "png";
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(myWeb, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            bufferedImage.createGraphics();
+            
+            Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, width, height);
+            graphics.setColor(Color.BLACK);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (byteMatrix.get(i, j)) {
+                        graphics.fillRect(i, j, 1, 1);
+                    }
+                }
+            }
+            
+            System.out.println("Success...");
+            
+        } catch (WriterException ex) {
+            //Logger.getLogger(JavaFX_QRCo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ImageView qrView = new ImageView();
+        qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(qrView);
+        
+        Scene scene = new Scene(root, 350, 350);
+        
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+       primaryStage.show();
     }
 
 }

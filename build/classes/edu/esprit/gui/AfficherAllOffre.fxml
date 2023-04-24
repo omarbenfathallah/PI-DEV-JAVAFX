@@ -37,5 +37,6 @@
             <Image url="@../../../GUI/logok.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="btnQr" layoutX="762.0" layoutY="581.0" mnemonicParsing="false" onAction="#QrCode" text="QrCode" />
    </children>
 </AnchorPane>

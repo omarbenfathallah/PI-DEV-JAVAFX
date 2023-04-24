@@ -37,6 +37,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -224,6 +225,19 @@ public class OffrefrontomarController implements Initializable {
             qrCodeStage.showAndWait();
         }
     }
+    
+//    @FXML
+//    private TableView<Offre> afficherOffre;
+//  @FXML
+//    private void handleDetailsButtonAction(ActionEvent event) {
+//         Stage qrStage = new Stage();
+//        Offre p;
+//        
+//        p=afficherOffre.getSelectionModel().getSelectedItem();
+//        OffreDAO pd=new OffreDAO();
+//        pd.Qr(qrStage,p);
+//    }
+
 
 
 }

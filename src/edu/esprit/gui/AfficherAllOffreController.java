@@ -5,10 +5,17 @@
  */
 package edu.esprit.gui;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import edu.esprit.dao.classes.CategorieDAO;
 import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Categories;
 import edu.esprit.entities.Offre;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -18,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +43,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -76,6 +85,8 @@ public class AfficherAllOffreController implements Initializable {
     private TextField search;
     @FXML
     private Button Recherche;
+    @FXML
+    private Button btnQr;
 
     /**
      * Initializes the controller class.
@@ -99,6 +110,7 @@ public class AfficherAllOffreController implements Initializable {
         OffreDAO od = new  OffreDAO();
         List<Offre> list2 = od.DisplayAllOffres();
         afficherOffre.getItems().addAll(list2);
+        
 
     }
 
@@ -228,36 +240,17 @@ public class AfficherAllOffreController implements Initializable {
         sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
         afficherOffre.setItems(sortedData);
     }
-//    public void choose() {
-//    idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
-//    nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//    descO.setCellValueFactory(new PropertyValueFactory<>("description"));
-//    imgO.setCellValueFactory(new PropertyValueFactory<>("image"));
-//    pntO.setCellValueFactory(new PropertyValueFactory<>("points"));
-//    idcat.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
-//
-//    FilteredList<Offre> filteredData = new FilteredList<>(obList, b -> true);
-//    search.textProperty().addListener((observable, oldValue, newValue) -> {
-//        filteredData.setPredicate(off -> {
-//            if (newValue == null || newValue.isEmpty()) {
-//                return true;
-//            }
-//            String[] keywords = newValue.toLowerCase().split("\\s+");
-//            for (String keyword : keywords) {
-//                boolean match = off.getNom().toLowerCase().contains(keyword)
-//                        || off.getDescription().toLowerCase().contains(keyword)
-//                || off.getId_cat() != null && off.getId_cat().getNomC().toLowerCase().contains(keyword);
-//
-//
-//                if (!match) {
-//                    return false;
-//                }
-//            }
-//            return true;
-//        });
-//    });
-//    SortedList<Offre> sortedData = new SortedList<>(filteredData);
-//    sortedData.comparatorProperty().bind(afficherOffre.comparatorProperty());
-//    afficherOffre.setItems(sortedData);  }
+
+    @FXML
+    private void QrCode(ActionEvent event) {
+         Stage qrStage = new Stage();
+        Offre p;
+        
+        p=afficherOffre.getSelectionModel().getSelectedItem();
+        OffreDAO pd=new OffreDAO();
+        pd.Qr(qrStage,p);
+    }
+    
+
 
 }

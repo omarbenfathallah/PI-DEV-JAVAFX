@@ -172,13 +172,13 @@ public class AfficheAllAchatController implements Initializable {
 
             PdfPTable table = new PdfPTable(3);
             
-            PdfPCell cell1 = new PdfPCell(new Phrase("id_us"));
+            PdfPCell cell1 = new PdfPCell(new Phrase("User"));
 
             cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            PdfPCell cell2 = new PdfPCell(new Phrase("date_achat"));
+            PdfPCell cell2 = new PdfPCell(new Phrase("Date Achat"));
 
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            PdfPCell cell3 = new PdfPCell(new Phrase("id_off"));
+            PdfPCell cell3 = new PdfPCell(new Phrase("Offre"));
             
              cell3.setBackgroundColor(BaseColor.LIGHT_GRAY);
 
