@@ -12,13 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/affichefrontoffre.fxml</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AcceuilController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/QrcodeController.java</file>
-            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/qrcode.fxml</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AffichefrontoffreController.java</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/Acceuil.fxml</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/ButtonmailController.java</file>
+            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AjoutOffreController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/AccueilMain.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/OffrefrontomarController.java</file>
             <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/dao/classes/OffreDAO.java</file>
-            <file>file:/C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/src/edu/esprit/gui/offrefrontomar.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -5,16 +5,19 @@
  */
 package edu.esprit.gui;
 
-import com.itextpdf.text.pdf.qrcode.BitMatrix;
-import com.itextpdf.text.pdf.qrcode.QRCodeWriter;
-import com.itextpdf.text.pdf.qrcode.WriterException;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import edu.esprit.dao.classes.AchatDAO;
 import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,25 +26,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.System.out;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -163,61 +161,69 @@ public class OffrefrontomarController implements Initializable {
 
     private void DetailsOffres(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void DetailsOffre(ActionEvent event) {
+
 //        int id_off = id_offre; // get the ID of the current offer
 //        int id_us = id ; // get the ID of the current user
 //        Date date_achat = new Date(); // get the current date
 //         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-        //int id_off = id_offre;
-        // int id_us = id;
+//        int id_off = id_offre;
+//         int id_us = id;
         int id_us = 22;
         Date date_achat = new Date();
         User user = new User(22);
         Offre offre = new Offre(getIdoOffre());
         Achat achat = new Achat(user, offre, date_achat);
         aa.insertAchat(achat);
+
+//         Send an email notification
+        String fromAddress = "omar.benfathallah@esprit.tn"; // Replace with your email address
+        String password = "223JMT4429"; // Replace with your email password
+        String toAddress = "omarbenfathallah782@gmail.com"; // Get the user's email address from the user object
+        String subject = "Thank you for your purchase!";
+        String message = "Dear Omar ,\n\nThank you for your purchase . We hope you enjoy your purchase.\n\nBest regards,\nThe Utri team";
+        
+
+        ButtonmailController.send(fromAddress, password, toAddress, subject, message);
     }
 
     @FXML
-    private void DetailsOffre(ActionEvent event) {
+    private void handleDetailsButtonAction(ActionEvent event) throws IOException {
+    
 
+//        ObservableList<Offre> offres;
+        OffreDAO offreDao = new OffreDAO();
+//        offres = offreDao.OffresQR();
+
+//        Offre offre = new Offre(getIdoOffre());
+//          Offre offre = new Offre(getIdoOffre());
+        ObservableList<Offre> offres = offreDao.OffresQR();
+        for (Offre offre : offres) {
+            String filePath = "C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/qrcode_" + offre.getId_offre() + ".png";
+            try {
+                QrcodeController.generateQrCode(offre, filePath);
+            } catch (Exception e) {
+                // Handle any errors
+                e.printStackTrace();
+            }   // Create a new window to display the QR code
+            Stage qrCodeStage = new Stage();
+            qrCodeStage.setTitle("Offer Details");
+            qrCodeStage.initModality(Modality.APPLICATION_MODAL);
+            qrCodeStage.setResizable(false);
+            // Load the FXML for the QR code window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("qrcode.fxml"));
+            Parent root = loader.load();
+            QrcodeController qrCodeController = loader.getController();
+            qrCodeController.setQrCodeImage(filePath);
+            // Set the scene and show the window
+            Scene scene = new Scene(root);
+            qrCodeStage.setScene(scene);
+            qrCodeStage.showAndWait();
+        }
     }
 
-//    @FXML
-//    private void handleDetailsButtonAction(ActionEvent event) throws IOException {
-//
-////        ObservableList<Offre> offres;
-//        OffreDAO offreDao = new OffreDAO();
-////        offres = offreDao.OffresQR();
-//
-////        Offre offre = new Offre(getIdoOffre());
-////          Offre offres = new Offre(getIdoOffre());
-//        List<Offre> offres = offreDao.OffresQR();
-//        for (Offre offre : offres){
-//        String filePath = "C:/Users/BAZINFO/Documents/NetBeansProjects/Utri/qrcode_" + offre.getId_offre() + ".png";
-//        try {
-//            QrcodeController.generateQrCode(offre, filePath);
-//        } catch (Exception e) {
-//            // Handle any errors
-//            e.printStackTrace();
-//        }
-//        
-//
-//        // Create a new window to display the QR code
-//        Stage qrCodeStage = new Stage();
-//        qrCodeStage.setTitle("Offer Details");
-//        qrCodeStage.initModality(Modality.APPLICATION_MODAL);
-//        qrCodeStage.setResizable(false);
-//
-//        // Load the FXML for the QR code window
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("qrcode.fxml"));
-//        Parent root = loader.load();
-//        QrcodeController qrCodeController = loader.getController();
-//        qrCodeController.setQrCodeImage(filePath);
-//        
-//        // Set the scene and show the window
-//        Scene scene = new Scene(root);
-//        qrCodeStage.setScene(scene);
-//        qrCodeStage.showAndWait();
-//        }
-//    }
+
 }

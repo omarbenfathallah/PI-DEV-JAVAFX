@@ -30,8 +30,6 @@ public class AcceuilController implements Initializable {
     private Button btnOf;
     @FXML
     private Button btnAc;
-    @FXML
-    private Button Ao;
 
     /**
      * Initializes the controller class.
@@ -82,7 +80,6 @@ public class AcceuilController implements Initializable {
         }
     }
 
-    @FXML
     private void AOffre(ActionEvent event) {
            try {
             Parent page1 = FXMLLoader.load(getClass().getResource("FrontOffice.fxml"));

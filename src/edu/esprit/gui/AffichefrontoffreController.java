@@ -47,6 +47,8 @@ public class AffichefrontoffreController implements Initializable {
     private Button Rech;
     @FXML
     private Button btnAll;
+    @FXML
+    private Button btnSport;
 
     /**
      * Initializes the controller class.
@@ -55,11 +57,12 @@ public class AffichefrontoffreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        afficherfront();
+       
+        afficherfront(true);     
     }
 
-    public void afficherfront() {
+    public void afficherfront(boolean b) {
+         gridoffre.getChildren().clear();
         try {
             List<Offre> offres = of.DisplayAllOffres();
             gridoffre.getChildren().clear();
@@ -201,6 +204,75 @@ public class AffichefrontoffreController implements Initializable {
             System.out.println(ex);
         }
     }
+
+    @FXML
+    private void FiltreBySport(ActionEvent event) {
+        FiltreBySports();
+//        afficherfront(false);
+    }
+    
+  public void FiltreBySports(){
+         gridoffre.getChildren().clear();
+         try {
+            List<Offre> offres = of.DisplaySport();
+            gridoffre.getChildren().clear();
+
+            int offresPerPage = 6; // Number of offres to display per page
+            int numPages = (int) Math.ceil(offres.size() / (double) offresPerPage); // Calculate the number of pages needed
+
+            Pagination pagination = new Pagination(numPages, 0); // Create a new Pagination object with the correct number of pages
+            pagination.setPageFactory(new Callback<Integer, Node>() {
+                @Override
+                public Node call(Integer pageIndex) {
+                    int column = 0;
+                    int row = 0;
+                    // Create a GridPane to hold the offres for the current page
+                    GridPane pageGrid = new GridPane();
+                    pageGrid.setHgap(10);
+                    pageGrid.setVgap(10);
+                    // Calculate the start and end index of the offres for the current page
+                    int startIndex = pageIndex * offresPerPage;
+                    int endIndex = Math.min(startIndex + offresPerPage, offres.size());
+                    // Add the offres to the GridPane for the current page
+                    for (int i = startIndex; i < endIndex; i++) {
+                        Offre offre = offres.get(i);
+                          if (offre.getId_cat().getId_categorie() != 3)  {
+                            continue;
+                        }
+                        // chargement dynamique d'une interface
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("offrefrontomar.fxml"));
+                        AnchorPane pane = null;
+                        try {
+                            pane = loader.load();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AffichefrontoffreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        // passage de parametres
+                        OffrefrontomarController controller = loader.getController();
+                        try {
+                            controller.setEvenment(offre);
+                        } catch (IOException ex) {
+                            Logger.getLogger(AffichefrontoffreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        controller.setIdoffre(offre.getId_offre());
+                        pageGrid.add(pane, column, row);
+                        column++;
+                        if (column > 2) {
+                            column = 0;
+                            row++;
+                        }
+                    }
+                    return pageGrid; // Return the GridPane containing the offres for the current page
+                }
+            });
+
+            gridoffre.add(pagination, 0, 1, 2, 1); // Add the pagination control to the gridoffre GridPane
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
 
 

@@ -7,8 +7,6 @@ package edu.esprit.gui;
 
 import java.io.File;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import edu.esprit.entities.Offre;
-import java.awt.image.BufferedImage;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
@@ -37,12 +33,14 @@ import javax.imageio.ImageIO;
 public class QrcodeController implements Initializable {
 
     @FXML
-    private ImageView qrimg;
+    private ImageView qrimg , fImg;
     @FXML
     private Button btnAchat;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

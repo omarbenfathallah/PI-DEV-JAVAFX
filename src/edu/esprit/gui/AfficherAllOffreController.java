@@ -9,6 +9,7 @@ import edu.esprit.dao.classes.CategorieDAO;
 import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Categories;
 import edu.esprit.entities.Offre;
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -43,7 +46,7 @@ public class AfficherAllOffreController implements Initializable {
 
     static String nom, description, image;
     static int idOf, pnt, idCat;
-
+    ImageView ph ;
     @FXML
     private TableColumn<Offre, String> nomO;
     @FXML
@@ -82,6 +85,10 @@ public class AfficherAllOffreController implements Initializable {
         of = new OffreDAO();
         obList = of.DisplayAllOffres();
 
+//          String path = offre.getImage();
+//        File file = new File(path);
+//        Image image = new Image(file.toURI().toString());
+        
         // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));
