@@ -10,6 +10,7 @@ import edu.esprit.entities.Achat;
 import edu.esprit.entities.Categories;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
+import edu.esprit.entities.Usertest;
 import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.util.Date;
@@ -43,7 +44,7 @@ public class AchatDAO implements IAchatDAO {
         String sql = "INSERT INTO `achat` ( `id`, `id_offre` ,`date_achat`) VALUES " + "(?,?,?)";
 
         try {
-            PreparedStatement psUser = cnx.prepareStatement("SELECT `id`, `email`, `roles`, `password`, `nom`, `prenom`, `tel`, `Type`, `confirm_password` FROM `user` WHERE id=?");
+            PreparedStatement psUser = cnx.prepareStatement("SELECT `id`, `email`, `roles`, `password`, `nom`, `prenom`, `tel`, `Type`, `confirm_password`, `adresse`   FROM `user` WHERE id=?");
             psUser.setInt(1, (int) ac.getId_us().getId());
             ResultSet rsUser = psUser.executeQuery();
             if (rsUser.next()) {
@@ -56,7 +57,8 @@ public class AchatDAO implements IAchatDAO {
                         rsUser.getString("tel"),
                         rsUser.getString("Type"),
                         rsUser.getString("confirm_password"),
-                        rsUser.getString("roles")
+                        rsUser.getString("roles"),
+                        rsUser.getString("adresse")
                 );
 
                 ac.setId_us(id_us);
@@ -137,13 +139,13 @@ public class AchatDAO implements IAchatDAO {
 
                 String email = result.getString("email");
                 String password = result.getString("password");
-               // String nomU = result.getString("nomU");
-                String nomU = "benfathallah";
+                String nomU = result.getString("nomU");
+             //   String nomU = "benfathallah";
                 String prenom = result.getString("prenom");
                 String type = result.getString("type");
-                String confirm_password = result.getString("confirm_password");
+                String adresse = result.getString("adresse");
                 String tel = result.getString("tel");
-                String roles = result.getString("roles");
+                String role = result.getString("role");
 
                 String nom = result.getString("nom");
                 String description = result.getString("description");
@@ -151,8 +153,8 @@ public class AchatDAO implements IAchatDAO {
                 String image = result.getString("image");
 
                 int id_categorie = result.getInt("id_categorie");
-
-                User u = new User(id_us, email, password, nomU, prenom, type, confirm_password, tel, roles);
+                
+                User u = new User(id_us, email, password, nomU, prenom, type, tel, role,adresse);
                 Offre o = new Offre(id_offre, nom, description, points, image, id_categorie);
                 Achat e = new Achat(id_achat, u, o, date_achat);
                 obListAch.add(e);
@@ -170,8 +172,8 @@ public class AchatDAO implements IAchatDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<User> getAllUsers() {
-        List<User> userList = new ArrayList<>();
+    public List<Usertest> getAllUsers() {
+        List<Usertest> userList = new ArrayList<>();
         String sql = "SELECT * FROM user";
         try {
             Statement statement = cnx.createStatement();
@@ -186,7 +188,7 @@ public class AchatDAO implements IAchatDAO {
                 String type = result.getString("Type");
                 String confirm_password = result.getString("confirm_password");
                 String roles = result.getString("roles");
-                User user = new User(id, email, password, nom, prenom, tel, type, confirm_password, roles);
+                Usertest user = new Usertest(id, email, password, nom, prenom, tel, type, confirm_password, roles);
                 userList.add(user);
             }
         } catch (SQLException ex) {

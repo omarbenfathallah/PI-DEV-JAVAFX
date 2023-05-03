@@ -5,19 +5,13 @@
  */
 package edu.esprit.gui;
 
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import edu.esprit.dao.classes.AchatDAO;
 import edu.esprit.dao.classes.OffreDAO;
+import edu.esprit.dao.classes.UserService;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.User;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
+import edu.esprit.util.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,15 +26,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -68,6 +59,13 @@ public class OffrefrontomarController implements Initializable {
     private Label fnom;
     @FXML
     private Label fpnt;
+    
+    
+    User user = new User();
+
+    UserService udao = new UserService();
+    
+    
 
     AchatDAO aa = new AchatDAO();
     @FXML
@@ -83,6 +81,7 @@ public class OffrefrontomarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        user = udao.DisplayById(Session.current_user.getId());
         gridoffre = new GridPane();
 //        this.gridoffre=gridoffre;
 
@@ -116,36 +115,6 @@ public class OffrefrontomarController implements Initializable {
 
         fImg.setImage(image);
 
-//                FileInputStream stream = new FileInputStream(path);
-//                int bufLength = 2048;
-//                byte[] buffer = new byte[2048];
-//                byte[] data;
-//
-//                ByteArrayOutputStream out = new ByteArrayOutputStream();
-//                int readLength;
-//                while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
-//                    out.write(buffer, 0, readLength);
-//                }
-//
-//                data = out.toByteArray();
-//                String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
-//
-//                out.close();
-//                stream.close();
-//
-//                byte[] imageData = Base64.getDecoder().decode(imageString);
-//                Image image = new Image(new ByteArrayInputStream(imageData));
-//        this.offre = offre;
-//        titre.setText(offre.getTitre());
-//        description.setText(offre.getDescription());
-//        image.setImage(new Image(offre.getImage()));
-//        date_debut.setText(offre.getDate_debut().toString());
-//        date_fin.setText(offre.getDate_fin().toString());
-//
-//        // Add event handler for Details button
-//        detailsButton.setOnAction(event -> {
-//            DeatailsOffre(offre);
-//        });
     }
 
     public void setIdoffre(int id_offre) {
@@ -160,6 +129,11 @@ public class OffrefrontomarController implements Initializable {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+   
     private void DetailsOffres(ActionEvent event) {
 
     }
@@ -173,9 +147,10 @@ public class OffrefrontomarController implements Initializable {
 //         aa.insertAchat(new Achat(id_us, id_off, date_achat));
 //        int id_off = id_offre;
 //         int id_us = id;
-        int id_us = 22;
+//          int id_us = 22;
         Date date_achat = new Date();
-        User user = new User(22);
+//        User user = new User(getId());
+//        User user = new User(22);
         Offre offre = new Offre(getIdoOffre());
         Achat achat = new Achat(user, offre, date_achat);
         aa.insertAchat(achat);
@@ -183,17 +158,17 @@ public class OffrefrontomarController implements Initializable {
 //         Send an email notification
         String fromAddress = "omar.benfathallah@esprit.tn"; // Replace with your email address
         String password = "223JMT4429"; // Replace with your email password
-        String toAddress = "omarbenfathallah782@gmail.com"; // Get the user's email address from the user object
+//        String toAddress = "omarbenfathallah782@gmail.com"; // Get the user's email address from the user object
+//        User u =new User(getId());
+        String toAddress = user.getEmail();
         String subject = "Thank you for your purchase!";
         String message = "Dear Omar ,\n\nThank you for your purchase . We hope you enjoy your purchase.\n\nBest regards,\nThe Utri team";
-        
 
         ButtonmailController.send(fromAddress, password, toAddress, subject, message);
     }
 
     @FXML
     private void handleDetailsButtonAction(ActionEvent event) throws IOException {
-    
 
 //        ObservableList<Offre> offres;
         OffreDAO offreDao = new OffreDAO();
@@ -225,7 +200,7 @@ public class OffrefrontomarController implements Initializable {
             qrCodeStage.showAndWait();
         }
     }
-    
+
 //    @FXML
 //    private TableView<Offre> afficherOffre;
 //  @FXML
@@ -237,7 +212,4 @@ public class OffrefrontomarController implements Initializable {
 //        OffreDAO pd=new OffreDAO();
 //        pd.Qr(qrStage,p);
 //    }
-
-
-
 }

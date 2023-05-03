@@ -1,0 +1,27 @@
+.primary-color{
+   -fx-background-color: #4CAF50; /* Change the primary color to green */
+}
+.secondary-color{
+   -fx-background-color: #FFFFFF; /* Change the secondary color to white */
+}
+.button{
+   -fx-background-color: #4CAF50; /* Change button background color to green */
+    -fx-background-radius: 30;
+}
+.button{
+    -fx-background-color: #4CAF50; /* Change button background color to green */
+    -fx-background-radius: 30;
+}
+.text-input{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #4CAF50; /* Change text input border color to green */
+    -fx-text-fill: #4CAF50; /* Change text color to white */
+}
+.selected-border{
+   -fx-border-color: #fff;
+    -fx-border-width: 0 3 0 0;
+}
+.selected:hover{
+   -fx-background-color: #66BB6A; /* Change the background color on hover to a lighter shade of green */
+}

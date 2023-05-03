@@ -4,31 +4,61 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="735.0" prefWidth="762.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutOffreController">
+<AnchorPane id="AnchorPane" prefHeight="735.0" prefWidth="762.0" style="-fx-background-color: #B0F2B6;" stylesheets="@fxmlprofil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutOffreController">
    <children>
-      <Text layoutX="276.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Offre" wrappingWidth="210.458984375">
+      <Text layoutX="287.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Offre" wrappingWidth="210.458984375">
          <font>
-            <Font size="31.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Label layoutX="65.0" layoutY="178.0" text="Nom" />
-      <Label layoutX="65.0" layoutY="235.0" text="Description" />
-      <Label layoutX="65.0" layoutY="346.0" prefHeight="17.0" prefWidth="33.0" text="Points" />
-      <Label layoutX="66.0" layoutY="408.0" text="Catgeorie" />
-      <Label layoutX="66.0" layoutY="470.0" text="Image" />
+      <Label layoutX="65.0" layoutY="178.0" text="Nom">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="65.0" layoutY="235.0" text="Description">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="65.0" layoutY="346.0" prefHeight="19.0" prefWidth="60.0" text="Points">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="66.0" layoutY="408.0" text="Catgeorie">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="66.0" layoutY="470.0" text="Image">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
       <TextField fx:id="Anom" layoutX="209.0" layoutY="174.0" />
       <TextField fx:id="Adesc" layoutX="209.0" layoutY="231.0" prefHeight="99.0" prefWidth="367.0" />
       <TextField fx:id="Apnt" layoutX="209.0" layoutY="342.0" />
       <TextField fx:id="Aimg" layoutX="209.0" layoutY="466.0" />
-      <Button fx:id="btnUpload" layoutX="402.0" layoutY="466.0" mnemonicParsing="false" onAction="#UploadImage" text="upload" />
-      <Button fx:id="btnAjout" layoutX="82.0" layoutY="626.0" mnemonicParsing="false" onAction="#AjoutOffre" text="Ajouter" />
-      <Button fx:id="btnR" layoutX="242.0" layoutY="626.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" />
+      <Button fx:id="btnUpload" layoutX="402.0" layoutY="466.0" mnemonicParsing="false" onAction="#UploadImage" text="upload" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnAjout" layoutX="82.0" layoutY="626.0" mnemonicParsing="false" onAction="#AjoutOffre" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnR" layoutX="242.0" layoutY="626.0" mnemonicParsing="false" onAction="#RetourAccueil" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <ImageView fx:id="Aimgg" fitHeight="150.0" fitWidth="200.0" layoutX="522.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="Allcat" layoutX="209.0" layoutY="404.0" prefWidth="150.0" />
+      <ImageView fitHeight="88.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../GUI/logok.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

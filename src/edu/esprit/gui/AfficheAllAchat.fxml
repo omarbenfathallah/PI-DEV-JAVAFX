@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="958.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficheAllAchatController">
+<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="958.0" style="-fx-background-color: #B0f2B6;" stylesheets="@fxmlprofil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficheAllAchatController">
    <children>
       <Text layoutX="382.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les Achats" wrappingWidth="194.921875">
          <font>
-            <Font size="38.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Text>
       <TableView fx:id="affichageAchat" layoutX="251.0" layoutY="115.0" prefHeight="375.0" prefWidth="475.0">
@@ -26,7 +26,10 @@
             <TableColumn fx:id="offre" prefWidth="155.0" text="Offre" />
         </columns>
       </TableView>
-      <Button fx:id="btnR" layoutX="851.0" layoutY="817.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="40.0" prefWidth="84.0" text="Retour" textFill="#ff1b1b" />
+      <Button fx:id="btnR" layoutX="851.0" layoutY="817.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="40.0" prefWidth="84.0" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <BarChart fx:id="barChart" layoutX="32.0" layoutY="523.0" prefHeight="348.0" prefWidth="813.0">
         <xAxis>
           <CategoryAxis fx:id="Axissss" label="xAxis" prefHeight="64.0" prefWidth="728.0" side="BOTTOM" />
@@ -35,9 +38,15 @@
           <NumberAxis fx:id="nombre" label="yAxis" prefHeight="299.0" prefWidth="55.0" side="LEFT" />
         </yAxis>
       </BarChart>
-      <Button fx:id="butnstat" layoutX="39.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleStatsButtonAction" text="Click pour voir statique" textFill="#8c2633" />
-      <Button fx:id="imprimer" layoutX="825.0" layoutY="480.0" mnemonicParsing="false" onAction="#boutonimrimer" text="Imprimer " textFill="#1414ff" />
-      <ImageView fitHeight="95.0" fitWidth="111.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="butnstat" layoutX="39.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleStatsButtonAction" text="Cliquez pour voir statique" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="imprimer" layoutX="825.0" layoutY="480.0" mnemonicParsing="false" onAction="#boutonimrimer" text="Imprimer " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <ImageView fitHeight="95.0" fitWidth="111.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../GUI/logok.jpg" />
          </image>

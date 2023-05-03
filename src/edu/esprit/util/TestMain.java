@@ -9,7 +9,7 @@ import edu.esprit.dao.classes.CategorieDAO;
 import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
-import edu.esprit.entities.User;
+import edu.esprit.entities.Usertest;
 import java.util.Date;
 
 

@@ -12,9 +12,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="702.0" prefWidth="1176.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AfficherAllOffreController">
    <children>
-      <Text layoutX="529.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Offres">
+      <Text layoutX="497.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Offres" wrappingWidth="277.70068359375">
          <font>
-            <Font size="32.0" />
+            <Font name="System Bold" size="52.0" />
          </font>
       </Text>
       <TableView fx:id="afficherOffre" layoutX="142.0" layoutY="129.0" prefHeight="427.0" prefWidth="925.0">
@@ -26,17 +26,35 @@
             <TableColumn fx:id="idcat" prefWidth="185.0" text="Categorie" />
         </columns>
       </TableView>
-      <Button fx:id="btnAjout" layoutX="120.0" layoutY="577.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="95.0" text="Ajouter Offre" />
-      <Button fx:id="btnR" layoutX="1026.0" layoutY="609.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="43.0" prefWidth="95.0" text="Retour" />
-      <Button fx:id="btnSupp" layoutX="541.0" layoutY="577.0" mnemonicParsing="false" onAction="#SuppOffre" prefHeight="32.0" prefWidth="95.0" text="Supprimer" textFill="#fc0000" />
-      <Button fx:id="btnM" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#ModifierOffre" prefHeight="32.0" prefWidth="95.0" text="Modifier" textFill="#0c00ff" />
-      <TextField fx:id="search" layoutX="67.0" layoutY="73.0" prefHeight="25.0" prefWidth="218.0" />
-      <Button fx:id="Recherche" layoutX="344.0" layoutY="73.0" mnemonicParsing="false" onAction="#rechercheOffre" text="Rechercher" />
+      <Button fx:id="btnAjout" layoutX="120.0" layoutY="577.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="95.0" stylesheets="@fxmlprofil.css" text="Ajouter Offre" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnR" layoutX="1026.0" layoutY="609.0" mnemonicParsing="false" onAction="#RetourAccueil" prefHeight="43.0" prefWidth="95.0" stylesheets="@fxmlprofil.css" text="Retour" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnSupp" layoutX="541.0" layoutY="577.0" mnemonicParsing="false" onAction="#SuppOffre" prefHeight="32.0" prefWidth="95.0" stylesheets="@fxmlprofil.css" text="Supprimer" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnM" layoutX="325.0" layoutY="577.0" mnemonicParsing="false" onAction="#ModifierOffre" prefHeight="32.0" prefWidth="95.0" stylesheets="@fxmlprofil.css" text="Modifier" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField fx:id="search" layoutX="67.0" layoutY="73.0" prefHeight="25.0" prefWidth="218.0" stylesheets="@fullpackstyling.css" />
+      <Button fx:id="Recherche" layoutX="344.0" layoutY="73.0" mnemonicParsing="false" onAction="#rechercheOffre" stylesheets="@fxmlprofil.css" text="Rechercher" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <ImageView fitHeight="60.0" fitWidth="88.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../GUI/logok.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnQr" layoutX="762.0" layoutY="581.0" mnemonicParsing="false" onAction="#QrCode" text="QrCode" />
+      <Button fx:id="btnQr" layoutX="762.0" layoutY="581.0" mnemonicParsing="false" onAction="#QrCode" stylesheets="@fxmlprofil.css" text="QrCode" textFill="#fffafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

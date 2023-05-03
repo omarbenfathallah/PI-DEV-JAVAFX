@@ -3,22 +3,41 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UpdateCatgorieController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #B0F2B6;" stylesheets="@fxmlprofil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UpdateCatgorieController">
    <children>
-      <Label layoutX="68.0" layoutY="146.0" text="nom" />
-      <Label layoutX="68.0" layoutY="226.0" text="description" />
-      <Button fx:id="btnm" layoutX="270.0" layoutY="323.0" mnemonicParsing="false" onAction="#modifCategorie" text="Modifier" textAlignment="CENTER" />
+      <Label layoutX="68.0" layoutY="146.0" text="nom">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="68.0" layoutY="226.0" text="description">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Button fx:id="btnm" layoutX="270.0" layoutY="323.0" mnemonicParsing="false" onAction="#modifCategorie" text="Modifier" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <TextField fx:id="mnom" layoutX="187.0" layoutY="142.0" />
       <TextField fx:id="mdesc" layoutX="187.0" layoutY="222.0" />
-      <Text layoutX="155.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Categorie">
+      <Text layoutX="168.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Catégorie">
          <font>
-            <Font name="Arial" size="26.0" />
+            <Font name="Arial Bold" size="30.0" />
          </font>
       </Text>
-      <Button fx:id="btnR" layoutX="459.0" layoutY="323.0" mnemonicParsing="false" onAction="#RetourCategorie" text="Retour" textAlignment="CENTER" />
+      <Button fx:id="btnR" layoutX="459.0" layoutY="323.0" mnemonicParsing="false" onAction="#RetourCategorie" text="Retour" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <ImageView fitHeight="78.0" fitWidth="85.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../GUI/logok.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
