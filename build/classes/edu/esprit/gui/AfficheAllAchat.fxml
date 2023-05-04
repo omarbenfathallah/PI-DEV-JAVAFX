@@ -19,7 +19,7 @@
             <Font name="System Bold" size="38.0" />
          </font>
       </Text>
-      <TableView fx:id="affichageAchat" layoutX="251.0" layoutY="115.0" prefHeight="375.0" prefWidth="475.0">
+      <TableView fx:id="affichageAchat" layoutX="251.0" layoutY="115.0" prefHeight="375.0" prefWidth="475.0" stylesheets="@fxmlprofil.css">
         <columns>
           <TableColumn fx:id="iduser" prefWidth="160.0" text="User" />
             <TableColumn fx:id="date" prefWidth="157.0" text="Date" />
@@ -42,7 +42,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="imprimer" layoutX="825.0" layoutY="480.0" mnemonicParsing="false" onAction="#boutonimrimer" text="Imprimer " textFill="WHITE">
+      <Button fx:id="imprimer" layoutX="825.0" layoutY="480.0" mnemonicParsing="false" onAction="#boutonimrimer" text="Imprimer  PDF" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

@@ -28,7 +28,7 @@
         </HBox>
     </top>
     <center>
-        <VBox id="centerVBox" fx:id="centerVBox" alignment="CENTER" opacity="0.63" prefHeight="200.0" prefWidth="600.0" spacing="20.0" stylesheets="@fxmlprofil.css">
+        <VBox id="centerVBox" fx:id="centerVBox" alignment="CENTER" opacity="0.84" prefHeight="200.0" prefWidth="600.0" spacing="20.0" stylesheets="@fxmlprofil.css">
             <Label contentDisplay="BOTTOM" focusTraversable="false" prefHeight="125.0" prefWidth="348.0" text="Welcome To">
             <font>
                <Font name="Cooper Black" size="54.0" />

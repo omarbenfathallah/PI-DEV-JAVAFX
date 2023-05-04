@@ -57,8 +57,7 @@ public class FXMLprofilController implements Initializable {
     private Label txtUsername;
     @FXML
     private Button logout;
-    @FXML
-    private Label idUser;
+
 
     /**
      * Initializes the controller class.
@@ -74,7 +73,7 @@ public class FXMLprofilController implements Initializable {
         txtEmail.setText(user.getEmail());
         txt_adresse.setText(user.getAdresse());
         txt_tel.setText(user.getNumero());
-        idUser.setText(String.valueOf(user.getId()));
+      
 
 
     }
