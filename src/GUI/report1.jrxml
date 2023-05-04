@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea8b20b8-1a1c-46ba-91e8-31b6cb1f6e1d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     poubelle.`id` AS poubelle_id,
+     poubelle.`type_id` AS poubelle_type_id,
+     poubelle.`name` AS poubelle_name,
+     poubelle.`poids_vide` AS poubelle_poids_vide,
+     poubelle.`couleur` AS poubelle_couleur,
+     poubelle.`description` AS poubelle_description,
+     poubelle.`image` AS poubelle_image
+FROM
+     `poubelle` poubelle]]>
+	</queryString>
+	<field name="poubelle_id" class="java.lang.Integer"/>
+	<field name="poubelle_type_id" class="java.lang.String"/>
+	<field name="poubelle_name" class="java.lang.String"/>
+	<field name="poubelle_poids_vide" class="java.lang.String"/>
+	<field name="poubelle_couleur" class="java.lang.String"/>
+	<field name="poubelle_description" class="java.lang.String"/>
+	<field name="poubelle_image" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" forecolor="#009900" uuid="1a0e8ce8-5740-47aa-a72e-10dbb25713a6"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Utri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#000000" backcolor="#330033" uuid="866da312-ffb0-41a9-a982-781a121ea209"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Report Doucument]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="0f25ba22-6a77-4691-a8f3-1ff758ea86a1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="79" height="15" uuid="c4a17c83-4749-4f4c-a4e0-33def0c5c4ce"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="79" y="19" width="79" height="15" uuid="9a862b6d-cf0f-4156-b710-2943be888f46"/>
+				<text><![CDATA[Type_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="158" y="19" width="79" height="15" uuid="3030af48-4972-47f8-8ef1-cee3ebb4aeef"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="237" y="19" width="79" height="15" uuid="3934988d-36da-47d6-b3fe-d5803c3f4e20"/>
+				<text><![CDATA[Poids_vide]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="316" y="19" width="79" height="15" uuid="8745efc8-f143-4e67-9ee0-059f80af7f69"/>
+				<text><![CDATA[Couleur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="395" y="19" width="79" height="15" uuid="1e6576c9-c25e-4cde-b98e-d1e7edea207c"/>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="474" y="19" width="79" height="15" uuid="35d63c85-7d48-432d-8c4e-877f0938958c"/>
+				<text><![CDATA[Image]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="6f9c05d2-755a-41cb-b1cf-543accf42893"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="79" height="15" uuid="31f12ceb-ff90-4c6a-896c-3dc56b0fcccb"/>
+				<textFieldExpression><![CDATA[$F{poubelle_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="79" y="0" width="79" height="15" uuid="d51359a7-094b-4272-bf8c-5a67ef10ea53"/>
+				<textFieldExpression><![CDATA[$F{poubelle_type_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="158" y="0" width="79" height="15" uuid="d9741357-f4f4-4214-aa29-9d3f509f4839"/>
+				<textFieldExpression><![CDATA[$F{poubelle_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="237" y="0" width="79" height="15" uuid="d33dc05d-66f5-4904-8afc-e5a6817d3dbc"/>
+				<textFieldExpression><![CDATA[$F{poubelle_poids_vide}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="316" y="0" width="79" height="15" uuid="ead0d2ba-580b-4d11-8dec-5719330dad03"/>
+				<textFieldExpression><![CDATA[$F{poubelle_couleur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="395" y="0" width="79" height="15" uuid="4bdcc4e2-061d-478a-a2ae-84c118ce9c12"/>
+				<textFieldExpression><![CDATA[$F{poubelle_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="474" y="0" width="79" height="15" uuid="727e8256-2ee7-4572-950b-7a4beac7d848"/>
+				<textFieldExpression><![CDATA[$F{poubelle_image}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="cdac025d-c95c-48b9-bbb9-d4d90b8f8ad0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="c09dccf0-37de-4918-b764-7d969f922853"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="7217c666-8a7e-479a-8593-3e68d60a34ff"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b74b0b5f-f67d-42f1-9e10-7b6475274f5f"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

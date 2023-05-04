@@ -25,7 +25,7 @@ public class User {
     private String email;
     private String firstname;
     private String lastname;
-    private String role;
+    private String roles;
     private String password;
     private String confirm_password; 
     private String numero;
@@ -39,6 +39,35 @@ public class User {
         this.id = id;
     }
 
+    public User(int id_us, String email, String password, String prenom, String type, String tel, String role, String adresse) {
+        this.id = id_us;
+        this.email = email;
+        this.password = password;
+        this.lastname = prenom;
+        this.type = type;
+        this.numero = tel;
+        this.roles = role;
+        this.adresse = adresse;
+    }
+    
+    
+  
+
+    public User(int id, String email, String password, String firstname, String lastname, String type, String tel, String roles, String adresse) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.type = type;
+        this.numero = numero;
+        this.roles = roles;
+        this.adresse = adresse;
+    }
+    
+    
+    
+
     public String getAdresse() {
         return adresse;
     }
@@ -47,12 +76,12 @@ public class User {
         this.adresse = adresse;
     }
 
-    public User(int id, String email, String firstname, String lastname, String role, String password, String confirm_password, String numero, String adresse, String type) {
+    public User(int id, String email, String firstname, String lastname, String roles, String password, String confirm_password, String numero, String adresse, String type) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.role = role;
+        this.roles = roles;
         this.password = password;
         this.confirm_password = confirm_password;
         this.numero = numero;
@@ -68,20 +97,7 @@ public class User {
         this.confirm_password = confirm_password;
     }
     
-    
-    
-
-    public User(int id, String email, String password, String firstname, String lastname, String type, String tel, String role, String adresse) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.type = type;
-        this.numero = numero;
-        this.role = role;
-        this.adresse = adresse;
-    }
+ 
 
     public static String encrypMD5(String data) {
         try {
@@ -156,23 +172,23 @@ public class User {
     }
 
     public String getRole() {
-        return role;
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(String roles) {
+        this.roles = roles;
     }
 
     public String verifRole() {
 
         if (getEmail().contains("u-tri.tn")) //this.role="[\"ROLE_CITOYEN\",\"ROLE_ADMIN\"]";
         {
-            this.role = "[\"ROLE_ADMIN\"]";
+            this.roles = "[\"ROLE_ADMIN\"]";
         } else {
-            this.role = "[\"ROLE_CITOYEN\"]";
+            this.roles = "[\"ROLE_CITOYEN\"]";
         }
 
-        return role;
+        return roles;
     }
 
     public String verifType() {
@@ -242,6 +258,6 @@ public class User {
 
     @Override
     public String toString() {
-        return firstname + " " + lastname;
+        return   getFirstname() + "    " + lastname;
     }
 }

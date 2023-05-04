@@ -55,6 +55,10 @@ public class AffichefrontoffreController implements Initializable {
     private Button btnBeaute;
     @FXML
     private Button btnSante;
+    @FXML
+    private Button btnDec;
+    @FXML
+    private Button btnP;
 
     /**
      * Initializes the controller class.
@@ -289,6 +293,32 @@ public class AffichefrontoffreController implements Initializable {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void Deconnecter(ActionEvent event) {
+            try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void Profil(ActionEvent event) {
+                    try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("FXMLprofil.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
 }

@@ -16,113 +16,135 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="edu.esprit.gui.FXMLuserlistController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLuserlistController">
     <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1220.0">
-         <left>
-            <VBox prefHeight="200.0" prefWidth="340.0" spacing="50.0" styleClass="primary-color" stylesheets="@fxmlprofil.css" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="140.0" prefWidth="340.0" spacing="15.0">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                     <children>
-                        <ImageView fx:id="userImg" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <viewport>
-                              <Rectangle2D minX="10.0" />
-                           </viewport>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </ImageView>
-                        <Button mnemonicParsing="false" onAction="#edit" prefHeight="44.0" prefWidth="107.0" text="Edit Profil" textFill="WHITE">
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1220.0">
+            <left>
+                <VBox prefHeight="200.0" prefWidth="340.0" spacing="50.0" styleClass="primary-color" stylesheets="@fxmlprofil.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="30.0" prefWidth="105.0" spacing="15.0" stylesheets="@fxmlprofil.css">
+                            <VBox.margin>
+                                <Insets top="50.0" />
+                            </VBox.margin>
+                            <children>
+                                <ImageView fx:id="userImg" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                    <viewport>
+                                        <Rectangle2D minX="10.0" />
+                                    </viewport>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </ImageView>
+                                <Label fx:id="txtUsername" textFill="WHITE">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#edit" prefHeight="31.0" prefWidth="157.0" text="Modifier Profil" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="320.0" prefWidth="340.0" spacing="15.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="82.0" prefWidth="292.0" text="Admin Dashborad" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="Cambria Bold" size="28.0" />
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="277.0" spacing="10.0">
+                                    <children>
+                                        <Label prefHeight="21.0" prefWidth="135.0" text="Liste des utilisateurs" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="13.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="selected" />
+                                        <String fx:value="selected-border" />
+                                    </styleClass>
+                                </HBox>
+                        <Button fx:id="btnOffre" mnemonicParsing="false" onAction="#ConsulterOffres" text="Consulter Offres" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Label fx:id="txtUsername" textFill="WHITE">
+                        <Button fx:id="btnCat" mnemonicParsing="false" onAction="#ConsulterCat" text="Consulter Catégories" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="13.0" />
                            </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="320.0" prefWidth="340.0" spacing="15.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="207.0" text="Admin Dashborad" textAlignment="CENTER" textFill="WHITE">
+                        </Button>
+                        <Button fx:id="btnAchat" mnemonicParsing="false" onAction="#ConsulterAchat" text="Consulter Achats" textFill="WHITE">
                            <font>
-                              <Font name="Cambria Bold" size="24.0" />
+                              <Font name="System Bold" size="13.0" />
                            </font>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="277.0" spacing="10.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="135.0" text="Liste des utilisateurs" textFill="WHITE">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <styleClass>
-                              <String fx:value="selected" />
-                              <String fx:value="selected-border" />
-                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnPob" mnemonicParsing="false" onAction="#ConsulterPob" text="Consulter poubelle" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" styleClass="secondary-color" stylesheets="@fxmlprofil.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="780.0">
+                            <children>
+                                <Label prefHeight="36.0" prefWidth="168.0" text="Liste Users">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Pane prefHeight="44.0" prefWidth="117.0" />
+                                <TextField fx:id="filterField" prefHeight="26.0" prefWidth="223.0" promptText="Chercher" />
+                                <Pane prefHeight="44.0" prefWidth="119.0" />
+                                <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="155.0" text="Se déconnecter" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Button>
+                            </children>
                         </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </left>
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" styleClass="secondary-color" stylesheets="@fxmlprofil.css" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="780.0">
-                     <children>
-                        <Label prefHeight="36.0" prefWidth="168.0" text="Members List">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="44.0" prefWidth="117.0" />
-                        <TextField fx:id="filterField" prefHeight="26.0" prefWidth="223.0" promptText="Chercher" />
-                        <Pane prefHeight="44.0" prefWidth="119.0" />
-                        <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="155.0" text="Se déconnecter" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <TableView fx:id="tableU" prefHeight="482.0" prefWidth="780.0" style="-fx-background-color: grey;">
-                    <columns>
-                      <TableColumn fx:id="colFirstname" prefWidth="75.0" text="Firstname" />
-                        <TableColumn fx:id="colLastname" prefWidth="75.0" text="Lastname" />
-                        <TableColumn fx:id="colEmail" prefWidth="130.0" text="Email" />
-                        <TableColumn fx:id="colAddress" prefWidth="156.0" text="Address" />
-                        <TableColumn fx:id="colPhone" prefWidth="103.0" text="Telephone" />
-                    </columns>
-                  </TableView>
-                  <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="780.0">
-                     <children>
-                        <Pane prefHeight="41.0" prefWidth="461.0">
-                           <children>
-                              <Button fx:id="imprimer" layoutX="298.0" layoutY="5.0" mnemonicParsing="false" onAction="#boutonimprimer" prefHeight="31.0" prefWidth="98.0" text="PDF" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font></Button>
-                           </children></Pane>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#delete" prefHeight="50.0" prefWidth="155.0" text="delete" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
-               </padding>
-            </VBox>
-         </center>
-      </BorderPane>
-   </children>
+                        <TableView fx:id="tableU" prefHeight="482.0" prefWidth="780.0" style="-fx-background-color: grey;">
+                            <columns>
+                                <TableColumn fx:id="colFirstname" prefWidth="149.0" text="Firstname" />
+                                <TableColumn fx:id="colLastname" prefWidth="110.0" text="Lastname" />
+                                <TableColumn fx:id="colEmail" prefWidth="211.0" text="Email" />
+                                <TableColumn fx:id="colAddress" prefWidth="149.0" text="Address" />
+                                <TableColumn fx:id="colPhone" prefWidth="158.0" text="Telephone" />
+                            </columns>
+                        </TableView>
+                        <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="780.0">
+                            <children>
+                                <Pane prefHeight="41.0" prefWidth="461.0">
+                                    <children>
+                                        <Button fx:id="imprimer" layoutX="242.0" layoutY="5.0" mnemonicParsing="false" onAction="#boutonimprimer" prefHeight="31.0" prefWidth="154.0" text="Imprimer PDF" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="15.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </Pane>
+                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#delete" prefHeight="50.0" prefWidth="155.0" text="Supprimer" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+                    </padding>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>

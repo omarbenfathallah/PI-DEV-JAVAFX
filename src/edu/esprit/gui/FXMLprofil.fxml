@@ -74,11 +74,6 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="780.0">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="625.0" text="Profile settings">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
                         <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="155.0" text="Se déconnecter" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
@@ -117,7 +112,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Label fx:id="idUser" text="Labelid" />
                   <VBox prefHeight="223.0" prefWidth="780.0" spacing="30.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="780.0">

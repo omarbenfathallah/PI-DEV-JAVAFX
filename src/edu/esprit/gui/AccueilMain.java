@@ -25,7 +25,11 @@ public class AccueilMain extends Application {
 //      root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
 //        root = FXMLLoader.load(getClass().getResource("affichefrontoffre.fxml"));
         
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+//        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+              root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+              
+              
+//            root = FXMLLoader.load(getClass().getResource("AffichePoubelle.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Utri");
             primaryStage.setScene(scene);

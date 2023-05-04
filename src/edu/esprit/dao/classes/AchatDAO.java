@@ -124,7 +124,14 @@ public class AchatDAO implements IAchatDAO {
 
     public ObservableList<Achat> DisplayAllAchat() {
 
-        String sql = "SELECT * FROM achat a  JOIN offre o  ON o.id_offre = a.id_offre  JOIN user cl ON a.id = cl.id ";
+//        String sql = "SELECT * FROM achat a  JOIN offre o  ON o.id_offre = a.id_offre  JOIN user cl ON a.id = cl.id ";
+        String sql = "SELECT a.id_achat, cl.id, a.id_offre, a.date_achat, "
+                + "cl.email, cl.password, cl.nom AS user_nom, "
+                + "cl.prenom, cl.type, cl.adresse, cl.tel, cl.roles, "
+                + "o.nom AS offre_nom, o.description, o.points, o.image, o.id_categorie "
+                + "FROM achat a "
+                + "JOIN offre o ON o.id_offre = a.id_offre "
+                + "JOIN user cl ON a.id = cl.id";
 
         // List<Achat> listeAchat = new ArrayList<>();
         try {
@@ -139,23 +146,23 @@ public class AchatDAO implements IAchatDAO {
 
                 String email = result.getString("email");
                 String password = result.getString("password");
-                String nomU = result.getString("nomU");
-             //   String nomU = "benfathallah";
+                String firstname = result.getString("user_nom"); 
+
                 String prenom = result.getString("prenom");
                 String type = result.getString("type");
                 String adresse = result.getString("adresse");
                 String tel = result.getString("tel");
-                String role = result.getString("role");
+                String role = result.getString("roles");
 
-                String nom = result.getString("nom");
+                String nomO = result.getString("offre_nom");
                 String description = result.getString("description");
                 int points = result.getInt("points");
                 String image = result.getString("image");
 
                 int id_categorie = result.getInt("id_categorie");
-                
-                User u = new User(id_us, email, password, nomU, prenom, type, tel, role,adresse);
-                Offre o = new Offre(id_offre, nom, description, points, image, id_categorie);
+
+                User u = new User(id_us, email, password, firstname, prenom, type, tel, role, adresse);
+                Offre o = new Offre(id_offre, nomO, description, points, image, id_categorie);
                 Achat e = new Achat(id_achat, u, o, date_achat);
                 obListAch.add(e);
 
@@ -196,26 +203,27 @@ public class AchatDAO implements IAchatDAO {
         }
         return userList;
     }
+
     public List<Offre> getAllOffres() {
-    List<Offre> offreList = new ArrayList<>();
-    String sql = "SELECT * FROM offre";
-    try {
-        Statement statement = cnx.createStatement();
-        ResultSet result = statement.executeQuery(sql);
-        while (result.next()) {
-            int id_offre = result.getInt("id_offre");
-            String nom = result.getString("nom");
-            String description = result.getString("description");
-            String image = result.getString("image");
-            int points = result.getInt("points");
-            int id_categorie = result.getInt("id_categorie");
-            Offre offre = new Offre(nom, description, image, points, id_categorie);
-            offreList.add(offre);
+        List<Offre> offreList = new ArrayList<>();
+        String sql = "SELECT * FROM offre";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id_offre = result.getInt("id_offre");
+                String nom = result.getString("nom");
+                String description = result.getString("description");
+                String image = result.getString("image");
+                int points = result.getInt("points");
+                int id_categorie = result.getInt("id_categorie");
+                Offre offre = new Offre(nom, description, image, points, id_categorie);
+                offreList.add(offre);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
+        return offreList;
     }
-    return offreList;
-}
 
 }

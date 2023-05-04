@@ -129,8 +129,8 @@ public class AfficherAllOffreController implements Initializable {
 
     @FXML
     private void RetourAccueil(ActionEvent event) {
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
+           try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("FXMLuserList.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

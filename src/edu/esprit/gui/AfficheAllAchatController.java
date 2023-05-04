@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.esprit.dao.classes.AchatDAO;
+import edu.esprit.dao.classes.UserService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,6 +33,8 @@ import javafx.collections.ObservableList;
 
 import edu.esprit.entities.Achat;
 import edu.esprit.entities.Offre;
+import edu.esprit.entities.User;
+import edu.esprit.util.Session;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
@@ -82,12 +85,19 @@ public class AfficheAllAchatController implements Initializable {
     private CategoryAxis Axissss;
     @FXML
     private Button imprimer;
+    
+    UserService udao = new UserService();
+        
+    User user = new User();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          user = udao.DisplayById(Session.current_user.getId());
+        
+        
         
         
         AchatDAO aa = new AchatDAO();
@@ -107,7 +117,7 @@ public class AfficheAllAchatController implements Initializable {
     @FXML
     private void RetourAccueil(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("FXMLuserList.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -188,7 +198,7 @@ public class AfficheAllAchatController implements Initializable {
 
             for (int i = 0; i < obListAch.size(); i++) {
                 
-                table.addCell(affichageAchat.getItems().get(i).getId_us().toString());
+                table.addCell(affichageAchat.getItems().get(i).getId_us().getFirstname()+"  "+affichageAchat.getItems().get(i).getId_us().getLastname());
                 table.addCell("" + affichageAchat.getItems().get(i).getDate_achat());
                 table.addCell(affichageAchat.getItems().get(i).getId_off().toString());
             }

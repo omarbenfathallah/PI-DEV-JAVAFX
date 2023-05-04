@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="907.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AffichefrontoffreController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="942.0" style="-fx-background-color: #B0F2B6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AffichefrontoffreController">
    <children>
       <ScrollPane layoutX="17.0" layoutY="122.0" prefHeight="660.0" prefWidth="874.0">
          <content>
@@ -28,16 +28,16 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="search" layoutX="134.0" layoutY="60.0" />
-      <Button fx:id="Rech" layoutX="345.0" layoutY="59.0" mnemonicParsing="false" onAction="#RechercheOffre" stylesheets="@fxmlprofil.css" text="Recherche" textFill="WHITE">
+      <TextField fx:id="search" layoutX="92.0" layoutY="61.0" />
+      <Button fx:id="Rech" layoutX="289.0" layoutY="60.0" mnemonicParsing="false" onAction="#RechercheOffre" stylesheets="@fxmlprofil.css" text="Recherche" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnAll" layoutX="512.0" layoutY="60.0" mnemonicParsing="false" onAction="#AllOffre" stylesheets="@fxmlprofil.css" text="All" textFill="WHITE">
+      <Button fx:id="btnAll" layoutX="418.0" layoutY="60.0" mnemonicParsing="false" onAction="#AllOffre" stylesheets="@fxmlprofil.css" text="Toutes les offres" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnSport" layoutX="594.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreBySport" stylesheets="@fxmlprofil.css" text="Sport" textFill="WHITE">
+      <Button fx:id="btnSport" layoutX="546.0" layoutY="60.0" mnemonicParsing="false" onAction="#FiltreBySport" stylesheets="@fxmlprofil.css" text="Sport" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
@@ -46,12 +46,22 @@
             <Image url="@../../../GUI/logok.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnBeaute" layoutX="685.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreByBeaute" stylesheets="@fxmlprofil.css" text="Beauté" textFill="WHITE">
+      <Button fx:id="btnBeaute" layoutX="608.0" layoutY="60.0" mnemonicParsing="false" onAction="#FiltreByBeaute" stylesheets="@fxmlprofil.css" text="Beauté" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnSante" layoutX="783.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreBySante" stylesheets="@fxmlprofil.css" text="Santé" textFill="WHITE">
+      <Button fx:id="btnSante" layoutX="677.0" layoutY="60.0" mnemonicParsing="false" onAction="#FiltreBySante" stylesheets="@fxmlprofil.css" text="Santé" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDec" layoutX="843.0" layoutY="23.0" mnemonicParsing="false" onAction="#Deconnecter" stylesheets="@fxmlprofil.css" text="Déconnecter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnP" layoutX="773.0" layoutY="23.0" mnemonicParsing="false" onAction="#Profil" stylesheets="@fxmlprofil.css" text="Profil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

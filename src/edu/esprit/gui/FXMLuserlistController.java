@@ -79,9 +79,19 @@ public class FXMLuserlistController implements Initializable {
     private Button logout;
     @FXML
     private Button imprimer;
+    @FXML
+    private Button btnOffre;
+    @FXML
+    private Button btnCat;
+    @FXML
+    private Button btnAchat;
+    @FXML
+    private Button btnPob;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -251,6 +261,58 @@ public class FXMLuserlistController implements Initializable {
             document.close();
         } catch (DocumentException | FileNotFoundException e) {
             System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void ConsulterOffres(ActionEvent event) {
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("AfficherAllOffre.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void ConsulterCat(ActionEvent event) {
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("AfficheAllCategorie.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void ConsulterAchat(ActionEvent event) {
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("AfficheAllAchat.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void ConsulterPob(ActionEvent event) {
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("AffichePoubelle.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
 
