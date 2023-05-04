@@ -62,7 +62,7 @@ public class OffrefrontomarController implements Initializable {
     
     
     User user = new User();
-
+    OffreDAO odao = new OffreDAO();
     UserService udao = new UserService();
     
     
@@ -82,6 +82,7 @@ public class OffrefrontomarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         user = udao.DisplayById(Session.current_user.getId());
+     //   o = (Offre) odao.DisplayAllOffres();
         gridoffre = new GridPane();
 //        this.gridoffre=gridoffre;
 
@@ -141,28 +142,18 @@ public class OffrefrontomarController implements Initializable {
     @FXML
     private void DetailsOffre(ActionEvent event) {
 
-//        int id_off = id_offre; // get the ID of the current offer
-//        int id_us = id ; // get the ID of the current user
-//        Date date_achat = new Date(); // get the current date
-//         aa.insertAchat(new Achat(id_us, id_off, date_achat));
-//        int id_off = id_offre;
-//         int id_us = id;
-//          int id_us = 22;
         Date date_achat = new Date();
-//        User user = new User(getId());
-//        User user = new User(22);
+
         Offre offre = new Offre(getIdoOffre());
         Achat achat = new Achat(user, offre, date_achat);
         aa.insertAchat(achat);
 
-//         Send an email notification
         String fromAddress = "omar.benfathallah@esprit.tn"; // Replace with your email address
         String password = "223JMT4429"; // Replace with your email password
-//        String toAddress = "omarbenfathallah782@gmail.com"; // Get the user's email address from the user object
-//        User u =new User(getId());
+
         String toAddress = user.getEmail();
         String subject = "Thank you for your purchase!";
-        String message = "Dear Omar ,\n\nThank you for your purchase . We hope you enjoy your purchase.\n\nBest regards,\nThe Utri team";
+        String message = "Dear  "+user.getFirstname() +" " +user.getLastname()+",\n\nThank you for your purchase . We hope you enjoy your purchase.\n\nBest regards,\nThe Utri team";
 
         ButtonmailController.send(fromAddress, password, toAddress, subject, message);
     }

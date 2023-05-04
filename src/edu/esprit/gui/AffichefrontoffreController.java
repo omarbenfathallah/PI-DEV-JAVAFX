@@ -9,6 +9,7 @@ import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Offre;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -37,7 +38,7 @@ import javafx.util.Callback;
  * @author BAZINFO
  */
 public class AffichefrontoffreController implements Initializable {
-    
+
     @FXML
     private GridPane gridoffre;
     OffreDAO of = new OffreDAO();
@@ -50,20 +51,22 @@ public class AffichefrontoffreController implements Initializable {
     private Button btnAll;
     @FXML
     private Button btnSport;
+    @FXML
+    private Button btnBeaute;
+    @FXML
+    private Button btnSante;
 
     /**
      * Initializes the controller class.
      */
-    
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        afficherfront(true);     
+
+        afficherfront(true);
     }
 
     public void afficherfront(boolean b) {
-         gridoffre.getChildren().clear();
+        gridoffre.getChildren().clear();
         try {
             List<Offre> offres = of.DisplayAllOffres();
             gridoffre.getChildren().clear();
@@ -127,7 +130,7 @@ public class AffichefrontoffreController implements Initializable {
             alert.setTitle("Search is empty");
             alert.setHeaderText("Please enter a search term");
             alert.showAndWait();
-           // afficherfront();
+            // afficherfront();
             return;
         }
 
@@ -195,7 +198,7 @@ public class AffichefrontoffreController implements Initializable {
 
     @FXML
     private void AllOffre(ActionEvent event) {
-       try {
+        try {
             Parent page1 = FXMLLoader.load(getClass().getResource("affichefrontoffre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -208,18 +211,37 @@ public class AffichefrontoffreController implements Initializable {
 
     @FXML
     private void FiltreBySport(ActionEvent event) {
-        FiltreBySports();
-//        afficherfront(false);
+        filterOffersByCategory("sport");
     }
-    
-  public void FiltreBySports(){
-         gridoffre.getChildren().clear();
-         try {
-            List<Offre> offres = of.DisplaySport();
-            gridoffre.getChildren().clear();
+
+
+    @FXML
+    private void FiltreByBeaute(ActionEvent event) {
+        filterOffersByCategory("beauté");
+    }
+
+    @FXML
+    private void FiltreBySante(ActionEvent event) {
+        filterOffersByCategory("santé");
+    }
+
+    private void filterOffersByCategory(String category) {
+        // Clear the gridoffre
+        gridoffre.getChildren().clear();
+
+        try {
+            List<Offre> offres = of.DisplayAllOffres();
+            List<Offre> filteredOffres = new ArrayList<>();
+
+            // Filter the offers based on the provided category
+            for (Offre offre : offres) {
+                if (offre.getId_cat().getNomC().equalsIgnoreCase(category)) {
+                    filteredOffres.add(offre);
+                }
+            }
 
             int offresPerPage = 6; // Number of offres to display per page
-            int numPages = (int) Math.ceil(offres.size() / (double) offresPerPage); // Calculate the number of pages needed
+            int numPages = (int) Math.ceil(filteredOffres.size() / (double) offresPerPage); // Calculate the number of pages needed
 
             Pagination pagination = new Pagination(numPages, 0); // Create a new Pagination object with the correct number of pages
             pagination.setPageFactory(new Callback<Integer, Node>() {
@@ -233,13 +255,9 @@ public class AffichefrontoffreController implements Initializable {
                     pageGrid.setVgap(10);
                     // Calculate the start and end index of the offres for the current page
                     int startIndex = pageIndex * offresPerPage;
-                    int endIndex = Math.min(startIndex + offresPerPage, offres.size());
+                    int endIndex = Math.min(startIndex + offresPerPage, filteredOffres.size());
                     // Add the offres to the GridPane for the current page
                     for (int i = startIndex; i < endIndex; i++) {
-                        Offre offre = offres.get(i);
-                          if (offre.getId_cat().getId_categorie() != 3)  {
-                            continue;
-                        }
                         // chargement dynamique d'une interface
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("offrefrontomar.fxml"));
                         AnchorPane pane = null;
@@ -251,11 +269,11 @@ public class AffichefrontoffreController implements Initializable {
                         // passage de parametres
                         OffrefrontomarController controller = loader.getController();
                         try {
-                            controller.setEvenment(offre);
+                            controller.setEvenment(filteredOffres.get(i));
                         } catch (IOException ex) {
                             Logger.getLogger(AffichefrontoffreController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        controller.setIdoffre(offre.getId_offre());
+                        controller.setIdoffre(filteredOffres.get(i).getId_offre());
                         pageGrid.add(pane, column, row);
                         column++;
                         if (column > 2) {
@@ -273,6 +291,4 @@ public class AffichefrontoffreController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
-
 }

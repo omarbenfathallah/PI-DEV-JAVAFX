@@ -28,16 +28,16 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TextField fx:id="search" layoutX="246.0" layoutY="60.0" />
-      <Button fx:id="Rech" layoutX="454.0" layoutY="60.0" mnemonicParsing="false" onAction="#RechercheOffre" stylesheets="@fxmlprofil.css" text="Recherche" textFill="WHITE">
+      <TextField fx:id="search" layoutX="134.0" layoutY="60.0" />
+      <Button fx:id="Rech" layoutX="345.0" layoutY="59.0" mnemonicParsing="false" onAction="#RechercheOffre" stylesheets="@fxmlprofil.css" text="Recherche" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnAll" layoutX="585.0" layoutY="60.0" mnemonicParsing="false" onAction="#AllOffre" stylesheets="@fxmlprofil.css" text="All" textFill="WHITE">
+      <Button fx:id="btnAll" layoutX="512.0" layoutY="60.0" mnemonicParsing="false" onAction="#AllOffre" stylesheets="@fxmlprofil.css" text="All" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnSport" layoutX="688.0" layoutY="60.0" mnemonicParsing="false" onAction="#FiltreBySport" stylesheets="@fxmlprofil.css" text="Sport" textFill="WHITE">
+      <Button fx:id="btnSport" layoutX="594.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreBySport" stylesheets="@fxmlprofil.css" text="Sport" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
@@ -46,5 +46,15 @@
             <Image url="@../../../GUI/logok.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="btnBeaute" layoutX="685.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreByBeaute" stylesheets="@fxmlprofil.css" text="Beauté" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSante" layoutX="783.0" layoutY="59.0" mnemonicParsing="false" onAction="#FiltreBySante" stylesheets="@fxmlprofil.css" text="Santé" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

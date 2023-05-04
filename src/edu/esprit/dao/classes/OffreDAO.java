@@ -344,6 +344,64 @@ public class OffreDAO implements IOffreDAO {
     }
     
     
+        public ObservableList<Offre> DisplayBeaute() {
+        String sql
+                = //"SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie WHERE c1.id_categorie = 3 ORDER BY o.id_offre DESC";
+                "SELECT DISTINCT  * FROM offre o   JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie WHERE cl.id_categorie = 2 ORDER BY o.id_offre DESC";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id_offre = result.getInt(1);
+                String nom = result.getString(2);
+                String description = result.getString(3);
+                String image = result.getString(4);
+                int points = result.getInt(5);
+                int id_categorie = result.getInt(6);
+
+                String nomC = result.getString(8);
+                String descriptionC = result.getString(9);
+
+                Categories c = new Categories(id_categorie, nomC, descriptionC);
+                Offre e = new Offre(nom, description, image, id_offre, points, c);
+                obListOff.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obListOff;
+    }
+        
+        public ObservableList<Offre> DisplaySante() {
+        String sql
+                = //"SELECT * FROM offre o JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie WHERE c1.id_categorie = 3 ORDER BY o.id_offre DESC";
+                "SELECT DISTINCT  * FROM offre o   JOIN categorie_offres cl ON o.id_categorie = cl.id_categorie WHERE cl.id_categorie = 1 ORDER BY o.id_offre DESC";
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id_offre = result.getInt(1);
+                String nom = result.getString(2);
+                String description = result.getString(3);
+                String image = result.getString(4);
+                int points = result.getInt(5);
+                int id_categorie = result.getInt(6);
+
+                String nomC = result.getString(8);
+                String descriptionC = result.getString(9);
+
+                Categories c = new Categories(id_categorie, nomC, descriptionC);
+                Offre e = new Offre(nom, description, image, id_offre, points, c);
+                obListOff.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obListOff;
+    }
+    
+    
+    
     public void Qr( Stage primaryStage,Offre p) {
          //Stage primaryStage = null;
     QRCodeWriter qrCodeWriter = new QRCodeWriter();
