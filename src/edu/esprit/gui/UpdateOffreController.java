@@ -9,6 +9,7 @@ import edu.esprit.dao.classes.OffreDAO;
 import edu.esprit.entities.Offre;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -110,36 +112,76 @@ public class UpdateOffreController implements Initializable {
 
     @FXML
     private void UploadImage(ActionEvent event) throws FileNotFoundException, IOException {
-        Random rand = new Random();
-        int x = rand.nextInt(1000);
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Upload File Path");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Captures\\\\" + x + ".jpg";
-        if (file != null) {
-            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
-            FileOutputStream Fdestination = new FileOutputStream(DBPath);
-            BufferedInputStream bin = new BufferedInputStream(Fsource);
-            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
-            System.out.println(file.getAbsoluteFile());
-            String path = file.getAbsolutePath();
-            Image img = new Image(file.toURI().toString());
-            Aimg.setImage(img);
-            Mimg.setText(DBPath);
-            int b = 0;
-            while (b != -1) {
-                b = bin.read();
-                bou.write(b);
+//        Random rand = new Random();
+//        int x = rand.nextInt(1000);
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Upload File Path");
+//        fileChooser.getExtensionFilters().addAll(
+//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+//        File file = fileChooser.showOpenDialog(null);
+//        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Captures\\\\" + x + ".jpg";
+//        if (file != null) {
+//            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+//            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+//            BufferedInputStream bin = new BufferedInputStream(Fsource);
+//            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+//            System.out.println(file.getAbsoluteFile());
+//            String path = file.getAbsolutePath();
+//            Image img = new Image(file.toURI().toString());
+//            Aimg.setImage(img);
+//            Mimg.setText(DBPath);
+//            int b = 0;
+//            while (b != -1) {
+//                b = bin.read();
+//                bou.write(b);
+//            }
+//            bin.close();
+//            bou.close();
+//        } else {
+//            System.out.println("error");
+//        }
+//    }
+    
+          FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fc.showOpenDialog(null);
+        if (selectedFile != null) {
+//               Aimg.setText(selectedFile.getName());
+//               Aimgg.setImage(new Image(selectedFile + "file:"));
+            try {
+                String imagePath = selectedFile.getAbsolutePath();
+                String encodedImage = imageEncoderDecoder(imagePath);
+                Mimg.setText(imagePath);
+                Image image = new Image("data:image/png;base64," + encodedImage);
+                Aimg.setImage(image);
+            } catch (IOException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error uploading image!");
+                alert.showAndWait();
             }
-            bin.close();
-            bou.close();
-        } else {
-            System.out.println("error");
         }
     }
+    
+      public String imageEncoderDecoder(String path) throws IOException {
+        FileInputStream stream = new FileInputStream(path);
+        int bufLength = 2048;
+        byte[] buffer = new byte[2048];
+        byte[] data;
 
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int readLength;
+        while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
+            out.write(buffer, 0, readLength);
+        }
+
+        data = out.toByteArray();
+        String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
+
+        out.close();
+        stream.close();
+        return imageString;
+    }
+    
+    
     @FXML
     private void RetourAccueil(ActionEvent event) {
         try {

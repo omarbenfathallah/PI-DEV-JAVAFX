@@ -87,9 +87,12 @@ public class AfficherAllOffreController implements Initializable {
     private Button Recherche;
     @FXML
     private Button btnQr;
+//    private ImageView imgOff;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,7 +102,14 @@ public class AfficherAllOffreController implements Initializable {
 //          String path = offre.getImage();
 //        File file = new File(path);
 //        Image image = new Image(file.toURI().toString());
-        
+
+//        String path = o.getImage();
+//        File file = new File(path);
+//        Image image = new Image(file.toURI().toString());
+//        //
+//
+//
+//         imgOff.setImage(image);
         // idO.setCellValueFactory(new PropertyValueFactory<>("id_offre"));
         nomO.setCellValueFactory(new PropertyValueFactory<>("nom"));
         descO.setCellValueFactory(new PropertyValueFactory<>("description"));

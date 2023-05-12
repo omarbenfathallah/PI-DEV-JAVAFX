@@ -20,7 +20,7 @@ public class AccueilMain extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Parent root;
+        Parent root; 
         try {
 //      root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
 //        root = FXMLLoader.load(getClass().getResource("affichefrontoffre.fxml"));

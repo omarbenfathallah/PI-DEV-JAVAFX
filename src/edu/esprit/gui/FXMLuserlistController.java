@@ -280,7 +280,7 @@ public class FXMLuserlistController implements Initializable {
     @FXML
     private void ConsulterCat(ActionEvent event) {
          try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("AfficheAllCategorie.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("AfficherAllCategorie.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

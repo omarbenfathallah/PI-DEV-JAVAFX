@@ -154,7 +154,6 @@ public class OffrefrontomarController implements Initializable {
         String toAddress = user.getEmail();
         String subject = "Thank you for your purchase!";
         String message = "Dear  "+user.getFirstname() +" " +user.getLastname()+",\n\nThank you for your purchase . We hope you enjoy your purchase.\n\nBest regards,\nThe Utri team";
-
         ButtonmailController.send(fromAddress, password, toAddress, subject, message);
     }
 
@@ -191,16 +190,4 @@ public class OffrefrontomarController implements Initializable {
             qrCodeStage.showAndWait();
         }
     }
-
-//    @FXML
-//    private TableView<Offre> afficherOffre;
-//  @FXML
-//    private void handleDetailsButtonAction(ActionEvent event) {
-//         Stage qrStage = new Stage();
-//        Offre p;
-//        
-//        p=afficherOffre.getSelectionModel().getSelectedItem();
-//        OffreDAO pd=new OffreDAO();
-//        pd.Qr(qrStage,p);
-//    }
 }
